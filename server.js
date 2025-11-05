@@ -551,33 +551,32 @@ app.post('/api/lead', (req, res) => {
 // Simple health check
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// Sitemap with lastmod dates
+// Sitemap with proper XML formatting
 app.get('/sitemap.xml', (req, res) => {
-  const { SitemapStream, streamToPromise } = require('sitemap');
-  const { Readable } = require('stream');
-
   const now = new Date().toISOString();
-  const links = [
-    { url: '/', changefreq: 'daily', priority: 1.0, lastmod: now },
-    { url: '/bhojan-mitra', changefreq: 'weekly', priority: 0.9, lastmod: now },
-    { url: '/pos-machine', changefreq: 'weekly', priority: 0.85, lastmod: now },
-    { url: '/pos-software', changefreq: 'weekly', priority: 0.9, lastmod: now },
-    { url: '/restaurant-pos', changefreq: 'weekly', priority: 0.8, lastmod: now },
-    { url: '/pricing', changefreq: 'weekly', priority: 0.9, lastmod: now },
-    { url: '/about', changefreq: 'monthly', priority: 0.6, lastmod: now },
-    { url: '/training', changefreq: 'monthly', priority: 0.6, lastmod: now },
-    { url: '/support', changefreq: 'monthly', priority: 0.6, lastmod: now },
-    { url: '/contact', changefreq: 'monthly', priority: 0.7, lastmod: now }
+  const urls = [
+    { url: '/', changefreq: 'daily', priority: 1.0 },
+    { url: '/bhojan-mitra', changefreq: 'weekly', priority: 0.9 },
+    { url: '/pos-machine', changefreq: 'weekly', priority: 0.85 },
+    { url: '/pos-software', changefreq: 'weekly', priority: 0.9 },
+    { url: '/restaurant-pos', changefreq: 'weekly', priority: 0.8 },
+    { url: '/pricing', changefreq: 'weekly', priority: 0.9 },
+    { url: '/about', changefreq: 'monthly', priority: 0.6 },
+    { url: '/training', changefreq: 'monthly', priority: 0.6 },
+    { url: '/support', changefreq: 'monthly', priority: 0.6 },
+    { url: '/contact', changefreq: 'monthly', priority: 0.7 }
   ];
 
-  const stream = new SitemapStream({ hostname: 'https://aarohitavigyan.com' });
-  
-  res.header('Content-Type', 'application/xml');
-  res.header('X-Robots-Tag', 'noindex'); // Don't index the sitemap itself
-  
-  streamToPromise(Readable.from(links).pipe(stream)).then((data) => {
-    res.send(data.toString());
-  });
+  res.type('application/xml');
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(item => `  <url>
+    <loc>https://aarohitavigyan.com${item.url}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${item.changefreq}</changefreq>
+    <priority>${item.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`);
 });
 
 // Enhanced Robots.txt

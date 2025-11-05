@@ -19,7 +19,6 @@ const ROUTES = [
   { url: '/pos-software', file: 'pos-software/index.html' },
   { url: '/restaurant-pos', file: 'restaurant-pos/index.html' },
   { url: '/pricing', file: 'pricing/index.html' },
-  { url: '/business-plan', file: 'business-plan/index.html' },
   { url: '/about', file: 'about/index.html' },
   { url: '/training', file: 'training/index.html' },
   { url: '/support', file: 'support/index.html' },
