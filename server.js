@@ -534,7 +534,11 @@ Allow: /
 Sitemap: https://aarohitavigyan.com/sitemap.xml`);
 });
 
-app.listen(PORT, () => {
-  console.log(`SEO-optimized POS website running on port ${PORT}`);
-  console.log(`Visit: http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`SEO-optimized POS website running on port ${PORT}`);
+    console.log(`Visit: http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
+    "build": "node scripts/build_static.js",
     "deploy:hostinger": "bash ./scripts/deploy_hostinger.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -30,6 +30,11 @@ Run production server:
 npm start
 ```
 
+Generate a static export (writes to `dist/`):
+```bash
+npm run build
+```
+
 ## Project Structure
 
 ```
@@ -72,7 +77,7 @@ Deploy straight to GitHub and Hostinger with the helper script:
 DEPLOY_HOST=your.hostinger.tld DEPLOY_USER=deploy DEPLOY_TARGET=/home/deploy/app ./scripts/deploy.sh
 ```
 
-The script pushes the current branch to `origin`, then stages a clean bundle in a temp directory: it copies the repo (without `.git`), runs `npm ci`, executes `npm run build --if-present`, prunes dev dependencies, and finally rsyncs the finished bundle to your Hostinger `DEPLOY_TARGET`. Remote install/restart commands are skipped by default to avoid relying on Hostinger’s Node tooling.
+The script pushes the current branch to `origin`, then stages a clean bundle in a temp directory: it copies the repo (without `.git`), runs `npm ci`, executes `npm run build` (static renderer that writes to `dist/`), prunes dev dependencies, and finally rsyncs the generated `dist/` folder to your Hostinger `DEPLOY_TARGET`. Remote install/restart commands are skipped by default so the static bundle works on simple FTP hosting.
 
 Useful toggles:
 
@@ -81,8 +86,8 @@ Useful toggles:
 - `COMMIT_MESSAGE="..."` — custom message for the auto-generated commit.
 - `SKIP_NPM_INSTALL=1` — skip the local `npm ci` (assumes the bundle directory already has dependencies).
 - `SKIP_BUILD=1` — skip `npm run build --if-present`.
-- `RUN_REMOTE_COMMANDS=1` — run the remote npm install / pm2 restart after upload.
-- `EXCLUDE_NODE_MODULES=1` — upload everything except `node_modules` (if you only need static assets).
+- `RUN_REMOTE_COMMANDS=1` — run the remote npm install / pm2 restart after upload (only needed if you enable Node on the server).
+- `EXCLUDE_NODE_MODULES=1` — upload everything except `node_modules` (defaults to 1 because the static build has no runtime dependencies).
 
 If you’re using the shared Hostinger account, the script already defaults to:
 
@@ -92,6 +97,8 @@ If you’re using the shared Hostinger account, the script already defaults to:
 - `DEPLOY_PORT=65002`
 
 Override any of these by exporting a different value when you run the script.
+
+> **Note:** The static build writes the contact form markup, but submitting the form still requires a backend. Enable the Express app on Hostinger (Node.js App in hPanel) or hook the form to an external service if you need live submissions.
 
 ## Contact
 
