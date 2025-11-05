@@ -38,7 +38,205 @@ npm run build
 ## Project Structure
 
 ```
+# Bhojan Mitra — AI + IoT Voice-enabled POS Website
+
+SEO-optimized marketing website for Bhojan Mitra, a voice-first POS system for restaurants.
+
+## 🚀 Live Site
+**https://aarohitavigyan.com/**
+
+## 📋 Features
+
+### SEO Optimization
+- ✅ Comprehensive meta tags (Open Graph, Twitter Cards, schema.org)
+- ✅ Structured data (Organization, Product, FAQ, LocalBusiness schemas)
+- ✅ XML sitemap with lastmod dates
+- ✅ Enhanced robots.txt with bot-specific rules
+- ✅ Canonical URLs on all pages
+- ✅ Alt text on all images with lazy loading
+- ✅ Semantic HTML5 structure
+- ✅ Mobile-first responsive design
+- ✅ .htaccess optimizations (compression, caching, security headers)
+- ✅ Hreflang tags for international SEO
+- ✅ Fast page load (compression, minification, resource hints)
+
+### Technical Stack
+- **Backend:** Node.js + Express
+- **Templates:** EJS (server-side rendering)
+- **Build:** Static site generation (pre-rendered HTML)
+- **Hosting:** Hostinger shared hosting
+- **Deployment:** Automated via GitHub + rsync
+
+## 🛠️ Local Development
+
+### Prerequisites
+- Node.js 16+ 
+- npm 7+
+
+### Setup
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Visit http://localhost:3000
+```
+
+### Project Structure
+```
 POS-Website/
+├── server.js              # Express server & routes
+├── views/                 # EJS templates
+│   ├── partials/         # Reusable components
+│   ├── index.ejs         # Homepage
+│   ├── pos-software.ejs  # Product pages
+│   └── ...
+├── public/               # Static assets
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── .htaccess         # Apache config
+├── scripts/
+│   ├── build_static.js   # Static site generator
+│   ├── deploy.sh         # Main deploy script
+│   └── deploy_hostinger.sh
+└── data/
+    ├── contacts.jsonl    # Contact form submissions
+    └── leads.jsonl       # Demo interest leads
+```
+
+## 📦 Deployment
+
+### Quick Deploy
+```bash
+# Deploy to Hostinger (builds + uploads)
+./scripts/deploy.sh
+```
+
+### Deploy Flow
+1. Auto-commits pending changes
+2. Pushes to GitHub
+3. Creates temp build directory
+4. Installs dependencies
+5. Runs static site build (EJS → HTML)
+6. Uploads to `domains/aarohitavigyan.com/public_html` via rsync
+7. Cleans up temp files
+
+### Manual Deploy Steps
+```bash
+# 1. Build static site
+npm run build
+
+# 2. Upload to Hostinger
+HOST=217.21.94.162 USER=u222466996 PORT=65002 TARGET=domains/aarohitavigyan.com/public_html ./scripts/deploy_hostinger.sh
+```
+
+## 🔍 SEO Checklist
+
+### On-Page SEO ✅
+- [x] Unique title tags (50-60 chars)
+- [x] Meta descriptions (150-160 chars)
+- [x] H1 tag on every page (unique)
+- [x] Proper heading hierarchy (H1→H2→H3)
+- [x] Alt text on images
+- [x] Internal linking structure
+- [x] Mobile-responsive
+- [x] Fast page load (<3s)
+- [x] HTTPS enabled
+- [x] Clean URLs (no parameters)
+
+### Technical SEO ✅
+- [x] XML sitemap submitted
+- [x] Robots.txt configured
+- [x] Canonical tags
+- [x] Structured data (JSON-LD)
+- [x] Open Graph tags
+- [x] Twitter Cards
+- [x] 301 redirects for old URLs
+- [x] No broken links
+- [x] Compressed assets (gzip)
+- [x] Browser caching enabled
+
+### Off-Page SEO 📝
+- [ ] Submit to Google Search Console
+- [ ] Submit to Bing Webmaster Tools
+- [ ] Create Google My Business listing
+- [ ] Build backlinks
+- [ ] Social media presence
+
+## 🎯 Target Keywords
+
+Primary:
+- restaurant POS system
+- AI POS software
+- voice ordering POS
+- Bhojan Mitra
+- point of sale system India
+
+Secondary:
+- multilingual POS
+- IoT kitchen integration
+- restaurant management software
+- POS machine for restaurants
+
+Long-tail:
+- voice-enabled ordering system for restaurants
+- AI-powered restaurant POS India
+- affordable POS software with analytics
+
+## 📊 Analytics & Tracking
+
+### Current Implementation
+- Basic lead capture (email collection)
+- Contact form submissions stored in `data/contacts.jsonl`
+- Demo interest tracking in `data/leads.jsonl`
+- LocalStorage counter for demo interest
+
+### Recommended Additions
+```html
+<!-- Add to views/partials/head.ejs -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
+<!-- Google Tag Manager -->
+<!-- Microsoft Clarity -->
+<!-- Facebook Pixel (if running ads) -->
+```
+
+## 🔐 Security
+
+Current security headers (via .htaccess):
+- X-Content-Type-Options: nosniff
+- X-Frame-Options: SAMEORIGIN
+- X-XSS-Protection: 1; mode=block
+- Referrer-Policy: strict-origin-when-cross-origin
+- Permissions-Policy restrictions
+
+## 🚀 Performance Optimization
+
+### Current Optimizations
+- Gzip compression enabled
+- Static asset caching (1 year for images, 1 month for CSS/JS)
+- Resource hints (preconnect, dns-prefetch)
+- Lazy loading images
+- Minified CSS/JS (production build)
+
+### Core Web Vitals Targets
+- LCP (Largest Contentful Paint): < 2.5s
+- FID (First Input Delay): < 100ms  
+- CLS (Cumulative Layout Shift): < 0.1
+
+## 📞 Contact & Support
+
+For issues or questions:
+- Email: contact@aarohitavigyan.com
+- Website: https://aarohitavigyan.com/contact
+
+## 📄 License
+
+Proprietary - Aarohita Vigyan © 2024-2025
 ├── server.js              # Main Express server and routes
 ├── package.json           # Dependencies and scripts
 ├── views/                 # EJS templates (homepage, product, features, pricing)

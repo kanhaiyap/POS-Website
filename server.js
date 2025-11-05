@@ -10,8 +10,59 @@ const DEFAULT_DESCRIPTION = 'Bhojan Mitra is a voice-led POS suite that blends A
 const DEFAULT_KEYWORDS = 'restaurant POS, POS system, voice POS, AI POS, Bhojan Mitra, POS machine India';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/logo.png`;
 
+// Global Organization Schema for all pages
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Aarohita Vigyan",
+  "legalName": "Aarohita Vigyan",
+  "url": SITE_URL,
+  "logo": `${SITE_URL}/images/logo.png`,
+  "foundingDate": "2024",
+  "founders": [{
+    "@type": "Person",
+    "name": "Kunwar Kanhaiya Pandey"
+  }],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN"
+  },
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "url": `${SITE_URL}/contact`
+  }, {
+    "@type": "ContactPoint",
+    "contactType": "Customer Support",
+    "url": `${SITE_URL}/support`
+  }],
+  "sameAs": [
+    `${SITE_URL}`
+  ],
+  "brand": {
+    "@type": "Brand",
+    "name": "Bhojan Mitra"
+  },
+  "description": "Developer of AI-powered voice-enabled POS systems for restaurants",
+  "knowsAbout": ["Restaurant POS Systems", "Voice Ordering Technology", "AI for Hospitality", "IoT Kitchen Integration"],
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Product",
+      "name": "Bhojan Mitra POS Software"
+    }
+  }
+};
+
 const enrichSeo = (data = {}) => {
   const keywords = Array.isArray(data.keywords) ? data.keywords.join(', ') : data.keywords;
+  
+  // Merge organization schema with page-specific schemas
+  const pageSchemas = data.structuredData 
+    ? (Array.isArray(data.structuredData) ? data.structuredData : [data.structuredData])
+    : [];
+  const allSchemas = [organizationSchema, ...pageSchemas];
+  
   return {
     ...data,
     title: data.title || 'Bhojan Mitra — AI + IoT Voice-enabled POS for Restaurants',
@@ -20,7 +71,8 @@ const enrichSeo = (data = {}) => {
     canonicalUrl: data.canonicalUrl || SITE_URL,
     robots: data.robots || 'index, follow',
     ogImage: data.ogImage || DEFAULT_OG_IMAGE,
-    ogType: data.ogType || 'website'
+    ogType: data.ogType || 'website',
+    structuredData: allSchemas
   };
 };
 
@@ -499,39 +551,60 @@ app.post('/api/lead', (req, res) => {
 // Simple health check
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// Sitemap
+// Sitemap with lastmod dates
 app.get('/sitemap.xml', (req, res) => {
   const { SitemapStream, streamToPromise } = require('sitemap');
   const { Readable } = require('stream');
 
+  const now = new Date().toISOString();
   const links = [
-    { url: '/', changefreq: 'daily', priority: 1.0 },
-    { url: '/bhojan-mitra', changefreq: 'weekly', priority: 0.9 },
-    { url: '/pos-machine', changefreq: 'weekly', priority: 0.85 },
-    { url: '/pos-software', changefreq: 'weekly', priority: 0.8 },
-    { url: '/restaurant-pos', changefreq: 'weekly', priority: 0.8 },
-    { url: '/pricing', changefreq: 'weekly', priority: 0.9 },
-    { url: '/about', changefreq: 'monthly', priority: 0.6 },
-    { url: '/training', changefreq: 'monthly', priority: 0.6 },
-    { url: '/support', changefreq: 'monthly', priority: 0.6 },
-    { url: '/contact', changefreq: 'monthly', priority: 0.7 }
+    { url: '/', changefreq: 'daily', priority: 1.0, lastmod: now },
+    { url: '/bhojan-mitra', changefreq: 'weekly', priority: 0.9, lastmod: now },
+    { url: '/pos-machine', changefreq: 'weekly', priority: 0.85, lastmod: now },
+    { url: '/pos-software', changefreq: 'weekly', priority: 0.9, lastmod: now },
+    { url: '/restaurant-pos', changefreq: 'weekly', priority: 0.8, lastmod: now },
+    { url: '/pricing', changefreq: 'weekly', priority: 0.9, lastmod: now },
+    { url: '/about', changefreq: 'monthly', priority: 0.6, lastmod: now },
+    { url: '/training', changefreq: 'monthly', priority: 0.6, lastmod: now },
+    { url: '/support', changefreq: 'monthly', priority: 0.6, lastmod: now },
+    { url: '/contact', changefreq: 'monthly', priority: 0.7, lastmod: now }
   ];
 
   const stream = new SitemapStream({ hostname: 'https://aarohitavigyan.com' });
   
   res.header('Content-Type', 'application/xml');
+  res.header('X-Robots-Tag', 'noindex'); // Don't index the sitemap itself
   
   streamToPromise(Readable.from(links).pipe(stream)).then((data) => {
     res.send(data.toString());
   });
 });
 
-// Robots.txt
+// Enhanced Robots.txt
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send(`User-agent: *
+  res.send(`# Bhojan Mitra POS Website - Robots.txt
+User-agent: *
 Allow: /
-Sitemap: https://aarohitavigyan.com/sitemap.xml`);
+Disallow: /api/
+Disallow: /data/
+Disallow: /*.jsonl$
+
+# Crawl rate
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://aarohitavigyan.com/sitemap.xml
+
+# Popular bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /`);
 });
 
 if (require.main === module) {

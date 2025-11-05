@@ -45,14 +45,30 @@
 <meta name="twitter:image" content="<%= ogImage %>">
 <meta name="twitter:site" content="@BhojanMitra">
 
+<!-- Additional SEO -->
+<meta name="geo.region" content="IN">
+<meta name="geo.placename" content="India">
+<meta name="language" content="en-IN">
+<meta name="rating" content="General">
+<meta name="distribution" content="global">
+<meta name="target" content="all">
+<meta name="audience" content="Restaurant owners, F&B operators, hospitality professionals">
+<meta name="coverage" content="Worldwide">
+<link rel="alternate" hreflang="en-in" href="<%= siteUrl %>">
+<link rel="alternate" hreflang="x-default" href="<%= siteUrl %>">
+
 <!-- Resource hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 
 <!-- Favicons -->
-<link rel="icon" type="image/png" href="/images/logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+<link rel="apple-touch-icon" href="/images/logo.png">
+<meta name="msapplication-TileColor" content="#5b4efc">
+<meta name="msapplication-TileImage" content="/images/logo.png">
 
 <% Object.entries(extraMeta).forEach(([name, content]) => { %>
   <meta name="<%= name %>" content="<%= content %>">
