@@ -1,13 +1,64 @@
+require('dotenv').config();
 const express = require('express');
 const compression = require('compression');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const nodemailer = require('nodemailer');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SITE_URL = 'https://aarohitavigyan.com';
 const DEFAULT_DESCRIPTION = 'Bhojan Mitra is a voice-led POS suite that blends AI ordering, multilingual support, analytics, and IoT routing for restaurants.';
 const DEFAULT_KEYWORDS = 'restaurant POS, POS system, voice POS, AI POS, Bhojan Mitra, POS machine India';
+
+// Email configuration
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: process.env.SMTP_PORT || 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER || 'your-email@gmail.com',
+    pass: process.env.SMTP_PASS || 'your-app-password'
+  }
+});
+
+// Email template function
+function sendContactEmail(contactData) {
+  const mailOptions = {
+    from: process.env.SMTP_USER || 'your-email@gmail.com',
+    to: 'kanhaiya@aarohitavigyan.com',
+    subject: `New Contact Request - ${contactData.name} (${contactData.plan} plan)`,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Received:</strong> ${contactData.receivedAt}</p>
+      <hr>
+      <p><strong>Name:</strong> ${contactData.name}</p>
+      <p><strong>Email:</strong> ${contactData.email}</p>
+      <p><strong>Phone:</strong> ${contactData.phone || 'Not provided'}</p>
+      <p><strong>Restaurant:</strong> ${contactData.restaurant}</p>
+      <p><strong>Plan Selected:</strong> ${contactData.plan}</p>
+      <p><strong>Message:</strong></p>
+      <p>${contactData.message || 'No message provided'}</p>
+      <hr>
+      <p><small>This email was sent from the contact form at ${SITE_URL}/contact</small></p>
+    `,
+    text: `
+New Contact Form Submission
+Received: ${contactData.receivedAt}
+
+Name: ${contactData.name}
+Email: ${contactData.email}
+Phone: ${contactData.phone || 'Not provided'}
+Restaurant: ${contactData.restaurant}
+Plan Selected: ${contactData.plan}
+Message: ${contactData.message || 'No message provided'}
+
+This email was sent from the contact form at ${SITE_URL}/contact
+    `
+  };
+
+  return transporter.sendMail(mailOptions);
+}
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/logo.png`;
 
 // Global Organization Schema for all pages
@@ -465,21 +516,33 @@ app.post('/contact', (req, res) => {
   // Persist submission to a newline-delimited JSON file
   const fs = require('fs');
   const pathData = path.join(__dirname, 'data');
+  const out = {
+    receivedAt: new Date().toISOString(),
+    name: name.trim(),
+    email: email.trim(),
+    phone: (phone || '').trim(),
+    restaurant: restaurant.trim(),
+    plan: plan,
+    message: (message || '').trim()
+  };
+
   try {
     if (!fs.existsSync(pathData)) fs.mkdirSync(pathData);
-    const out = {
-      receivedAt: new Date().toISOString(),
-      name: name.trim(),
-      email: email.trim(),
-      phone: (phone || '').trim(),
-      restaurant: restaurant.trim(),
-      plan: plan,
-      message: (message || '').trim()
-    };
     fs.appendFileSync(path.join(pathData, 'contacts.jsonl'), JSON.stringify(out) + '\n');
   } catch (err) {
     console.error('Failed to save contact submission', err);
   }
+
+  // Send email notification
+  sendContactEmail(out)
+    .then(info => {
+      console.log('Contact email sent:', info.messageId);
+    })
+    .catch(err => {
+      console.error('Failed to send contact email:', err.message);
+      // Continue even if email fails - data is already saved
+    });
+
   // Redirect back to contact with a success flag so the page can show a confirmation.
   return res.redirect('/contact?sent=1');
 });
@@ -502,22 +565,33 @@ app.post('/api/contact', (req, res) => {
   // Persist submission to a newline-delimited JSON file
   const fs = require('fs');
   const pathData = path.join(__dirname, 'data');
+  const out = {
+    receivedAt: new Date().toISOString(),
+    name: name.trim(),
+    email: email.trim(),
+    phone: (phone || '').trim(),
+    restaurant: restaurant.trim(),
+    plan: plan,
+    message: (message || '').trim()
+  };
+
   try {
     if (!fs.existsSync(pathData)) fs.mkdirSync(pathData);
-    const out = {
-      receivedAt: new Date().toISOString(),
-      name: name.trim(),
-      email: email.trim(),
-      phone: (phone || '').trim(),
-      restaurant: restaurant.trim(),
-      plan: plan,
-      message: (message || '').trim()
-    };
     fs.appendFileSync(path.join(pathData, 'contacts.jsonl'), JSON.stringify(out) + '\n');
   } catch (err) {
     console.error('Failed to save contact submission (api)', err);
     return res.status(500).json({ success: false, errors: ['Failed to save submission'] });
   }
+
+  // Send email notification
+  sendContactEmail(out)
+    .then(info => {
+      console.log('Contact email sent (API):', info.messageId);
+    })
+    .catch(err => {
+      console.error('Failed to send contact email (API):', err.message);
+      // Continue even if email fails - data is already saved
+    });
 
   return res.json({ success: true, message: 'Thanks — we will contact you shortly' });
 });

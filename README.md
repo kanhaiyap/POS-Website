@@ -78,6 +78,36 @@ SEO-optimized marketing website for Bhojan Mitra, a voice-first POS system for r
 # Install dependencies
 npm install
 
+# Configure email (required for contact form)
+cp .env.example .env
+# Edit .env and add your SMTP credentials
+```
+
+### Email Configuration
+The contact form sends notifications to `kanhaiya@aarohitavigyan.com`. Configure SMTP settings in `.env`:
+
+**For Gmail:**
+1. Go to https://myaccount.google.com/security
+2. Enable 2-Step Verification
+3. Create App Password: https://myaccount.google.com/apppasswords
+4. Add to `.env`:
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-16-char-app-password
+```
+
+**For SendGrid (alternative):**
+```env
+SMTP_HOST=smtp.sendgrid.net
+SMTP_PORT=587
+SMTP_USER=apikey
+SMTP_PASS=your-sendgrid-api-key
+```
+
+### Run Development Server
+```bash
 # Run development server
 npm run dev
 

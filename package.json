@@ -11,23 +11,25 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-  "Bhojan Mitra",
-  "AI POS",
-  "voice ordering",
-  "AI POS software",
-  "IoT POS",
-  "restaurant POS",
-  "retail POS system",
-  "affordable POS software"
+    "Bhojan Mitra",
+    "AI POS",
+    "voice ordering",
+    "AI POS software",
+    "IoT POS",
+    "restaurant POS",
+    "retail POS system",
+    "affordable POS software"
   ],
   "author": "Aarohita Vigyan",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "ejs": "^3.1.9",
     "compression": "^1.7.4",
-    "helmet": "^7.1.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "nodemailer": "^7.0.10",
     "sitemap": "^7.1.1"
   },
   "devDependencies": {
