@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { seo }) %>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="eyebrow">Voice ordering</span>
+                    <h1>Bhojan Mitra — conversational ordering that keeps kitchens flowing</h1>
+                    <p>Bhojan Mitra brings full AI voice ordering to restaurants. Staff and guests speak naturally, our AI handles accents, context, and modifiers, then routes orders to the right kitchen devices via IoT integrations.</p>
+                    <div class="hero-actions">
+                        <a href="#features" class="btn btn-primary btn-lg">See highlights</a>
+                        <a href="/contact" class="btn btn-ghost btn-lg">Discuss the pilot</a>
+                    </div>
+                    <div class="hero-meta">
+                        <span>Multilingual &amp; accent aware</span>
+                        <span>Real-time IoT routing</span>
+                        <span>Human-in-the-loop safeguards</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-bg" aria-hidden="true"></div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <span class="eyebrow">Product Highlights</span>
+                <h2>Built for noisy, high-volume service environments</h2>
+                <p class="section-subtitle">Four core capabilities power Bhojan Mitra’s accuracy and speed.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Natural Language Understanding</h3>
+                        <p>Accurate voice recognition tuned for restaurant dialogue and order context.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Multilingual Support</h3>
+                        <p>Supports multiple languages and dialects out of the box.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>IoT Kitchen Routing</h3>
+                        <p>Auto-route orders to specific kitchen stations and devices for faster fulfillment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Secure Cloud Sync</h3>
+                        <p>Cloud backups, real-time sync across terminals, and secure data storage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="quality" class="product-quality">
+            <div class="container">
+                <h2>How good is Bhojan Mitra?</h2>
+                <p>We’re engineering Bhojan Mitra for fast-paced kitchens that can’t afford downtime. The pilot focuses on reliability, practical accuracy, and predictable operations so your staff can trust every spoken ticket.</p>
+                <ul class="quality-list">
+                    <li><strong>Practical accuracy:</strong> NLU tuned to restaurant talk — menu items, modifiers, timings and contextual clarifications reduce mis-heard orders.</li>
+                    <li><strong>Operational uptime:</strong> Designed for 24/7 service with offline fallbacks and local buffering so orders keep flowing even during short network interruptions.</li>
+                    <li><strong>Faster order handling:</strong> Voice routes orders directly to the right kitchen station, reducing handoffs and wait times.</li>
+                    <li><strong>Pilot-ready validation:</strong> Working with early partners to iterate on real conversational data and accent samples.</li>
+                    <li><strong>Security & compliance:</strong> Enterprise-grade cloud sync with configurable local data options and secure transport.</li>
+                    <li><strong>Human-in-the-loop:</strong> Easy review and correction workflows — voice suggestions can be confirmed by staff before routing, minimizing errors.</li>
+                </ul>
+
+                <h3>Proof points (what operators see)</h3>
+                <p>Industry pilots show voice-assisted ordering can smooth kitchen traffic, reduce mistakes, and improve peak throughput. Bhojan Mitra focuses on practical KPIs operators care about: order accuracy, ticket-to-kitchen latency, and faster table/service turnaround.</p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="https://billing.aarohitavigyan.com">Apply for the pilot</a>
+                    <a class="muted-link" href="/contact">Talk to the founders</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="differentiation" class="product-differentiation">
+            <div class="container">
+                <h2>What differentiates Bhojan Mitra?</h2>
+                <p>There are many voice and POS projects — here’s why early partners are excited about Bhojan Mitra’s approach:</p>
+                <div class="diff-grid">
+                    <div class="diff-card">
+                        <h4>Voice-first, restaurant-native</h4>
+                        <p>Designed from the ground up for ordering dialogs, menu modifiers, combos and kitchen context instead of repurposing general voice assistants.</p>
+                    </div>
+                    <div class="diff-card">
+                        <h4>Accent & local-language focus</h4>
+                        <p>Tuned for regional accents and Indian languages with pragmatic handling of code-switching and mixed-language orders.</p>
+                    </div>
+                    <div class="diff-card">
+                        <h4>Context-aware menu understanding</h4>
+                        <p>Understands modifiers, portion sizes, special requests and follow-up clarifications — not just token matching.</p>
+                    </div>
+                    <div class="diff-card">
+                        <h4>Easy integration with kitchen devices</h4>
+                        <p>Pre-built integrations and routing patterns for common kitchen printers, display stacks and IoT endpoints are on the roadmap so you get running quickly.</p>
+                    </div>
+                    <div class="diff-card">
+                        <h4>Low-lift deployment</h4>
+                        <p>Works with existing terminals and browser-based tablets; cloud-first but with local buffering so downtime doesn't stop your service.</p>
+                    </div>
+                    <div class="diff-card">
+                        <h4>Privacy-first & configurable</h4>
+                        <p>Flexible data residency, optional on-prem components, and controls for what is stored in our cloud versus locally.</p>
+                    </div>
+                </div>
+                <p class="muted-small">If you want to compare Bhojan Mitra side-by-side with your current setup, request a free evaluation and we’ll run a short pilot in your kitchen.</p>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

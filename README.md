@@ -69,11 +69,27 @@ POS-Website/
 Deploy straight to GitHub and Hostinger with the helper script:
 
 ```bash
-HOST=your.hostinger.tld USER=deploy TARGET=/home/deploy/app ./scripts/deploy.sh
+DEPLOY_HOST=your.hostinger.tld DEPLOY_USER=deploy DEPLOY_TARGET=/home/deploy/app ./scripts/deploy.sh
 ```
 
-By default this pushes the current branch to your `origin` remote, then rsyncs the workspace to the Hostinger `TARGET` over SSH. Configure `PORT` (default `65002`), `SSH_KEY`, `REMOTE`, or `BRANCH` as needed. To skip the Git push for a one-off run, set `SKIP_GIT=1`.
+The script pushes the current branch to `origin`, then stages a clean bundle in a temp directory: it copies the repo (without `.git`), runs `npm ci`, executes `npm run build --if-present`, prunes dev dependencies, and finally rsyncs the finished bundle to your Hostinger `DEPLOY_TARGET`. Remote install/restart commands are skipped by default to avoid relying on Hostinger’s Node tooling.
 
+Useful toggles:
+
+- `SKIP_GIT=1` — deploy without pushing to GitHub.
+- `AUTO_COMMIT=0` — skip the automatic commit; require a clean working tree instead.
+- `COMMIT_MESSAGE="..."` — custom message for the auto-generated commit.
+- `SKIP_NPM_INSTALL=1` — skip the local `npm ci` (assumes the bundle directory already has dependencies).
+- `SKIP_BUILD=1` — skip `npm run build --if-present`.
+- `RUN_REMOTE_COMMANDS=1` — run the remote npm install / pm2 restart after upload.
+- `EXCLUDE_NODE_MODULES=1` — upload everything except `node_modules` (if you only need static assets).
+
+If you’re using the shared Hostinger account, the script already defaults to:
+
+- `DEPLOY_HOST=217.21.94.162`
+- `DEPLOY_USER=u222466996`
+- `DEPLOY_TARGET=public_html`
+- `DEPLOY_PORT=65002`
 
 Override any of these by exporting a different value when you run the script.
 
@@ -81,8 +97,4 @@ Override any of these by exporting a different value when you run the script.
 
 If you want, I can:
 
-- Add a contact form and SMTP/email handling
-- Integrate a demo voice flow (prototype) using a speech-to-text API
-- Add server-side unit tests and health checks
-
-Let me know which next step you'd like.
+- Email: kanhaiya@aarohitavigyan.com

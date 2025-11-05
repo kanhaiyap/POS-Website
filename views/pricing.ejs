@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { seo }) %>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <section class="hero hero--subtle">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Founding partner pricing</span>
+          <h1>Secure early-access pricing before our public launch</h1>
+          <p>We’re opening a handful of pilot slots. Lock in lifetime discounts, get direct input into the roadmap, and help us tailor Bhojan Mitra for your service model.</p>
+          <div class="hero-actions">
+            <a href="https://billing.aarohitavigyan.com" class="btn btn-primary btn-lg">Apply for the pilot</a>
+            <a href="#plans" class="btn btn-outline btn-lg">Compare options</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans" class="products">
+      <div class="container">
+        <span class="eyebrow">Plans</span>
+        <h2>Flexible bundles for dine-in, QSR, and cloud kitchens</h2>
+        <p class="section-subtitle">Founding partners receive lifetime discounts, priority feature input, and white-glove onboarding while we move from pilot to full release.</p>
+        <div class="products-grid">
+          <div class="product-card">
+            <h3>Simple Billing</h3>
+            <p class="price">₹250 / month</p>
+            <ul>
+              <li>Basic billing & invoicing</li>
+              <li>Order capture (manual + QR)</li>
+              <li>Cloud backups & updates</li>
+              <li>Email support</li>
+              <li>Founding partner discount locked for life</li>
+            </ul>
+            <a href="/contact" class="btn btn-secondary">Reserve ₹250 Plan</a>
+          </div>
+
+          <div class="product-card featured">
+            <h3>Analytics + QR Ordering</h3>
+            <p class="price">₹500 / month</p>
+            <ul>
+              <li>Advanced sales & staff analytics</li>
+              <li>QR-based ordering flow for customers</li>
+              <li>Real-time dashboards & custom reports</li>
+              <li>Priority email support</li>
+              <li>Roadmap workshops with our team</li>
+            </ul>
+            <a href="/contact" class="btn btn-primary">Reserve ₹500 Plan</a>
+          </div>
+
+          <div class="product-card">
+            <h3>Voice-enabled Ordering (Bhojan Mitra)</h3>
+            <p class="price">₹5,000</p>
+            <ul>
+              <li>Full AI voice ordering (multilingual)</li>
+              <li>IoT kitchen routing and automation</li>
+              <li>Priority onboarding & training</li>
+              <li>Dedicated support</li>
+              <li>Hardware credits for pilot partners</li>
+            </ul>
+            <a href="/contact" class="btn btn-secondary">Reserve Bhojan Mitra</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <span class="eyebrow">Billing &amp; Options</span>
+        <h2>Transparent from pilots to chain rollouts</h2>
+        <div class="grid">
+          <div class="card" data-variant="soft">
+            <h3>How billing works</h3>
+            <p>During the pilot the plans above are discounted and cancellable monthly. Voice-enabled ordering can be purchased as a one-time add-on (₹5,000) or through an enterprise subscription once we exit beta.</p>
+            <p class="muted-small">Rolling out to multiple outlets? We’ll co-design deployment playbooks, onsite training, and multi-location pricing with you.</p>
+          </div>
+          <div class="card">
+            <h3>Every plan includes</h3>
+            <ul class="checklist">
+              <li>No hidden fees — transparent pilot pricing.</li>
+              <li>Secure cloud backups and automatic updates.</li>
+              <li>Direct access to founders during rollout.</li>
+              <li>Custom training packages for floor &amp; kitchen teams.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Need a custom setup?</h2>
+        <p>Let’s explore integration with your current POS, delivery partners, or bespoke hardware before the public launch.</p>
+        <div class="hero-actions center">
+          <a href="/contact" class="btn btn-primary btn-lg">Schedule a pilot chat</a>
+          <a href="/business-plan" class="btn btn-secondary btn-lg">View investor brief</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

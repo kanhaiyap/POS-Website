@@ -1,0 +1,48 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+      HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+      HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+      HOSTINGER_TARGET: ${{ secrets.HOSTINGER_TARGET }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ env.HOSTINGER_PORT }}" "${{ env.HOSTINGER_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Sync files to Hostinger
+        run: |
+          rsync -avz --delete --exclude='.git' --exclude='node_modules' --exclude='.github' ./ "${{ env.HOSTINGER_USER }}@${{ env.HOSTINGER_HOST }}:${{ env.HOSTINGER_TARGET }}" -e "ssh -p ${{ env.HOSTINGER_PORT }}"
+
+      - name: Remote install & restart
+        run: |
+          ssh -p "${{ env.HOSTINGER_PORT }}" "${{ env.HOSTINGER_USER }}@${{ env.HOSTINGER_HOST }}" \
+            "cd '${{ env.HOSTINGER_TARGET }}' && npm ci --production || true && \ 
+            if command -v pm2 >/dev/null 2>&1; then pm2 startOrRestart ecosystem.config.js --update-env || pm2 restart all || true; else nohup npm start >/dev/null 2>&1 & fi"
+
+      - name: Done
+        run: echo "Deploy to Hostinger finished"

@@ -1,0 +1,63 @@
+<% 
+  const defaultTitle = 'Bhojan Mitra — AI + IoT Voice-enabled POS for Restaurants';
+  const defaultDescription = 'Bhojan Mitra is a voice-led POS platform that blends AI ordering, multilingual support, analytics, and IoT routing for restaurants.';
+  const siteUrl = seo && seo.canonicalUrl ? seo.canonicalUrl : 'https://aarohitavigyan.com/';
+  const title = seo && seo.title ? seo.title : defaultTitle;
+  const description = seo && seo.description ? seo.description : defaultDescription;
+  const keywords = seo && seo.keywords ? seo.keywords : 'POS system, restaurant POS, AI POS, voice ordering POS, Bhojan Mitra';
+  const robots = seo && seo.robots ? seo.robots : 'index, follow';
+  const ogType = seo && seo.ogType ? seo.ogType : 'website';
+  const ogImage = seo && seo.ogImage ? seo.ogImage : 'https://aarohitavigyan.com/images/logo.png';
+  const twitterCard = seo && seo.twitterCard ? seo.twitterCard : 'summary_large_image';
+  const extraMeta = (seo && seo.extraMeta) || {};
+  const structuredDataRaw = seo && seo.structuredData;
+  const structuredData = Array.isArray(structuredDataRaw)
+    ? structuredDataRaw
+    : (structuredDataRaw ? [structuredDataRaw] : []);
+%>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title %></title>
+<meta name="description" content="<%= description %>">
+<meta name="keywords" content="<%= keywords %>">
+<meta name="robots" content="<%= robots %>">
+<meta name="author" content="Aarohita Vigyan">
+<meta name="theme-color" content="#5b4efc">
+<% if (seo && seo.canonicalUrl) { %>
+<link rel="canonical" href="<%= seo.canonicalUrl %>">
+<% } %>
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Bhojan Mitra">
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= description %>">
+<meta property="og:type" content="<%= ogType %>">
+<meta property="og:url" content="<%= siteUrl %>">
+<meta property="og:image" content="<%= ogImage %>">
+<meta property="og:image:alt" content="Bhojan Mitra logo">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="<%= twitterCard %>">
+<meta name="twitter:title" content="<%= title %>">
+<meta name="twitter:description" content="<%= description %>">
+<meta name="twitter:image" content="<%= ogImage %>">
+<meta name="twitter:site" content="@BhojanMitra">
+
+<!-- Resource hints -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="/images/logo.png">
+
+<% Object.entries(extraMeta).forEach(([name, content]) => { %>
+  <meta name="<%= name %>" content="<%= content %>">
+<% }); %>
+
+<% structuredData.forEach((schema) => { %>
+  <script type="application/ld+json"><%= JSON.stringify(schema) %></script>
+<% }); %>

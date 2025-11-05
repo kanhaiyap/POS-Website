@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { seo }) %>
+</head>
+<body class="theme">
+  <!-- Skip link for a11y -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <%- include('partials/header') %>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Let’s talk</span>
+          <h1>Apply for the Bhojan Mitra pilot</h1>
+          <p>We’re onboarding a short list of restaurants as founding partners. Tell us about your floor and kitchen setup and we’ll schedule a discovery session.</p>
+          <ul class="hero-bullets">
+            <li>Founding partner pricing locked for life</li>
+            <li>Direct access to the product team</li>
+            <li>Hardware roadmap updates and credits</li>
+          </ul>
+        </div>
+        <div class="hero-badge">
+          <div class="badge">
+            <span class="badge-top">Avg. response</span>
+            <span class="badge-bottom">under 24 hrs</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bg" aria-hidden="true"></div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="contactModal" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="contactModalTitle">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-content" role="document">
+        <button class="modal-close" aria-label="Close">×</button>
+        <h3 id="contactModalTitle">Thanks — request received</h3>
+        <p id="contactModalMessage">We received your request. Our team will contact you shortly to schedule a pilot discovery call.</p>
+        <div class="modal-actions">
+          <button class="btn btn-primary modal-ok">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+            <div class="card contact-card">
+              <div class="card-header">
+                <h2>Get in touch</h2>
+                <p class="muted">Tell us about your floor, peak hours, and current POS stack. We’ll reply within one business day to schedule a pilot walkthrough.</p>
+              </div>
+
+            <% if (errors && errors.length) { %>
+              <div class="alert alert-error" role="alert" aria-live="polite">
+                <strong>Please fix the following:</strong>
+                <ul>
+                  <% errors.forEach(function(err){ %>
+                    <li><%= err %></li>
+                  <% }) %>
+                </ul>
+              </div>
+            <% } %>
+
+            <form action="/contact" method="post" class="form contact-form" novalidate>
+              <div class="grid two-col">
+                <div class="form-group">
+                  <label for="name">Name <span class="required" aria-hidden="true">*</span></label>
+                  <input id="name" type="text" name="name" required placeholder="Your full name" value="<%= form && form.name ? form.name : '' %>" autocomplete="name">
+                  <small class="field-help" id="nameHelp">Enter the contact person’s full name.</small>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+                  <input id="email" type="email" name="email" required placeholder="you@yourdomain.com" value="<%= form && form.email ? form.email : '' %>" autocomplete="email" inputmode="email">
+                </div>
+              </div>
+
+              <div class="grid two-col">
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input id="phone" type="tel" name="phone" placeholder="+91 98765 43210" value="<%= form && form.phone ? form.phone : '' %>" inputmode="tel" pattern="^[+0-9\s-]{8,}$">
+                </div>
+                <div class="form-group">
+                  <label for="restaurant">Restaurant name <span class="required" aria-hidden="true">*</span></label>
+                  <input id="restaurant" type="text" name="restaurant" required placeholder="Your restaurant name" value="<%= form && form.restaurant ? form.restaurant : '' %>" autocomplete="organization">
+                </div>
+              </div>
+
+              <div class="grid one-col">
+                <div class="form-group">
+                  <label for="plan">Interested Plan <span class="required" aria-hidden="true">*</span></label>
+                  <div class="select-wrap">
+                    <select id="plan" name="plan" required>
+                      <option value="">Select plan</option>
+                      <option value="250" <%= form && form.plan === '250' ? 'selected' : '' %>>Simple Billing — ₹250 / month</option>
+                      <option value="500" <%= form && form.plan === '500' ? 'selected' : '' %>>Analytics + QR — ₹500 / month</option>
+                      <option value="5000" <%= form && form.plan === '5000' ? 'selected' : '' %>>Voice-enabled Ordering — ₹5,000</option>
+                    </select>
+                    <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid one-col">
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="5" placeholder="Tell us about your setup (tables, KOT printers, current POS, languages, etc.)"><%= form && form.message ? form.message : '' %></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Send Request</button>
+                <p class="form-note muted">By submitting, you agree to be contacted about your request.</p>
+              </div>
+            </form>
+          </div>
+
+          <aside class="contact-info">
+            <div class="card info-box">
+              <h3>Why choose Bhojan Mitra?</h3>
+              <ul class="checklist">
+                <li>Shape multilingual voice ordering before public release</li>
+                <li>Request analytics and reporting tailored to your floor</li>
+                <li>Founding partner pricing with no hidden fees</li>
+              </ul>
+            </div>
+
+            <div class="card info-box">
+              <h3>Want a live walkthrough?</h3>
+              <p>We’ll host a guided pilot walkthrough and show integration options with kitchen displays and printers. Prefer a phone call? Leave your number and we'll call.</p>
+              <div class="contact-cta">
+                <a class="link" href="mailto:kanhaiya@aarohitavigyan.com">kanhaiya@aarohitavigyan.com</a>
+              </div>
+              <div class="mini-kpis">
+                <div><span class="kpi">100+</span><span class="kpi-label">orders/hr device capacity</span></div>
+                <div><span class="kpi">6+</span><span class="kpi-label">languages supported</span></div>
+                <div><span class="kpi">₹0</span><span class="kpi-label">setup for SaaS plans</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+
+  <!-- Tiny JS enhancements (can also live in /js/main.js) -->
+  <script>
+    (function(){
+      // Mobile nav
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.querySelector('.nav-menu');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!expanded));
+          menu.classList.toggle('open');
+          document.body.classList.toggle('no-scroll', !expanded);
+        });
+      }
+
+      // Modal
+      const modal = document.getElementById('contactModal');
+      const closeEls = modal ? modal.querySelectorAll('.modal-close,[data-close],.modal-ok') : [];
+      closeEls.forEach(el => el.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden','true');
+      }));
+      // Modal is opened explicitly by the AJAX flow or by server-side flag (see template)
+    })();
+  </script>
+
+  <script src="/js/main.js" defer></script>
+    <% if (typeof showSuccess !== 'undefined' && showSuccess) { %>
+    <script>
+      // Server-side signalled successful submission: open modal on load.
+      window.addEventListener('load', function(){
+        if (typeof openModal === 'function') {
+          openModal('Thanks — we will contact you shortly');
+        } else {
+          var modal = document.getElementById('contactModal');
+          if (modal) { modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false'); }
+        }
+      });
+    </script>
+    <% } %>
+</body>
+</html>
