@@ -39,7 +39,12 @@ async function clearOutput() {
 
 async function copyPublic() {
   if (!fs.existsSync(PUBLIC_DIR)) return;
-  await fs.promises.cp(PUBLIC_DIR, path.join(OUTPUT_DIR, 'public'), { recursive: true });
+  const entries = await fs.promises.readdir(PUBLIC_DIR);
+  await Promise.all(entries.map(async (entry) => {
+    const src = path.join(PUBLIC_DIR, entry);
+    const dest = path.join(OUTPUT_DIR, entry);
+    await fs.promises.cp(src, dest, { recursive: true });
+  }));
 }
 
 function findRouteHandlers(targetPath) {
