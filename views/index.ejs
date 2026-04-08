@@ -7,173 +7,558 @@
     <%- include('partials/header') %>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <span class="eyebrow">AI + IoT POS for restaurants</span>
-                    <h1>Voice-led ordering that delights guests and boosts throughput</h1>
-                    <p>Empower staff and guests to place orders by voice, route items instantly to kitchen stations, and surface AI-powered upsells — built for fast-paced restaurant operations.</p>
-                    <div class="hero-actions">
-                        <a href="/contact" class="btn btn-primary btn-lg">Join the pilot program</a>
-                        <a href="/pos-software" class="btn btn-ghost btn-lg">Explore the platform</a>
+
+        <!-- ===== HERO (Intro) ===== -->
+        <section class="hero-intro">
+            <div class="hero-intro-inner">
+
+                <!-- Animated headline row -->
+                <div class="hero-headline-row">
+                    <div class="hero-word-clip" aria-live="polite" aria-label="AI-Powered POS for">
+                        <div class="hero-word-track" id="heroWordTrack">
+                            <span class="hero-word hero-word--serif">AI-Powered</span>
+                            <span class="hero-word hero-word--inria">IoT Integration</span>
+                            <span class="hero-word hero-word--inria">Voice ordering</span>
+                            <span class="hero-word hero-word--serif">Multilingual</span>
+                        </div>
                     </div>
-                    <div class="hero-meta">
-                        <span>Founders-led onboarding</span>
-                        <span>Pilot slots for 5 early restaurants</span>
-                        <span>Hardware ready for 2025 rollout</span>
-                    </div>
+                    <span class="hero-pos-for">POS for</span>
                 </div>
-            </div>
-            <div class="hero-bg" aria-hidden="true"></div>
-        </section>
 
-        <%- include('partials/trust') %>
+                <h1 class="hero-main-title">Smarter Restaurants</h1>
 
-        <%- include('partials/ecosystem') %>
+                <p class="hero-subtitle">Eliminate manual data entry. Multilingual AI ordering that speaks your language and automates your kitchen operations.</p>
 
-        <section class="resources">
-            <div class="container">
-                <span class="eyebrow">Resources</span>
-                <h2>Plan your POS rollout with Bhojan Mitra</h2>
-                <p class="section-subtitle">Dive deeper into our software, hardware, pricing, and enablement resources — all tuned for restaurants searching for the best POS fit.</p>
-                <div class="resources-grid">
-                    <article class="resource-card">
-                        <h3><a href="/pos-software">AI POS Software</a></h3>
-                        <p>See how our voice-first POS software speeds up order capture and analytics for restaurant teams.</p>
-                    </article>
-                    <article class="resource-card">
-                        <h3><a href="/pos-machine">POS Machine</a></h3>
-                        <p>Explore the Bhojan Mitra POS machine, hardware roadmap, and pilot credits for founding partners.</p>
-                    </article>
-                    <article class="resource-card">
-                        <h3><a href="/pricing">Pricing &amp; Plans</a></h3>
-                        <p>Compare founding partner plans, lifetime discounts, and hardware credits available during the pilot.</p>
-                    </article>
-                    <article class="resource-card">
-                        <h3><a href="/support">Support &amp; Training</a></h3>
-                        <p>Learn about founders-led support, training tracks, and how we keep your service running flawlessly.</p>
-                    </article>
+                <!-- Feature tags -->
+                <div class="hero-tags">
+                    <span class="hero-tag">
+                        <img src="/images/icon-microphone.svg" alt="" width="24" height="24" aria-hidden="true">
+                        Voice First AI
+                    </span>
+                    <span class="hero-tag">
+                        <img src="/images/icon-globe.svg" alt="" width="24" height="24" aria-hidden="true">
+                        Multilingual
+                    </span>
+                    <span class="hero-tag">
+                        <img src="/images/icon-lightning.svg" alt="" width="24" height="24" aria-hidden="true">
+                        IoT Integrated
+                    </span>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="/contact" class="btn-figma-primary">Book a Demo</a>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="features">
-            <div class="container">
-                <span class="eyebrow">Capabilities</span>
-                <h2>Why restaurants choose Bhojan Mitra</h2>
-                <p class="section-subtitle">Everything you need to run a modern dining floor: conversational ordering, real-time routing, and analytics that spot revenue opportunities in seconds.</p>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Voice Ordering</h3>
-                        <p>Conversational ordering tuned for restaurant lingo, modifiers, and mixed-language requests.</p>
+        <!-- ===== PRODUCT FEATURES ===== -->
+        <section class="product-features" id="features">
+            <div class="pf-header">
+                <span class="fig-badge">Introducing Bhojan Mitra</span>
+                <h2 class="fig-heading-2">One Platform, <span class="fig-muted">Everything You Need</span></h2>
+                <p class="fig-subheading">We're building these Bhojan Mitra components hand-in-hand with early partners</p>
+            </div>
+
+            <!-- Product screenshot with floating animation cards -->
+            <div class="pf-screenshot-wrap">
+                <div class="pf-scene">
+                    <!-- Decorative background glows -->
+                    <span class="pf-blob pf-blob--pink" aria-hidden="true"></span>
+                    <span class="pf-blob pf-blob--indigo" aria-hidden="true"></span>
+
+                    <!-- Main POS screenshot -->
+                    <div class="pf-screenshot-frame">
+                        <img src="/images/illus-dashboard.png"
+                             alt="Bhojan Mitra POS dashboard overview"
+                             class="pf-screenshot-img"
+                             loading="lazy">
                     </div>
-                    <div class="feature-card">
-                        <h3>AI Recommendations</h3>
-                        <p>Boost ticket sizes with intelligent upsells that learn from past orders, inventory, and guest profiles.</p>
+
+                    <!-- Floating card: New Order notification (top-right) -->
+                    <div class="pf-fc pf-fc--order" aria-hidden="true">
+                        <span class="pf-fc-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        </span>
+                        <span class="pf-fc-body">
+                            <strong class="pf-fc-title">New Order!</strong>
+                            <span class="pf-fc-sub">Table 4 · ₹340</span>
+                        </span>
                     </div>
-                    <div class="feature-card">
-                        <h3>IoT Kitchen Routing</h3>
-                        <p>Send tickets to the right kitchen station or device instantly, with prep instructions highlighted automatically.</p>
+
+                    <!-- Floating card: Revenue today (bottom-left) -->
+                    <div class="pf-fc pf-fc--revenue" aria-hidden="true">
+                        <span class="pf-fc-big">₹1.2L</span>
+                        <span class="pf-fc-small">Today's Revenue</span>
+                        <span class="pf-fc-up">↑ 18%</span>
                     </div>
-                    <div class="feature-card">
-                        <h3>Analytics &amp; Insights</h3>
-                        <p>Get live dashboards, menu performance, and staffing insights without waiting for end-of-day reports.</p>
+
+                    <!-- Floating pill: GST-Ready (top-left) -->
+                    <div class="pf-fc pf-fc--gst" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>GST-Ready</span>
+                    </div>
+
+                    <!-- Floating card: Tables served (bottom-right) -->
+                    <div class="pf-fc pf-fc--tables" aria-hidden="true">
+                        <span class="pf-fc-big">48</span>
+                        <span class="pf-fc-small">Tables Today</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature carousel tabs -->
+            <div class="pf-tabs">
+                <button class="pf-tab pf-tab--active" data-tab="kitchen" type="button">Kitchen Display</button>
+                <button class="pf-tab" data-tab="voice" type="button">Voice Ordering</button>
+            </div>
+
+            <!-- Feature panel: Kitchen Display -->
+            <div class="pf-panel pf-panel--active" id="pf-kitchen">
+                <div class="pf-panel-inner">
+                    <div class="pf-desc-card">
+                        <h3 class="pf-card-title">Kitchen Display Integration</h3>
+                        <p class="pf-card-body">Orders will appear at the correct station with colour-coded priority and prep timers — help us refine the flow during pilot runs.</p>
+                        <div class="pf-nav-arrows">
+                            <button class="pf-arrow" type="button" aria-label="Previous feature" data-dir="-1">
+                                <img src="/images/icon-arrow-prev.svg" alt="Previous" width="70" height="70">
+                            </button>
+                            <button class="pf-arrow" type="button" aria-label="Next feature" data-dir="1">
+                                <img src="/images/icon-arrow-next.svg" alt="Next" width="70" height="70">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pf-feature-img-wrap pf-feature-img-wrap--blue">
+                        <img src="/images/illus-kitchen.png"
+                             alt="Kitchen display integration view"
+                             class="pf-feature-img"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature panel: Voice Ordering -->
+            <div class="pf-panel" id="pf-voice">
+                <div class="pf-panel-inner">
+                    <div class="pf-desc-card">
+                        <h3 class="pf-card-title">Natural Language Understanding</h3>
+                        <p class="pf-card-body">Natural language ordering with multilingual support and smart upsells.</p>
+                        <div class="pf-nav-arrows">
+                            <button class="pf-arrow" type="button" aria-label="Previous feature" data-dir="-1">
+                                <img src="/images/icon-arrow-prev.svg" alt="Previous" width="70" height="70">
+                            </button>
+                            <button class="pf-arrow" type="button" aria-label="Next feature" data-dir="1">
+                                <img src="/images/icon-arrow-next.svg" alt="Next" width="70" height="70">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pf-feature-img-wrap pf-feature-img-wrap--blue">
+                        <img src="/images/illus-voice.png"
+                             alt="Voice ordering microphone interface"
+                             class="pf-feature-img pf-feature-img--mic"
+                             loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <%- include('partials/metrics') %>
+        <!-- ===== TIMELINE: HOW IT WORKS ===== -->
+        <section class="timeline-section" id="how-it-works">
+            <div class="container">
+                <div class="tl-header">
+                    <span class="fig-badge">How It Works</span>
+                    <h2 class="fig-heading-2"><span style="color:#4b33ff;">Three</span> Steps to Smarter Service</h2>
+                    <p class="fig-subheading">From order to insight in seconds. Here's how Bhojan Mitra transforms your restaurant operations.</p>
+                </div>
 
+                <div class="tl-steps">
+                    <!-- Step 1 -->
+                    <div class="tl-step">
+                        <div class="tl-step-left">
+                            <div class="tl-num-wrap">
+                                <span class="tl-num">01</span>
+                                <div class="tl-line"></div>
+                            </div>
+                            <div class="tl-text">
+                                <h3 class="tl-title">Capture Orders</h3>
+                                <p class="tl-desc">Customers order via voice, app, or your POS terminal. Every channel feeds into one system.</p>
+                            </div>
+                        </div>
+                        <div class="tl-step-right">
+                            <img src="/images/illus-pos-terminal.png"
+                                 alt="iPad Mini POS terminal"
+                                 class="tl-img"
+                                 loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="tl-step">
+                        <div class="tl-step-left">
+                            <div class="tl-num-wrap">
+                                <span class="tl-num">02</span>
+                                <div class="tl-line"></div>
+                            </div>
+                            <div class="tl-text">
+                                <h3 class="tl-title">Processing &amp; Insights</h3>
+                                <p class="tl-desc">Our AI validates orders, suggests upsells, and routes to the kitchen — all in milliseconds.</p>
+                            </div>
+                        </div>
+                        <div class="tl-step-right">
+                            <img src="/images/illus-ai.png"
+                                 alt="AI processing illustration"
+                                 class="tl-img"
+                                 loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="tl-step tl-step--last">
+                        <div class="tl-step-left">
+                            <div class="tl-num-wrap">
+                                <span class="tl-num">03</span>
+                            </div>
+                            <div class="tl-text">
+                                <h3 class="tl-title">Service, Higher Insights</h3>
+                                <p class="tl-desc">Our AI validates orders, suggests upsell, and routes to the kitchen — all in milliseconds.</p>
+                            </div>
+                        </div>
+                        <div class="tl-step-right">
+                            <img src="/images/illus-analytics.png"
+                                 alt="Customer insight dashboard"
+                                 class="tl-img"
+                                 loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HELP US SHAPE ===== -->
+        <section class="help-shape" id="why-us">
+            <div class="container">
+                <div class="hs-badge-wrap">
+                    <span class="fig-badge">Pilot Program Perks</span>
+                </div>
+                <div class="hs-grid">
+                    <!-- Left: Text + CTA -->
+                    <div class="hs-left">
+                        <h2 class="hs-title">Help Us Shape <span class="fig-muted">Bhojan Mitra</span> From Day Zero</h2>
+                        <p class="hs-desc">We're opening a small cohort of early adopters who want to co-build the ideal voice-led POS for their restaurant floor.</p>
+                        <a href="/contact" class="btn-figma-primary">Join the Pilot</a>
+                    </div>
+
+                    <!-- Right: Perk cards -->
+                    <div class="hs-right">
+                        <div class="hs-perk-card">
+                            <div class="hs-perk-icon">
+                                <img src="/images/icon-perk-chat.svg" alt="" width="40" height="40" aria-hidden="true">
+                            </div>
+                            <div class="hs-perk-content">
+                                <h4 class="hs-perk-title">Direct Product Access</h4>
+                                <p class="hs-perk-desc">Work directly with the product and engineering team to request features that match your service model.</p>
+                            </div>
+                        </div>
+
+                        <div class="hs-perk-card">
+                            <div class="hs-perk-icon">
+                                <img src="/images/icon-perk-gift.svg" alt="" width="40" height="40" aria-hidden="true">
+                            </div>
+                            <div class="hs-perk-content">
+                                <h4 class="hs-perk-title">Hardware Credits</h4>
+                                <p class="hs-perk-desc">Receive hardware credits and discounted pricing for life when we move from pilot to full release.</p>
+                            </div>
+                        </div>
+
+                        <div class="hs-perk-card">
+                            <div class="hs-perk-icon">
+                                <img src="/images/icon-perk-rocket.svg" alt="" width="40" height="40" aria-hidden="true">
+                            </div>
+                            <div class="hs-perk-content">
+                                <h4 class="hs-perk-title">Launch Support</h4>
+                                <p class="hs-perk-desc">On-site or remote launch support, staff training, and playbooks tailored to your kitchen setup.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PRICING ===== -->
+        <section class="pricing-section" id="pricing">
+            <div class="container">
+                <div class="pricing-header">
+                    <span class="fig-badge">Founding Plans</span>
+                    <h2 class="fig-heading-2"><span class="fig-gradient-text">Reserve</span> Your Bhojan Mitra Bundle</h2>
+                    <p class="fig-subheading">Founding partners receive lifetime discounts, roadmap input, and white-glove onboarding</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Simple Billing -->
+                    <div class="price-card price-card--bordered">
+                        <div class="price-card-badge">Simple Billing</div>
+                        <div class="price-card-body">
+                            <h3 class="price-card-name">Simple Billing</h3>
+                            <div class="price-amount-row">
+                                <span class="price-amount price-amount--dark">₹ 250/</span>
+                                <span class="price-period">Month</span>
+                            </div>
+                            <p class="price-desc">Essential billing tools for small restaurants</p>
+                        </div>
+                        <ul class="price-features">
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Core billing &amp; invoicing
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Order capture (manual &amp; QR)
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Cloud backups &amp; updates
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Email support
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Founding partner discount locked for life
+                            </li>
+                        </ul>
+                        <a href="/contact" class="btn-figma-primary price-btn">Get Started</a>
+                    </div>
+
+                    <!-- Analytics + QR (middle card) -->
+                    <div class="price-card">
+                        <div class="price-card-badge">Voice First AI</div>
+                        <div class="price-card-body">
+                            <h3 class="price-card-name">Analytics + QR</h3>
+                            <div class="price-amount-row">
+                                <span class="price-amount price-amount--orange">₹ 500/</span>
+                                <span class="price-period">Month</span>
+                            </div>
+                            <p class="price-desc">Advanced insights for scaling operations</p>
+                        </div>
+                        <ul class="price-features">
+                            <li>
+                                <img src="/images/icon-check-orange.svg" alt="✓" width="30" height="30">
+                                Advanced sales &amp; staff analytics
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-orange.svg" alt="✓" width="30" height="30">
+                                QR-based customer ordering flow
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-orange.svg" alt="✓" width="30" height="30">
+                                Live dashboards &amp; custom reports
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-orange.svg" alt="✓" width="30" height="30">
+                                Priority email support
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-orange.svg" alt="✓" width="30" height="30">
+                                Roadmap workshops with our team
+                            </li>
+                        </ul>
+                        <a href="/contact" class="btn-figma-primary price-btn">Get Started</a>
+                    </div>
+
+                    <!-- Voice Ordering -->
+                    <div class="price-card price-card--bordered">
+                        <div class="price-card-badge">Voice Ordering</div>
+                        <div class="price-card-body">
+                            <h3 class="price-card-name">Voice Ordering</h3>
+                            <div class="price-amount-row">
+                                <span class="price-amount price-amount--dark">₹ 5,000/</span>
+                                <span class="price-period">Month</span>
+                            </div>
+                            <p class="price-desc">Full AI-powered voice ordering system</p>
+                        </div>
+                        <ul class="price-features">
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Full AI voice ordering (multilingual)
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                IoT kitchen routing &amp; automation
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Priority onboarding &amp; training
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Dedicated founder support 24/7
+                            </li>
+                            <li>
+                                <img src="/images/icon-check-green.svg" alt="✓" width="30" height="30">
+                                Hardware credits for pilot partners
+                            </li>
+                        </ul>
+                        <a href="/contact" class="btn-figma-primary price-btn">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
         <section class="faq-section" id="faq">
             <div class="container">
-                <span class="eyebrow">FAQs</span>
-                <h2>POS questions operators ask us most</h2>
-                <div class="faq-grid">
-                    <article class="faq-item">
-                        <h3>What makes Bhojan Mitra different from other POS systems?</h3>
-                        <p>Bhojan Mitra is voice-first. Orders can be spoken in multiple Indian languages, modifiers are captured automatically, and IoT routing sends tickets to the right kitchen station without manual steps.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3>Can Bhojan Mitra replace my existing POS machine?</h3>
-                        <p>Yes. We provide a browser-based POS, dedicated hardware, and integrations to your existing printers and displays. During the pilot we map your current workflow and ensure continuity.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3>How long does pilot onboarding take?</h3>
-                        <p>Most restaurants go live within four weeks. Week one focuses on configuration, week two on training, and weeks three-four on shadow runs before the full switch.</p>
-                    </article>
-                    <article class="faq-item">
-                        <h3>Does the POS work if the internet drops?</h3>
-                        <p>Yes. Bhojan Mitra buffers voice transcripts locally and syncs once connectivity returns. Kitchen routing rules remain active so orders continue to print.</p>
-                    </article>
+                <div class="faq-header">
+                    <span class="fig-badge">FAQ</span>
+                    <h2 class="fig-heading-2"><span class="fig-muted">Questions</span> Operators Ask Most</h2>
                 </div>
-                <div class="hero-actions center" style="margin-top:2.5rem;">
-                    <a href="/pos-machine" class="btn btn-secondary">Explore the POS machine</a>
-                    <a href="/contact" class="btn btn-primary">Ask a question</a>
+
+                <!-- All items stay in DOM for SEO; CSS crossfade shows one at a time -->
+                <div class="faq-carousel" id="faqCarousel" aria-live="polite">
+
+                    <div class="faq-featured-card faq-item--active" data-faq="0">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">What makes Bhojan Mitra different from other POS systems?</h3>
+                            <p class="faq-answer">Bhojan Mitra is voice-first. Orders can be spoken in multiple Indian languages, modifiers are captured automatically, and IoT routing sends tickets to the right kitchen station without manual steps.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                    <div class="faq-featured-card" data-faq="1">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">Can Bhojan Mitra replace my existing POS machine?</h3>
+                            <p class="faq-answer">Yes. We provide a browser-based POS, dedicated hardware, and integrations to your existing printers and displays. During the pilot we map your current workflow and ensure continuity.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                    <div class="faq-featured-card" data-faq="2">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">How long does pilot onboarding take?</h3>
+                            <p class="faq-answer">Most restaurants go live within four weeks. Week one focuses on configuration, week two on training, and weeks three–four on shadow runs before the full switch.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                    <div class="faq-featured-card" data-faq="3">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">Does the POS work if the internet drops?</h3>
+                            <p class="faq-answer">Yes. Bhojan Mitra buffers voice transcripts locally and syncs once connectivity returns. Kitchen routing rules remain active so orders continue to print.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                    <div class="faq-featured-card" data-faq="4">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">Which languages does voice ordering support?</h3>
+                            <p class="faq-answer">Bhojan Mitra currently supports Hindi, Tamil, Telugu, Kannada, Marathi, and Bengali, with more regional languages being added each quarter. The system auto-detects the speaker's language so staff need no extra training.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                    <div class="faq-featured-card" data-faq="5">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">Is the billing GST-compliant?</h3>
+                            <p class="faq-answer">Yes. Every invoice generated by Bhojan Mitra includes GSTIN, HSN/SAC codes, and itemised tax breakdowns in the format required by GST regulations. Reports can be exported directly for filing.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                    <div class="faq-featured-card" data-faq="6">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">What hardware do I need to get started?</h3>
+                            <p class="faq-answer">Any Android tablet or Windows machine running a modern browser works for the software POS. For a full hardware setup, we supply a purpose-built touchscreen terminal, thermal receipt printer, and IoT kitchen display — all configured and shipped to your restaurant.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                    <div class="faq-featured-card" data-faq="7">
+                        <div class="faq-quote-left" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#f869c6" opacity="0.18">"</text></svg>
+                        </div>
+                        <div class="faq-card-content">
+                            <h3 class="faq-question">Can I view sales analytics in real time?</h3>
+                            <p class="faq-answer">Yes. The Bhojan Mitra dashboard shows live order volume, item-level sales, and peak-hour trends. Shift summaries and daily reports are generated automatically and can be emailed or exported as CSV.</p>
+                        </div>
+                        <div class="faq-quote-right" aria-hidden="true">
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"><text y="60" font-size="72" fill="#e26767" opacity="0.18">"</text></svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Navigation dots -->
+                <div class="faq-nav" id="faqNav" aria-label="FAQ navigation">
+                    <button class="faq-dot faq-dot--active" data-idx="0" aria-label="Question 1"></button>
+                    <button class="faq-dot" data-idx="1" aria-label="Question 2"></button>
+                    <button class="faq-dot" data-idx="2" aria-label="Question 3"></button>
+                    <button class="faq-dot" data-idx="3" aria-label="Question 4"></button>
+                    <button class="faq-dot" data-idx="4" aria-label="Question 5"></button>
+                    <button class="faq-dot" data-idx="5" aria-label="Question 6"></button>
+                    <button class="faq-dot" data-idx="6" aria-label="Question 7"></button>
+                    <button class="faq-dot" data-idx="7" aria-label="Question 8"></button>
                 </div>
             </div>
         </section>
 
-        <section class="products">
+        <!-- ===== CTA HOME ===== -->
+        <section class="cta-home">
             <div class="container">
-                <span class="eyebrow">Founding plans</span>
-                <h2>Reserve your Bhojan Mitra bundle early</h2>
-                <p class="section-subtitle">Founding partners receive lifetime discounts, roadmap input, and white-glove onboarding while we move from pilot to full release.</p>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <h3>Simple Billing (Starter)</h3>
-                        <p class="price">₹250 / month</p>
-                        <ul>
-                            <li>Core billing &amp; invoicing</li>
-                            <li>Order capture (manual &amp; QR)</li>
-                            <li>Cloud backups &amp; updates</li>
-                            <li>Email support</li>
-                            <li>Founding partner discount locked for life</li>
-                        </ul>
-                        <a href="/contact" class="btn btn-secondary">Reserve ₹250 Plan</a>
-                    </div>
-                    <div class="product-card featured">
-                        <h3>Analytics + QR Ordering</h3>
-                        <p class="price">₹500 / month</p>
-                        <ul>
-                            <li>Advanced sales &amp; staff analytics</li>
-                            <li>QR-based customer ordering flow</li>
-                            <li>Live dashboards &amp; custom reports</li>
-                            <li>Priority email support</li>
-                            <li>Roadmap workshops with our team</li>
-                        </ul>
-                        <a href="/contact" class="btn btn-primary">Reserve ₹500 Plan</a>
-                    </div>
-                    <div class="product-card">
-                        <h3>Voice-enabled Ordering (Bhojan Mitra)</h3>
-                        <p class="price">₹5,000</p>
-                        <ul>
-                            <li>Full AI voice ordering (multilingual)</li>
-                            <li>IoT kitchen routing &amp; automation</li>
-                            <li>Priority onboarding &amp; training</li>
-                            <li>Dedicated support</li>
-                            <li>Hardware credits for pilot partners</li>
-                        </ul>
-                        <a href="/contact" class="btn btn-secondary">Reserve Bhojan Mitra</a>
-                    </div>
+                <div class="cta-home-inner">
+                    <h2 class="cta-home-title">See Bhojan Mitra <span class="fig-gradient-text">in Action</span></h2>
+                    <p class="cta-home-desc">Join the pilot to experience voice ordering, IoT routing, and analytics tailored to your restaurant before our public launch.</p>
+                    <a href="/contact" class="btn-figma-primary">Book a Demo</a>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
-            <div class="container">
-                <h2>See Bhojan Mitra in action</h2>
-                <p>Join the pilot to experience voice ordering, IoT routing, and analytics tailored to your restaurant before our public launch.</p>
-                <div class="hero-actions center">
-                    <a href="https://billing.aarohitavigyan.com" class="btn btn-primary btn-lg">Apply for the pilot</a>
-                    <a href="/pricing" class="btn btn-secondary btn-lg">View founding plans</a>
-                </div>
-            </div>
-        </section>
     </main>
 
     <%- include('partials/footer') %>
 
     <script src="/js/main.js"></script>
+    <script src="/js/home.js"></script>
+
+    <!-- Contact modal -->
+    <div id="contactModal" class="modal-backdrop hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contactModalMessage">
+        <div class="modal-dialog">
+            <p id="contactModalMessage"></p>
+            <button class="modal-close modal-ok btn btn-primary">OK</button>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,52 +1,76 @@
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="/" class="footer-logo" aria-label="Bhojan Mitra Home">
-          <img src="/images/logo.png" alt="Bhojan Mitra Logo" width="40" height="40" loading="lazy" onerror="this.style.display='none'">
-          <span>Bhojan Mitra</span>
-        </a>
-        <p>Voice-led POS suite that blends AI ordering, multilingual support, analytics, and IoT routing so restaurants deliver faster, more consistent service.</p>
-        <div class="footer-meta">
-          <span>Pilot program now accepting restaurants</span>
-          <span>Founders-led onboarding included</span>
-          <span>Hardware launch roadmap for 2025</span>
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Left brand column -->
+    <div class="footer-brand-col">
+      <div class="footer-logo-row">
+        <img src="/images/logo.png" alt="Bhojan Mitra" width="80" height="80" style="border-radius:8px;object-fit:cover;" onerror="this.style.display='none'">
+        <span class="footer-brand-name">Bhojan Mitra</span>
+      </div>
+
+      <div class="footer-newsletter">
+        <p class="footer-lets-talk">Let's Talk</p>
+        <form class="footer-email-form" action="/contact" method="get" aria-label="Newsletter signup">
+          <input type="email" class="footer-email-input" placeholder="Enter Email address" aria-label="Email address">
+          <button type="submit" class="btn-footer-subscribe">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer-social">
+        <p class="footer-social-label">Our Social media</p>
+        <div class="footer-social-icons">
+          <a href="https://wa.me/91" aria-label="WhatsApp" class="footer-social-link" target="_blank" rel="noopener noreferrer">
+            <img src="/images/footer-whatsapp.svg" alt="WhatsApp" width="30" height="30">
+          </a>
+          <a href="mailto:hello@aarohitavigyan.com" aria-label="Email" class="footer-social-link">
+            <img src="/images/footer-email.svg" alt="Email" width="30" height="30">
+          </a>
+          <a href="https://instagram.com" aria-label="Instagram" class="footer-social-link" target="_blank" rel="noopener noreferrer">
+            <img src="/images/footer-instagram.svg" alt="Instagram" width="30" height="30">
+          </a>
         </div>
       </div>
+    </div>
 
-      <div class="footer-column">
-        <h4>Product</h4>
+    <!-- Right link columns -->
+    <nav class="footer-links-grid" aria-label="Footer navigation">
+      <div class="footer-col">
+        <h4 class="footer-col-heading">Product</h4>
         <ul>
           <li><a href="/bhojan-mitra">Overview</a></li>
-          <li><a href="/pos-software">POS Software</a></li>
+          <li><a href="/pos-software">Bhojan Mitra AI + IoT POS</a></li>
           <li><a href="/pos-machine">POS Machine</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-heading">Solution</h4>
+        <ul>
+          <li><a href="/restaurant-pos">Bhojan Mitra POS</a></li>
+          <li><a href="/restaurant-pos">Multilingual</a></li>
+          <li><a href="/pos-software">Voice Ordering</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-heading">Resources</h4>
+        <ul>
           <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/support">Blog</a></li>
         </ul>
       </div>
 
-      <div class="footer-column">
-        <h4>Solutions</h4>
+      <div class="footer-col">
+        <h4 class="footer-col-heading">Company</h4>
         <ul>
-          <li><a href="/restaurant-pos">Restaurants</a></li>
-          <li><a href="/pricing">Analytics &amp; QR Ordering</a></li>
-          <li><a href="/pos-machine">Voice Ordering</a></li>
-        
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/training">Training</a></li>
-          <li><a href="/support">Support</a></li>
+          <li><a href="/about">About Us</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
-    </div>
+    </nav>
+  </div>
 
-    <div class="footer-bottom">
-      <p>&copy; <%= new Date().getFullYear() %> Aarohita Vigyan. Bhojan Mitra — AI + IoT voice-enabled POS for restaurants.</p>
-    </div>
+  <div class="footer-copyright">
+    <p>&copy; 2025 Aarohita Vigyan. Bhojan Mitra — AI + IoT voice-enabled POS for restaurants.</p>
   </div>
 </footer>

@@ -97,53 +97,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Performance optimization - preload critical resources
-    const preloadLinks = [
-        '/css/style.css',
-        '/js/main.js'
-    ];
+    // Scroll-triggered reveal animations
+    const revealTargets = document.querySelectorAll('.reveal');
+    if (revealTargets.length && 'IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(function(entries, obs) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+        revealTargets.forEach(function(el) { revealObserver.observe(el); });
+    }
 
-    preloadLinks.forEach(href => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = href;
-        link.as = href.endsWith('.css') ? 'style' : 'script';
-        document.head.appendChild(link);
-    });
-
-    // Add structured data for local business (if applicable)
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Aarohita Vigyan POS Solutions",
-        "description": "Professional POS machines and affordable POS software for restaurants and retail businesses",
-        "url": window.location.origin,
-        "telephone": "+1-555-POS-HELP",
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "US"
-        },
-        "openingHours": "Mo-Fr 09:00-18:00",
-        "priceRange": "$299-$899",
-        "areaServed": "United States",
-        "serviceType": "Point of Sale Systems"
-    };
-
-    // Add structured data to page
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(structuredData);
-    document.head.appendChild(script);
-
-    // Initialize tooltips and interactive elements
-    const tooltips = document.querySelectorAll('[data-tooltip]');
-    tooltips.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            // Show tooltip
-            const tooltip = this.getAttribute('data-tooltip');
-            console.log('Tooltip:', tooltip);
-        });
-    });
+    // Animate metric counters on scroll
+    var metricValues = document.querySelectorAll('.metric-value[data-target]');
+    if (metricValues.length && 'IntersectionObserver' in window) {
+        var counterObserver = new IntersectionObserver(function(entries, obs) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var el = entry.target;
+                    var target = el.getAttribute('data-target');
+                    if (/^\d+$/.test(target)) {
+                        var current = 0;
+                        var end = parseInt(target, 10);
+                        var step = Math.ceil(end / 40);
+                        var timer = setInterval(function() {
+                            current += step;
+                            if (current >= end) { current = end; clearInterval(timer); }
+                            el.textContent = current;
+                        }, 30);
+                    }
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        metricValues.forEach(function(el) { counterObserver.observe(el); });
+    }
 
     // Contact form enhancement
     const contactForms = document.querySelectorAll('.contact-form');

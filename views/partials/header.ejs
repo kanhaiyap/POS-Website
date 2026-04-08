@@ -1,25 +1,48 @@
-<header class="header">
-  <div class="container nav-bar">
-    <a href="/" class="nav-brand">
-      <img src="/images/logo.png" alt="Bhojan Mitra logo" class="brand-logo" onerror="this.style.display='none'">
-      <span class="brand-text">Bhojan Mitra</span>
-    </a>
+<header class="header" role="banner">
+  <div class="header-pill">
+    <div class="nav-bar">
+      <a href="/" class="nav-brand" aria-label="Bhojan Mitra Home">
+        <img src="/images/logo.png" alt="Bhojan Mitra" class="brand-logo" width="56" height="56" style="border-radius:8px;object-fit:cover;" onerror="this.style.display='none'">
+        <span class="brand-text">Bhojan Mitra</span>
+      </a>
 
-    <nav class="site-nav" aria-label="Primary navigation">
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
-        <span class="sr-only">Toggle navigation menu</span>
-        <span class="nav-toggle-bar"></span>
-      </button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+          <span class="sr-only">Toggle navigation menu</span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-menu" id="primary-navigation" role="menubar">
+          <li role="none">
+            <a role="menuitem" href="/pos-software" class="nav-link-caret">
+              Product
+              <svg class="nav-caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="/restaurant-pos" class="nav-link-caret">
+              Solution
+              <svg class="nav-caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="/pricing" class="nav-link-caret">
+              Pricing
+              <svg class="nav-caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="/#why-us" class="nav-link-caret">
+              Why Us
+              <svg class="nav-caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-      <ul class="nav-menu" id="primary-navigation" role="menubar">
-        <li role="none"><a role="menuitem" href="/">Home</a></li>
-        <li role="none"><a role="menuitem" href="/bhojan-mitra">Product</a></li>
-        <li role="none"><a role="menuitem" href="/pos-software">Features</a></li>
-        <li role="none"><a role="menuitem" href="/pricing">Pricing</a></li>
-        <li role="none"><a role="menuitem" href="/restaurant-pos">Restaurants</a></li>
-        <li role="none"><a role="menuitem" href="/pos-machine">POS Machine</a></li>
-        <li class="nav-cta" role="none"><a class="btn btn-primary btn-sm" role="menuitem" href="https://billing.aarohitavigyan.com">Apply for pilot</a></li>
-      </ul>
-    </nav>
+      <div class="nav-actions">
+        <a href="/about" class="btn-nav-ghost">About Us</a>
+        <a href="/contact" class="btn-nav-primary">Get Started</a>
+      </div>
+    </div>
   </div>
 </header>
