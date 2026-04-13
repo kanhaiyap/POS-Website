@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Add host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.FTP_SERVER }} >> ~/.ssh/known_hosts
+
       - name: Deploy via SFTP
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
@@ -23,3 +28,4 @@ jobs:
           SOURCE: "./"
           TARGET: ${{ secrets.FTP_SERVER_DIR }}
           EXCLUDE: ".git, .github, node_modules, .env"
+          ARGS: "-avzr --no-perms"
