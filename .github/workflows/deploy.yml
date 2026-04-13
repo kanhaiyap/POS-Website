@@ -13,18 +13,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Deploy via rsync
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start server and build static files
         run: |
-          rsync -avzr --no-perms \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='node_modules' \
-            --exclude='.env' \
-            -e "ssh -i ~/.ssh/id_ed25519 -p 65002 -o StrictHostKeyChecking=no" \
-            ./ ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:${{ secrets.FTP_SERVER_DIR }}
+          node server.js &
+          sleep 5
+          mkdir -p dist
+          wget --mirror --convert-links --adjust-extension --no-host-directories --page-requisites -P dist http://localhost:3000
+          kill %1
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOSTNAME }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
