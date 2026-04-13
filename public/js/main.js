@@ -1,5 +1,33 @@
 // SEO-optimized JavaScript for POS website
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Dropdown toggle (click for touch / keyboard)
+    document.querySelectorAll('.nav-dropdown-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            const li = btn.closest('.nav-dropdown');
+            const isOpen = li.classList.contains('open');
+            // close all
+            document.querySelectorAll('.nav-dropdown.open').forEach(function(el) {
+                el.classList.remove('open');
+                el.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+                li.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+            e.stopPropagation();
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.nav-dropdown.open').forEach(function(el) {
+            el.classList.remove('open');
+            el.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+        });
+    });
+
+
     // Smooth scrolling for anchor links
     const anchors = document.querySelectorAll('a[href^="#"]');
     anchors.forEach(anchor => {
