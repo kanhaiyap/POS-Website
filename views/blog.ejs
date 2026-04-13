@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { seo }) %>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+
+    <!-- ===== HEADER ===== -->
+    <section class="blog-hero">
+      <div class="blog-hero-inner">
+        <h1 class="blog-hero-title">Blog</h1>
+        <p class="blog-hero-sub">Insights, tips, and updates from the Bhojan Mitra team</p>
+      </div>
+    </section>
+
+    <!-- ===== POSTS GRID ===== -->
+    <section class="blog-section">
+      <div class="blog-inner">
+
+        <!-- Featured post -->
+        <a href="/blog/market-is-changing" class="blog-card blog-card--featured">
+          <div class="blog-card-img blog-card-img--pink">
+            <div class="blog-card-img-text">The Market Is Changing – Why Indian Restaurants Must Go Digital Now</div>
+          </div>
+          <div class="blog-card-body">
+            <span class="blog-tag">Editorial</span>
+            <h2 class="blog-card-title">The Market Is Changing – Why Indian Restaurants Must Go Digital Now</h2>
+            <p class="blog-card-excerpt">Discover why Indian restaurants are rapidly shifting to digital operations and how AI-powered POS systems are leading that transformation.</p>
+            <span class="blog-card-date">Oct 16, 2025</span>
+          </div>
+        </a>
+
+        <!-- Posts grid -->
+        <div class="blog-grid">
+
+          <a href="/blog/pos-system-india" class="blog-card">
+            <div class="blog-card-img blog-card-img--blue">
+              <div class="blog-card-img-text">POS System for Restaurants in India – Go Paperless, Go Smart</div>
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-tag">Editorial</span>
+              <h3 class="blog-card-title">POS System for Restaurants in India – Go Paperless, Go Smart</h3>
+              <span class="blog-card-date">Oct 16, 2025</span>
+            </div>
+          </a>
+
+          <a href="/blog/ai-web-app" class="blog-card">
+            <div class="blog-card-img blog-card-img--purple">
+              <div class="blog-card-img-text">AI Web App Development in India – Build Smarter Digital Solutions</div>
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-tag">Editorial</span>
+              <h3 class="blog-card-title">AI Web App Development in India – Build Smarter Digital Solutions</h3>
+              <span class="blog-card-date">Oct 16, 2025</span>
+            </div>
+          </a>
+
+          <a href="/blog/website-development-bhilai" class="blog-card">
+            <div class="blog-card-img blog-card-img--green">
+              <div class="blog-card-img-text">Website Development in Bhilai – Build Your Own Website Today</div>
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-tag">Editorial</span>
+              <h3 class="blog-card-title">Website Development in Bhilai – Build Your Own Website Today</h3>
+              <span class="blog-card-date">Oct 01, 2025</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="blog-cta">
+      <div class="blog-cta-inner">
+        <h2 class="blog-cta-title">Ready to scale your restaurant with<br>AI-powered operations?</h2>
+        <a href="/contact" class="bm-btn-primary">Talk to us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

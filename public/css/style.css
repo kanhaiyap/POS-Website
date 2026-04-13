@@ -271,7 +271,7 @@ section {
     -webkit-backdrop-filter: blur(16px);
     border-radius: 999px;
     border: 1px solid rgba(128, 128, 128, 0.3);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     padding: 0.6rem 1.5rem;
 }
 
@@ -950,21 +950,26 @@ section h2 .gradient-text {
     border: 2px solid #f869c6;
     box-shadow: 0 4px 20px rgba(248, 105, 198, 0.2);
     background: linear-gradient(145deg, rgba(248, 105, 198, 0.04), rgba(248, 105, 198, 0)), var(--color-surface);
+    padding-top: 0;
+    overflow: hidden;
+}
+
+.product-card.featured::before {
+    content: "Most Popular";
+    display: block;
+    text-align: center;
+    background: linear-gradient(90deg, #f869c6, #e040a0);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.6rem 1rem;
+    margin: 0 calc(-1 * clamp(2.1rem, 4.5vw, 2.6rem)) clamp(1.5rem, 3vw, 2rem);
 }
 
 .product-card.featured::after {
-    content: "Most popular";
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    padding: 0.4rem 0.7rem;
-    border-radius: 999px;
-    background: rgba(99, 102, 241, 0.16);
-    color: var(--color-primary);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    content: none;
 }
 
 .product-card h3 {
@@ -2626,12 +2631,10 @@ section h2 .gradient-text {
 
 /* ---- Header pill ---- */
 .header-pill {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 63px;
-    border: 1px solid rgba(128, 128, 128, 0.55);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border-radius: 999px;
+    border: 1.5px solid #e0e0e0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
     padding: 0.75rem 2rem 0.75rem 1rem;
 }
 
@@ -2736,9 +2739,9 @@ section h2 .gradient-text {
 }
 
 /* Clipping viewport for cycling words */
-/* Clipping viewport — shows exactly 107px of the cycling track */
+/* Clipping viewport — height matches word slot height exactly */
 .hero-word-clip {
-    height: 107px;
+    height: 110px;
     overflow: hidden;
     flex-shrink: 0;
 }
@@ -2750,57 +2753,50 @@ section h2 .gradient-text {
     will-change: transform;
 }
 
-/* Each slot is 126px tall (Figma uses 126px steps: top-0, top-126, top-252, top-378).
-   The 107px clip window shows the upper portion of each slot. */
+/* Each slot — bottom-aligned with padding for descenders */
 .hero-word {
     display: flex;
-    align-items: flex-start;      /* text pinned to top, matching Figma absolute top:0 */
+    align-items: flex-end;
     justify-content: flex-end;
-    height: 126px;
+    height: 110px;
     color: #5f6c7b;
     text-align: right;
     white-space: nowrap;
     padding-right: 0.5rem;
-    line-height: 1.2;
+    padding-bottom: 0.2em;
+    line-height: 1;
 }
 
-/* Roboto Serif 52px — AI-Powered, Multilingual */
-.hero-word--serif {
-    font-family: 'Roboto Serif', Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(2rem, 3.6vw, 3.25rem);   /* 3.25rem = 52px at 16px base */
-    padding-top: 0.2rem;
-}
-
-/* Inria Serif 86px — IoT Integration, Voice ordering.
-   Figma specifies not-italic (normal upright style). */
+/* All cycling words — unified size and font */
+.hero-word--serif,
 .hero-word--inria {
-    font-family: 'Inria Serif', Georgia, serif;
+    font-family: 'Roboto Serif', Georgia, serif;
     font-weight: 700;
-    font-style: normal;                           /* NOT italic — Figma: not-italic */
-    font-size: clamp(2.6rem, 5.4vw, 5.375rem);   /* 5.375rem = 86px at 16px base */
+    font-style: normal;
+    font-size: clamp(2.6rem, 5vw, 4.5rem);
 }
 
-/* " POS for" — vertically centered in 107px, matching clip height */
+/* "POS for" — same height and size as cycling words */
 .hero-pos-for {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    height: 107px;
+    height: 110px;
     font-family: 'Roboto Serif', Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(2rem, 3.6vw, 3.25rem);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 5vw, 4.5rem);
     color: #1c1c1c;
     white-space: nowrap;
     padding-left: 0.5rem;
-    line-height: 1.2;
+    padding-bottom: 0.2em;
+    line-height: 1;
 }
 
-/* "Smarter Restaurants" — same size as "POS for" line */
+/* "Smarter Restaurants" — matches cycling word size */
 .hero-main-title {
     font-family: 'Roboto Serif', Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(2rem, 3.6vw, 3.25rem);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 5vw, 4.5rem);
     color: #1c1c1c;
     text-align: center;
     margin: 0;
@@ -3895,20 +3891,16 @@ section h2 .gradient-text {
     }
 
     .hero-word {
-        height: 110px;
-        align-items: flex-start;
+        height: 90px;
+        align-items: flex-end;
         justify-content: center;
         text-align: center;
         padding-right: 0;
     }
 
-    .hero-word--serif {
-        font-size: clamp(1.75rem, 5vw, 2.5rem);
-        padding-top: 0.15rem;
-    }
-
+    .hero-word--serif,
     .hero-word--inria {
-        font-size: clamp(2.2rem, 8vw, 3.5rem);
+        font-size: clamp(2rem, 7vw, 3.5rem);
     }
 
     .hero-pos-for {
@@ -3916,7 +3908,7 @@ section h2 .gradient-text {
         width: 100%;
         justify-content: center;
         padding-left: 0;
-        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        font-size: clamp(2rem, 7vw, 3.5rem);
     }
 
     .tl-step {
@@ -3991,19 +3983,687 @@ section h2 .gradient-text {
     }
 
     .hero-word {
-        height: 90px;
+        height: 75px;
     }
 
-    .hero-word--serif {
-        font-size: 1.75rem;
-    }
-
+    .hero-word--serif,
     .hero-word--inria {
-        font-size: 2.6rem;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
     }
 
     .hero-pos-for {
         height: 75px;
-        font-size: 1.75rem;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
     }
+}
+
+/* =============================================
+   BHOJAN MITRA AI + IoT POS PAGE (pos-software)
+   ============================================= */
+
+.bm-hero {
+    padding: 9rem 1.5rem 5rem;
+    text-align: center;
+    background: #fff;
+}
+
+.bm-hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.bm-hero-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0 0 1.25rem;
+    line-height: 1.2;
+}
+
+.bm-hero-subtitle {
+    font-size: 1rem;
+    color: #5f6c7b;
+    line-height: 1.7;
+    margin: 0 0 2rem;
+}
+
+.bm-btn-primary {
+    display: inline-block;
+    background: linear-gradient(90deg, #f869c6, #e040a0);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.bm-btn-primary:hover {
+    opacity: 0.88;
+}
+
+/* Features section */
+.bm-features {
+    background: #fff;
+    padding: 0 1.5rem 5rem;
+}
+
+.bm-features-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.bm-badge {
+    display: inline-block;
+    border: 1.5px solid #e0b4d8;
+    border-radius: 999px;
+    padding: 0.35rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #c060a0;
+    margin-bottom: 3rem;
+}
+
+.bm-feature-row {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.bm-feature-row--reverse {
+    flex-direction: row-reverse;
+}
+
+.bm-feature-text {
+    flex: 1;
+}
+
+.bm-feature-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f869c6;
+    margin: 0 0 0.75rem;
+}
+
+.bm-feature-desc {
+    font-size: 0.95rem;
+    color: #5f6c7b;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.bm-feature-img {
+    flex: 0 0 300px;
+    border: 1px solid #f0e0f0;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+}
+
+.bm-feature-img img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* FAQ section */
+.bm-faq {
+    background: #fff;
+    padding: 4rem 1.5rem;
+}
+
+.bm-faq-inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.bm-faq-eyebrow {
+    display: inline-block;
+    border: 1px solid #d0d0d0;
+    border-radius: 999px;
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.bm-faq-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0 0 2.5rem;
+}
+
+.bm-faq-muted {
+    color: #f869c6;
+}
+
+.bm-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.bm-faq-item {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 1.25rem 1.5rem;
+}
+
+.bm-faq-item:last-child {
+    border-bottom: none;
+}
+
+.bm-faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: #1c1c1c;
+    list-style: none;
+    gap: 1rem;
+}
+
+.bm-faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.bm-faq-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.bm-faq-icon::before,
+.bm-faq-icon::after {
+    content: '';
+    position: absolute;
+    background: #555;
+    border-radius: 2px;
+}
+
+.bm-faq-icon::before {
+    width: 10px;
+    height: 1.5px;
+}
+
+.bm-faq-icon::after {
+    width: 1.5px;
+    height: 10px;
+}
+
+details[open] .bm-faq-icon::after {
+    display: none;
+}
+
+.bm-faq-answer {
+    font-size: 0.93rem;
+    color: #5f6c7b;
+    line-height: 1.7;
+    margin: 0.75rem 0 0;
+}
+
+/* CTA section */
+.bm-cta {
+    background: linear-gradient(135deg, #fff0f9, #fef6ff);
+    border: 1.5px solid #f0d0ea;
+    border-radius: 20px;
+    margin: 3rem 1.5rem 4rem;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.bm-cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.bm-cta-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0 0 1rem;
+}
+
+.bm-cta-highlight {
+    color: #f869c6;
+}
+
+.bm-cta-sub {
+    font-size: 0.95rem;
+    color: #5f6c7b;
+    line-height: 1.7;
+    margin: 0 0 2rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .bm-feature-row,
+    .bm-feature-row--reverse {
+        flex-direction: column;
+    }
+
+    .bm-feature-img {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* =============================================
+   RESTAURANT POS PAGE (restaurant-pos)
+   ============================================= */
+
+.rpos-feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.rpos-feature {
+    max-width: 760px;
+}
+
+.rpos-feature-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f869c6;
+    margin: 0 0 0.6rem;
+}
+
+.rpos-feature-desc {
+    font-size: 0.95rem;
+    color: #5f6c7b;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.rpos-cta {
+    text-align: center;
+    padding: 5rem 1.5rem 4rem;
+    background: #fff;
+}
+
+.rpos-cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.rpos-cta-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0 0 1rem;
+}
+
+.rpos-cta-sub {
+    font-size: 1rem;
+    color: #5f6c7b;
+    line-height: 1.7;
+    margin: 0 0 2rem;
+}
+
+/* =============================================
+   ORBIT FEATURES SECTION
+   ============================================= */
+
+.orbit-wrap {
+    position: relative;
+    width: 560px;
+    height: 560px;
+    margin: 2rem auto;
+}
+
+/* Central POS image */
+.orbit-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 8px 40px rgba(248,105,198,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.orbit-center-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Orbit ring — holds all orbit-items, no transform itself */
+.orbit-ring {
+    position: absolute;
+    inset: 0;
+}
+
+/* Each orbit-item is a zero-size point at the center that spins */
+.orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    animation: orbitSpin 16s linear infinite;
+    animation-delay: calc(var(--i) * -2.667s); /* 16s / 6 = 2.667s per slot */
+}
+
+@keyframes orbitSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Card sits at the top of the radius, counter-spins to stay upright */
+.orbit-card {
+    position: absolute;
+    width: 120px;
+    left: -60px;
+    top: -260px; /* orbit radius */
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+    padding: 0.85rem 0.65rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    text-align: center;
+    animation: counterSpin 16s linear infinite;
+    animation-delay: calc(var(--i) * -2.667s);
+}
+
+@keyframes counterSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+}
+
+.orbit-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orbit-card-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #2d2d2d;
+    line-height: 1.3;
+}
+
+/* Pause on hover */
+.orbit-wrap:hover .orbit-item,
+.orbit-wrap:hover .orbit-card {
+    animation-play-state: paused;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .orbit-wrap {
+        width: 340px;
+        height: 340px;
+    }
+    .orbit-center {
+        width: 140px;
+        height: 140px;
+        border-radius: 20px;
+    }
+    .orbit-center-img {
+        width: 110px;
+        height: 110px;
+    }
+    .orbit-card {
+        --r: 148px;
+        width: 90px;
+        padding: 0.6rem 0.4rem;
+    }
+    .orbit-card-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+    .orbit-card-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .orbit-card-label {
+        font-size: 0.65rem;
+    }
+}
+
+/* =============================================
+   BLOG PAGES
+   ============================================= */
+
+.blog-hero {
+    padding: 9rem 1.5rem 3rem;
+    text-align: center;
+    background: #fff;
+}
+
+.blog-hero-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0 0 0.5rem;
+}
+
+.blog-hero-sub {
+    font-size: 1rem;
+    color: #5f6c7b;
+    margin: 0;
+}
+
+.blog-section { padding: 3rem 1.5rem 2rem; background: #fff; }
+.blog-inner { max-width: 960px; margin: 0 auto; }
+
+/* Featured card */
+.blog-card--featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    text-decoration: none;
+    transition: box-shadow 0.2s;
+}
+.blog-card--featured:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.09); }
+
+/* Post grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.blog-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.blog-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); transform: translateY(-3px); }
+
+/* Card image area */
+.blog-card-img {
+    padding: 1.5rem;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.blog-card-img--pink  { background: linear-gradient(135deg, #fce4f5, #f8c8ef); }
+.blog-card-img--blue  { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+.blog-card-img--purple{ background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
+.blog-card-img--green { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+
+.blog-card-img-text {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.blog-card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.blog-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #f869c6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.blog-card-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.blog-card-excerpt {
+    font-size: 0.88rem;
+    color: #5f6c7b;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.blog-card-date {
+    font-size: 0.78rem;
+    color: #aaa;
+    margin-top: auto;
+}
+
+/* Blog CTA */
+.blog-cta {
+    background: linear-gradient(135deg, #fff0f9, #fef6ff);
+    border-top: 1.5px solid #f0d0ea;
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.blog-cta-inner { max-width: 560px; margin: 0 auto; }
+
+.blog-cta-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0 0 1.75rem;
+    line-height: 1.3;
+}
+
+/* Blog post page */
+.blogpost { padding: 8rem 1.5rem 4rem; background: #fff; }
+.blogpost-inner { max-width: 720px; margin: 0 auto; }
+
+.blogpost-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.blogpost-date { font-size: 0.85rem; color: #888; }
+
+.blogpost-featured-card {
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+}
+
+.blogpost-featured-text {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 500px;
+}
+
+.blogpost-inner h2 {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 2rem 0 0.6rem;
+}
+
+.blogpost-inner p, .blogpost-inner li {
+    font-size: 0.95rem;
+    color: #5f6c7b;
+    line-height: 1.75;
+}
+
+.blogpost-inner ul {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 1rem;
+}
+
+/* Related posts */
+.blog-related { padding: 3rem 1.5rem; background: #fafafa; }
+.blog-related-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 0 0 1.5rem;
+}
+
+@media (max-width: 700px) {
+    .blog-card--featured { grid-template-columns: 1fr; }
 }

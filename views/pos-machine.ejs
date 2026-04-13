@@ -7,175 +7,124 @@
     <%- include('partials/header') %>
 
     <main>
+
         <!-- ===== HERO ===== -->
-        <section class="hero pm-hero">
-            <div class="container">
-                <div class="hero-content">
-                    <nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Bhojan Mitra</li></ol></nav>
-
-                    <span class="eyebrow pm-anim-1">Voice ordering</span>
-
-                    <h1 class="pm-anim-2">Bhojan Mitra — <span class="pm-gradient-word">conversational ordering</span> that keeps kitchens flowing</h1>
-
-                    <p class="pm-anim-3">Bhojan Mitra brings full AI voice ordering to restaurants. Staff and guests speak naturally, our AI handles accents, context, and modifiers, then routes orders to the right kitchen devices via IoT integrations.</p>
-
-                    <div class="hero-actions pm-anim-4">
-                        <a href="#features" class="btn btn-primary btn-lg">See highlights</a>
-                        <a href="/contact" class="btn btn-ghost btn-lg">Discuss the pilot</a>
-                    </div>
-
-                    <div class="hero-tags pm-anim-5">
-                        <span class="hero-tag">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
-                            Multilingual &amp; accent aware
-                        </span>
-                        <span class="hero-tag">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                            Real-time IoT routing
-                        </span>
-                        <span class="hero-tag">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                            Human-in-the-loop safeguards
-                        </span>
-                    </div>
-                </div>
+        <section class="bm-hero">
+            <div class="bm-hero-inner">
+                <h1 class="bm-hero-title">Simple, Transparent Pricing —<br>For Every Restaurant</h1>
+                <p class="bm-hero-subtitle">We designed Bhojan Mitra pricing to be clear, fair, and tied to real value — so you only pay for what grows your business.</p>
             </div>
-
-            <!-- Pulsing mic decoration (desktop only) -->
-            <div class="pm-mic-pulse" aria-hidden="true">
-                <span class="pm-ring pm-ring--1"></span>
-                <span class="pm-ring pm-ring--2"></span>
-                <span class="pm-ring pm-ring--3"></span>
-                <svg class="pm-mic-icon" viewBox="0 0 24 24" fill="none" stroke="#f869c6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
-                    <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/>
-                </svg>
-            </div>
-
-            <div class="hero-bg" aria-hidden="true"></div>
         </section>
 
         <!-- ===== FEATURES ===== -->
-        <section id="features" class="features">
-            <div class="container">
-                <span class="eyebrow">Product Highlights</span>
-                <h2>Built for noisy, high-volume service environments</h2>
-                <p class="section-subtitle">Four core capabilities power Bhojan Mitra's accuracy and speed.</p>
+        <section class="bm-features" id="features">
+            <div class="bm-features-inner">
 
-                <div class="features-grid pm-features-grid">
+                <div class="bm-badge">POS machine</div>
 
-                    <div class="feature-card reveal">
-                        <div class="pm-card-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
-                        </div>
-                        <h3>Natural Language Understanding</h3>
-                        <p>Accurate voice recognition tuned for restaurant dialogue and order context.</p>
+                <!-- Feature 1 -->
+                <div class="bm-feature-row">
+                    <div class="bm-feature-text">
+                        <h3 class="bm-feature-title">Natural Language Understanding</h3>
+                        <p class="bm-feature-desc">Our point-of-sale system offers natural language ordering with multilingual support, making it easy for your staff to communicate with customers from all backgrounds. It also provides smart upsells, suggesting additional items based on the customer's order. This helps to increase revenue and improve the customer experience.</p>
                     </div>
-
-                    <div class="feature-card reveal">
-                        <div class="pm-card-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-                        </div>
-                        <h3>Multilingual Support</h3>
-                        <p>Supports multiple languages and dialects out of the box.</p>
+                    <div class="bm-feature-img">
+                        <img src="/images/illus-voice.png" alt="Natural Language Understanding" width="220" height="220">
                     </div>
+                </div>
 
-                    <div class="feature-card reveal">
-                        <div class="pm-card-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <h3>IoT Kitchen Routing</h3>
-                        <p>Auto-route orders to specific kitchen stations and devices for faster fulfillment.</p>
+                <!-- Feature 2 -->
+                <div class="bm-feature-row bm-feature-row--reverse">
+                    <div class="bm-feature-img">
+                        <img src="/images/illus-ai.png" alt="IoT Integrations" width="220" height="220">
                     </div>
+                    <div class="bm-feature-text">
+                        <h3 class="bm-feature-title">IoT Integrations</h3>
+                        <p class="bm-feature-desc">Connect printers, displays, and kitchen devices for seamless routing and streamlined operations. Our system ensures efficient communication between all your hardware. Experience fewer errors and faster service with integrated device management.</p>
+                    </div>
+                </div>
 
-                    <div class="feature-card reveal">
-                        <div class="pm-card-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        </div>
-                        <h3>Secure Cloud Sync</h3>
-                        <p>Cloud backups, real-time sync across terminals, and secure data storage.</p>
+                <!-- Feature 3 -->
+                <div class="bm-feature-row">
+                    <div class="bm-feature-text">
+                        <h3 class="bm-feature-title">Inventory Management</h3>
+                        <p class="bm-feature-desc">Optimize your inventory with real-time stock tracking. Configure low-stock alerts to minimize waste and prevent shortages. Our system helps you maintain optimal levels automatically.</p>
                     </div>
+                    <div class="bm-feature-img">
+                        <img src="/images/illus-analytics.png" alt="Inventory Management" width="220" height="220">
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bm-feature-row bm-feature-row--reverse">
+                    <div class="bm-feature-img">
+                        <img src="/images/illus-dashboard.png" alt="Secure Cloud Sync" width="220" height="220">
+                    </div>
+                    <div class="bm-feature-text">
+                        <h3 class="bm-feature-title">Secure Cloud Sync</h3>
+                        <p class="bm-feature-desc">Our point-of-sale system provides cloud backups, real-time sync across terminals, and secure data storage. You can rest assured that your data is safe and accessible. Focus on your customers, and let us handle the technology.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section class="bm-faq">
+            <div class="bm-faq-inner">
+                <span class="bm-faq-eyebrow">FAQ</span>
+                <h2 class="bm-faq-title"><span class="bm-faq-muted">Questions</span> Operators Ask Most</h2>
+
+                <div class="bm-faq-list">
+
+                    <details class="bm-faq-item bm-faq-item--open" open>
+                        <summary class="bm-faq-question">
+                            What makes Bhojan Mitra different from other POS systems?
+                            <span class="bm-faq-icon"></span>
+                        </summary>
+                        <p class="bm-faq-answer">Bhojan Mitra is voice-first. Orders can be spoken in multiple Indian languages, modifiers are captured automatically, and IoT routing sends tickets to the right kitchen station without manual steps.</p>
+                    </details>
+
+                    <details class="bm-faq-item">
+                        <summary class="bm-faq-question">
+                            Can Bhojan Mitra replace my existing POS machine?
+                            <span class="bm-faq-icon"></span>
+                        </summary>
+                        <p class="bm-faq-answer">Yes. Bhojan Mitra runs on browsers, tablets, and our dedicated POS machine. We map printers and kitchen displays so you can migrate without downtime.</p>
+                    </details>
+
+                    <details class="bm-faq-item">
+                        <summary class="bm-faq-question">
+                            How long does pilot onboarding take?
+                            <span class="bm-faq-icon"></span>
+                        </summary>
+                        <p class="bm-faq-answer">Most pilot restaurants are up and running within 2–3 days. We handle setup, menu import, and staff training as part of the onboarding package.</p>
+                    </details>
+
+                    <details class="bm-faq-item">
+                        <summary class="bm-faq-question">
+                            Does the POS work if the internet drops?
+                            <span class="bm-faq-icon"></span>
+                        </summary>
+                        <p class="bm-faq-answer">Offline fallback mode keeps billing and order capture running locally. Orders sync automatically when connectivity is restored.</p>
+                    </details>
 
                 </div>
             </div>
         </section>
 
-        <!-- ===== QUALITY ===== -->
-        <section id="quality" class="product-quality">
-            <div class="container">
-                <h2>How good is Bhojan Mitra?</h2>
-                <p>We're engineering Bhojan Mitra for fast-paced kitchens that can't afford downtime. The pilot focuses on reliability, practical accuracy, and predictable operations so your staff can trust every spoken ticket.</p>
-
-                <ul class="quality-list">
-                    <li class="reveal"><strong>Practical accuracy:</strong> NLU tuned to restaurant talk — menu items, modifiers, timings and contextual clarifications reduce mis-heard orders.</li>
-                    <li class="reveal"><strong>Operational uptime:</strong> Designed for 24/7 service with offline fallbacks and local buffering so orders keep flowing even during short network interruptions.</li>
-                    <li class="reveal"><strong>Faster order handling:</strong> Voice routes orders directly to the right kitchen station, reducing handoffs and wait times.</li>
-                    <li class="reveal"><strong>Pilot-ready validation:</strong> Working with early partners to iterate on real conversational data and accent samples.</li>
-                    <li class="reveal"><strong>Security &amp; compliance:</strong> Enterprise-grade cloud sync with configurable local data options and secure transport.</li>
-                    <li class="reveal"><strong>Human-in-the-loop:</strong> Easy review and correction workflows — voice suggestions can be confirmed by staff before routing, minimizing errors.</li>
-                </ul>
-
-                <h3>Proof points (what operators see)</h3>
-                <p>Industry pilots show voice-assisted ordering can smooth kitchen traffic, reduce mistakes, and improve peak throughput. Bhojan Mitra focuses on practical KPIs operators care about: order accuracy, ticket-to-kitchen latency, and faster table/service turnaround.</p>
-
-                <div class="cta-row">
-                    <a class="btn btn-primary" href="https://billing.aarohitavigyan.com">Apply for the pilot</a>
-                    <a class="muted-link" href="/contact">Talk to the founders</a>
-                </div>
+        <!-- ===== CTA ===== -->
+        <section class="bm-cta">
+            <div class="bm-cta-inner">
+                <h2 class="bm-cta-title">See <span class="bm-cta-highlight">Bhojan Mitra</span> in Action</h2>
+                <p class="bm-cta-sub">Join the pilot to experience voice ordering, IoT routing, and analytics tailored to your restaurant before our public launch.</p>
+                <a href="/contact" class="bm-btn-primary">Get Started</a>
             </div>
         </section>
 
-        <!-- ===== DIFFERENTIATION ===== -->
-        <section id="differentiation" class="product-differentiation">
-            <div class="container">
-                <h2>What differentiates Bhojan Mitra?</h2>
-                <p>There are many voice and POS projects — here's why early partners are excited about Bhojan Mitra's approach:</p>
-
-                <div class="diff-grid pm-diff-grid">
-
-                    <div class="diff-card pm-diff-card reveal">
-                        <div class="pm-diff-num" aria-hidden="true">01</div>
-                        <h4>Voice-first, restaurant-native</h4>
-                        <p>Designed from the ground up for ordering dialogs, menu modifiers, combos and kitchen context instead of repurposing general voice assistants.</p>
-                    </div>
-
-                    <div class="diff-card pm-diff-card reveal">
-                        <div class="pm-diff-num" aria-hidden="true">02</div>
-                        <h4>Accent &amp; local-language focus</h4>
-                        <p>Tuned for regional accents and Indian languages with pragmatic handling of code-switching and mixed-language orders.</p>
-                    </div>
-
-                    <div class="diff-card pm-diff-card reveal">
-                        <div class="pm-diff-num" aria-hidden="true">03</div>
-                        <h4>Context-aware menu understanding</h4>
-                        <p>Understands modifiers, portion sizes, special requests and follow-up clarifications — not just token matching.</p>
-                    </div>
-
-                    <div class="diff-card pm-diff-card reveal">
-                        <div class="pm-diff-num" aria-hidden="true">04</div>
-                        <h4>Easy integration with kitchen devices</h4>
-                        <p>Pre-built integrations and routing patterns for common kitchen printers, display stacks and IoT endpoints are on the roadmap so you get running quickly.</p>
-                    </div>
-
-                    <div class="diff-card pm-diff-card reveal">
-                        <div class="pm-diff-num" aria-hidden="true">05</div>
-                        <h4>Low-lift deployment</h4>
-                        <p>Works with existing terminals and browser-based tablets; cloud-first but with local buffering so downtime doesn't stop your service.</p>
-                    </div>
-
-                    <div class="diff-card pm-diff-card reveal">
-                        <div class="pm-diff-num" aria-hidden="true">06</div>
-                        <h4>Privacy-first &amp; configurable</h4>
-                        <p>Flexible data residency, optional on-prem components, and controls for what is stored in our cloud versus locally.</p>
-                    </div>
-
-                </div>
-
-                <p class="muted-small">If you want to compare Bhojan Mitra side-by-side with your current setup, request a free evaluation and we'll run a short pilot in your kitchen.</p>
-            </div>
-        </section>
     </main>
 
     <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
 </body>
 </html>

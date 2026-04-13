@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { seo }) %>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+
+    <article class="blogpost">
+      <div class="blogpost-inner">
+
+        <!-- Meta -->
+        <div class="blogpost-meta">
+          <span class="blog-tag">Editorial</span>
+          <span class="blogpost-date"><%= post.date %></span>
+        </div>
+
+        <!-- Featured card -->
+        <div class="blogpost-featured-card blog-card-img--<%= post.color %>">
+          <div class="blogpost-featured-text"><%= post.title %></div>
+        </div>
+
+        <!-- Content -->
+        <%- post.content %>
+
+      </div>
+    </article>
+
+    <!-- ===== RELATED POSTS ===== -->
+    <section class="blog-related">
+      <div class="blog-inner">
+        <h2 class="blog-related-title">See related post</h2>
+        <div class="blog-grid">
+          <% related.forEach(function(r) { %>
+          <a href="/blog/<%= r.slug %>" class="blog-card">
+            <div class="blog-card-img blog-card-img--<%= r.color %>">
+              <div class="blog-card-img-text"><%= r.title %></div>
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-tag">Editorial</span>
+              <h3 class="blog-card-title"><%= r.title %></h3>
+              <span class="blog-card-date"><%= r.date %></span>
+            </div>
+          </a>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="blog-cta">
+      <div class="blog-cta-inner">
+        <h2 class="blog-cta-title">Ready to scale your restaurant with<br>AI-powered operations?</h2>
+        <a href="/contact" class="bm-btn-primary">Talk to us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

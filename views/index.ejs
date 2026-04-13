@@ -59,49 +59,61 @@
                 <p class="fig-subheading">We're building these Bhojan Mitra components hand-in-hand with early partners</p>
             </div>
 
-            <!-- Product screenshot with floating animation cards -->
+            <!-- Orbit visual replacing old screenshot + floating cards -->
             <div class="pf-screenshot-wrap">
-                <div class="pf-scene">
-                    <!-- Decorative background glows -->
-                    <span class="pf-blob pf-blob--pink" aria-hidden="true"></span>
-                    <span class="pf-blob pf-blob--indigo" aria-hidden="true"></span>
-
-                    <!-- Main POS screenshot -->
-                    <div class="pf-screenshot-frame">
-                        <img src="/images/illus-dashboard.png"
-                             alt="Bhojan Mitra POS dashboard overview"
-                             class="pf-screenshot-img"
-                             loading="lazy">
+                <div class="orbit-wrap">
+                    <div class="orbit-center">
+                        <img src="/images/illus-dashboard.png" alt="Bhojan Mitra POS" class="orbit-center-img">
                     </div>
-
-                    <!-- Floating card: New Order notification (top-right) -->
-                    <div class="pf-fc pf-fc--order" aria-hidden="true">
-                        <span class="pf-fc-icon">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-                        </span>
-                        <span class="pf-fc-body">
-                            <strong class="pf-fc-title">New Order!</strong>
-                            <span class="pf-fc-sub">Table 4 · ₹340</span>
-                        </span>
-                    </div>
-
-                    <!-- Floating card: Revenue today (bottom-left) -->
-                    <div class="pf-fc pf-fc--revenue" aria-hidden="true">
-                        <span class="pf-fc-big">₹1.2L</span>
-                        <span class="pf-fc-small">Today's Revenue</span>
-                        <span class="pf-fc-up">↑ 18%</span>
-                    </div>
-
-                    <!-- Floating pill: GST-Ready (top-left) -->
-                    <div class="pf-fc pf-fc--gst" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>GST-Ready</span>
-                    </div>
-
-                    <!-- Floating card: Tables served (bottom-right) -->
-                    <div class="pf-fc pf-fc--tables" aria-hidden="true">
-                        <span class="pf-fc-big">48</span>
-                        <span class="pf-fc-small">Tables Today</span>
+                    <div class="orbit-ring" aria-hidden="true">
+                        <div class="orbit-item" style="--i:0">
+                            <div class="orbit-card">
+                                <div class="orbit-card-icon" style="background:#fff0e8;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                </div>
+                                <span class="orbit-card-label">Point of Sale</span>
+                            </div>
+                        </div>
+                        <div class="orbit-item" style="--i:1">
+                            <div class="orbit-card">
+                                <div class="orbit-card-icon" style="background:#eef2ff;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </div>
+                                <span class="orbit-card-label">Analytics &amp; Insights</span>
+                            </div>
+                        </div>
+                        <div class="orbit-item" style="--i:2">
+                            <div class="orbit-card">
+                                <div class="orbit-card-icon" style="background:#f0fdf4;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                </div>
+                                <span class="orbit-card-label">Billing &amp; Invoicing</span>
+                            </div>
+                        </div>
+                        <div class="orbit-item" style="--i:3">
+                            <div class="orbit-card">
+                                <div class="orbit-card-icon" style="background:#fdf4ff;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d946ef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+                                </div>
+                                <span class="orbit-card-label">Voice Ordering</span>
+                            </div>
+                        </div>
+                        <div class="orbit-item" style="--i:4">
+                            <div class="orbit-card">
+                                <div class="orbit-card-icon" style="background:#fff7ed;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                                </div>
+                                <span class="orbit-card-label">Inventory Management</span>
+                            </div>
+                        </div>
+                        <div class="orbit-item" style="--i:5">
+                            <div class="orbit-card">
+                                <div class="orbit-card-icon" style="background:#fefce8;">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/><path d="M8 6h8M8 10h8M8 14h4"/></svg>
+                                </div>
+                                <span class="orbit-card-label">IoT Integrations</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

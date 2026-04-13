@@ -7,85 +7,60 @@
     <%- include('partials/header') %>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Restaurant POS</li></ol></nav>
-                    <span class="eyebrow">Restaurant POS</span>
-                    <h1>Voice, AI, and IoT routing built for busy restaurant floors</h1>
-                    <p>Bhojan Mitra keeps front-of-house, kitchen stations, and delivery channels in sync with conversational ordering, multilingual support, and real-time analytics.</p>
-                    <div class="hero-actions">
-                        <a href="#features" class="btn btn-primary btn-lg">Explore pilot features</a>
-                        <a href="/contact" class="btn btn-ghost btn-lg">Talk to the founders</a>
-                    </div>
-                    <div class="hero-meta">
-                        <span>Pilot slots for 2025 rollout</span>
-                        <span>Kitchen displays &amp; printers on our roadmap</span>
-                        <span>Offline fallbacks in development</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-bg" aria-hidden="true"></div>
-        </section>
 
-        <section class="benefits">
-            <div class="container">
-                <span class="eyebrow">Operational wins</span>
-                <h2>Designed for the realities of service</h2>
-                <div class="benefits-list">
-                    <div class="benefit">
-                        <h4>Faster table turns</h4>
-                        <p>Voice call-outs route straight to the right station; no double entry or paper tickets during peak rush.</p>
-                    </div>
-                    <div class="benefit">
-                        <h4>Error-proof operations</h4>
-                        <p>Modifiers, special requests, and allergen notes are highlighted automatically on KDS and printed tickets.</p>
-                    </div>
-                    <div class="benefit">
-                        <h4>Staff confidence</h4>
-                        <p>Multilingual prompts and guided flows help new team members pick up service routines quickly.</p>
-                    </div>
-                </div>
+        <!-- ===== HERO ===== -->
+        <section class="bm-hero">
+            <div class="bm-hero-inner">
+                <h1 class="bm-hero-title">Smarter Operations Without<br>Increasing Staff</h1>
+                <p class="bm-hero-subtitle">Automate daily restaurant workflows with AI and IoT—so you can serve more customers, reduce errors, and control costs without hiring more people.</p>
+                <a href="/contact" class="bm-btn-primary">Get started</a>
             </div>
         </section>
 
-        <section id="features" class="features">
-            <div class="container">
-                <span class="eyebrow">Restaurant capabilities</span>
-                <h2>Tools that keep your floor, kitchen, and delivery channels aligned</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Kitchen Display Integration</h3>
-                        <p>Orders will appear at the correct station with colour-coded priority and prep timers — help us refine the flow during pilot runs.</p>
+        <!-- ===== FEATURES ===== -->
+        <section class="bm-features" id="features">
+            <div class="bm-features-inner">
+
+                <div class="bm-badge">Bhojan Mitra POS</div>
+
+                <div class="rpos-feature-list">
+
+                    <div class="rpos-feature">
+                        <h3 class="rpos-feature-title">Centralized, Automated Order Management</h3>
+                        <p class="rpos-feature-desc">Upgrade from manual systems to an AI-driven POS for precise order capture and direct routing to the kitchen. This minimizes errors and streamlines operations. Enhance efficiency and reduce misunderstandings with automated order processing. Focus on customer satisfaction, not order corrections.</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>Table &amp; Order Management</h3>
-                        <p>Voice-based table assignment, split bills, and mid-service modifications are being refined with partner floors.</p>
+
+                    <div class="rpos-feature">
+                        <h3 class="rpos-feature-title">Lower Dependency on Skilled Staff</h3>
+                        <p class="rpos-feature-desc">Intuitive voice commands and support for multiple languages empower new and seasonal employees to perform effectively. This reduces the time spent on training and alleviates staffing challenges. Our system ensures smooth operations, regardless of employee experience or language proficiency. Boost team performance and morale with tools designed for inclusivity and ease of use.</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>Online &amp; Delivery Sync</h3>
-                        <p>Consolidate delivery partners and in-house orders with voice confirmations so mismatched tickets are reduced.</p>
+
+                    <div class="rpos-feature">
+                        <h3 class="rpos-feature-title">Reduce Wastage and Operational Costs</h3>
+                        <p class="rpos-feature-desc">Intelligent coordination in the kitchen is crucial for minimizing errors, reducing waste, and preventing delays, which directly translates to cost savings for restaurants on every order. Our system ensures that resources are used efficiently, and waste is minimized. This leads to improved profitability and sustainability. By optimizing kitchen processes, restaurants can achieve significant savings and enhance their bottom line.</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>Staff Productivity</h3>
-                        <p>Use voice shortcuts for voids, comps, shift reports, and inventory pulls — without leaving the floor.</p>
+
+                    <div class="rpos-feature">
+                        <h3 class="rpos-feature-title">Built for Indian Restaurant Realities</h3>
+                        <p class="rpos-feature-desc">Our system is tailored to meet the unique demands of Indian restaurants, from managing peak hours to accommodating diverse menus. It supports multiple regional languages to ensure clear communication and efficient order processing. The adaptable design integrates seamlessly into existing workflows, enhancing productivity and reducing operational friction. Experience a solution that understands and addresses the specific needs of your restaurant.</p>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
-            <div class="container">
-                <h2>Run service the way your guests expect</h2>
-                <p>Join the pilot to co-design voice-led ordering that matches your menu, service model, and hardware stack.</p>
-                <div class="hero-actions center">
-                    <a href="https://billing.aarohitavigyan.com" class="btn btn-primary btn-lg">Apply for a pilot walkthrough</a>
-                    <a href="/pricing" class="btn btn-secondary btn-lg">View founding plans</a>
-                </div>
+        <!-- ===== CTA ===== -->
+        <section class="rpos-cta">
+            <div class="rpos-cta-inner">
+                <h2 class="rpos-cta-title">Want to Know more</h2>
+                <p class="rpos-cta-sub">Join the pilot to experience voice ordering, IoT routing, and analytics tailored to your restaurant before our public launch.</p>
+                <a href="/contact" class="bm-btn-primary">Join the program</a>
             </div>
         </section>
+
     </main>
 
     <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
 </body>
 </html>
