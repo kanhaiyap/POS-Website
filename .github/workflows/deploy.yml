@@ -13,16 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy via SFTP
+        uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            .env
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.FTP_SERVER }}
+          REMOTE_USER: ${{ secrets.FTP_USERNAME }}
+          REMOTE_PORT: 22
+          SOURCE: "./"
+          TARGET: ${{ secrets.FTP_SERVER_DIR }}
+          EXCLUDE: ".git, .github, node_modules, .env"
