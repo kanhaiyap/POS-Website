@@ -24,10 +24,18 @@ jobs:
       - name: Start server and build static files
         run: |
           node server.js &
-          sleep 5
+          sleep 8
+          curl -f http://localhost:3000 > /dev/null || (echo "Server failed to start" && exit 1)
           mkdir -p dist
           wget --mirror --convert-links --adjust-extension --no-host-directories --page-requisites -P dist http://localhost:3000
+          ls -la dist/
           kill %1
+
+      - name: Verify dist has index.html
+        run: |
+          test -f dist/index.html || (echo "index.html not found in dist!" && exit 1)
+          echo "dist contents:"
+          ls -la dist/
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
