@@ -28,14 +28,8 @@ jobs:
           curl -f http://localhost:3000 > /dev/null || (echo "Server failed to start" && exit 1)
           mkdir -p dist
           wget --mirror --convert-links --adjust-extension --no-host-directories --page-requisites -P dist http://localhost:3000
-          ls -la dist/
-          kill %1
-
-      - name: Verify dist has index.html
-        run: |
           test -f dist/index.html || (echo "index.html not found in dist!" && exit 1)
-          echo "dist contents:"
-          ls -la dist/
+          kill %1
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -46,8 +40,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          server-dir: /domains/aarohitavigyan.com/public_html/
-          dangerous-clean-slate: true
+          server-dir: /
           exclude: |
             **/.git*
             **/.git*/**
