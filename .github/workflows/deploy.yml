@@ -40,7 +40,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          server-dir: /
+          server-dir: /domains/aarohitavigyan.com/public_html/
           exclude: |
             **/.git*
             **/.git*/**
