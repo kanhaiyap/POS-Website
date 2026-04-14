@@ -4791,6 +4791,7 @@ details[open] .bm-faq-icon::after {
     text-align: center;
     animation: scScrollLR 18s linear infinite;
     animation-delay: var(--delay, 0s);
+    animation-fill-mode: both;
     transition: box-shadow 0.2s;
 }
 
@@ -4820,8 +4821,9 @@ details[open] .bm-faq-icon::after {
     left: 0;
     right: auto;
     bottom: auto;
-    animation: scScrollLRMid 10s linear infinite;
+    animation: scScrollLRMid 18s linear infinite;
     animation-delay: var(--delay, 0s);
+    animation-fill-mode: both;
 }
 
 @keyframes scScrollLRMid {
