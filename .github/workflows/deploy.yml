@@ -35,6 +35,8 @@ jobs:
           server: ${{ secrets.FTP_HOSTNAME }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
           local-dir: ./dist/
           server-dir: /domains/aarohitavigyan.com/public_html/
           dangerous-clean-slate: true
