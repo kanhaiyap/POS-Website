@@ -37,6 +37,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /domains/aarohitavigyan.com/public_html/
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**
