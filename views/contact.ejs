@@ -4,61 +4,26 @@
   <%- include('partials/head', { seo }) %>
 </head>
 <body class="theme">
-  <!-- Skip link for a11y -->
-  <a class="skip-link" href="#main">Skip to content</a>
-
   <%- include('partials/header') %>
 
   <main id="main">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Contact</li></ol></nav>
-          <span class="eyebrow">Let's talk</span>
-          <h1>Apply for the Bhojan Mitra pilot</h1>
-          <p>We’re onboarding a short list of restaurants as founding partners. Tell us about your floor and kitchen setup and we’ll schedule a discovery session.</p>
-          <ul class="hero-bullets">
-            <li>Founding partner pricing locked for life</li>
-            <li>Direct access to the product team</li>
-            <li>Hardware roadmap updates and credits</li>
-          </ul>
-        </div>
-        <div class="hero-badge">
-          <div class="badge">
-            <span class="badge-top">Avg. response</span>
-            <span class="badge-bottom">under 24 hrs</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero-bg" aria-hidden="true"></div>
-    </section>
 
-    <!-- Success Modal -->
-    <div id="contactModal" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="contactModalTitle">
-      <div class="modal-backdrop" data-close="true"></div>
-      <div class="modal-content" role="document">
-        <button class="modal-close" aria-label="Close">×</button>
-        <h3 id="contactModalTitle">Thanks — request received</h3>
-        <p id="contactModalMessage">We received your request. Our team will contact you shortly to schedule a pilot discovery call.</p>
-        <div class="modal-actions">
-          <button class="btn btn-primary modal-ok">Close</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Contact -->
-    <section class="section">
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact-page-section">
       <div class="container">
-        <div class="contact-grid">
-            <div class="card contact-card">
-              <div class="card-header">
-                <h2>Get in touch</h2>
-                <p class="muted">Tell us about your floor, peak hours, and current POS stack. We’ll reply within one business day to schedule a pilot walkthrough.</p>
-              </div>
+        <div class="contact-page-grid">
+
+          <!-- Left: heading + description -->
+          <div class="contact-page-left">
+            <h1 class="contact-page-title"><span class="fig-gradient-text">Let's Get in</span> Touch</h1>
+            <p class="contact-page-desc">We're here to help &mdash; whether you have a question, feedback, or want to collaborate. Fill out the form or reach us directly.</p>
+          </div>
+
+          <!-- Right: form -->
+          <div class="contact-page-form-wrap">
 
             <% if (errors && errors.length) { %>
-              <div class="alert alert-error" role="alert" aria-live="polite">
+              <div class="alert alert-error" role="alert" aria-live="polite" style="margin-bottom:1rem;">
                 <strong>Please fix the following:</strong>
                 <ul>
                   <% errors.forEach(function(err){ %>
@@ -68,145 +33,132 @@
               </div>
             <% } %>
 
-            <form action="/contact" method="post" class="form contact-form" novalidate>
-              <div class="grid two-col">
-                <div class="form-group">
-                  <label for="name">Name <span class="required" aria-hidden="true">*</span></label>
-                  <input id="name" type="text" name="name" required placeholder="Your full name" value="<%= form && form.name ? form.name : '' %>" autocomplete="name">
-                  <small class="field-help" id="nameHelp">Enter the contact person’s full name.</small>
+            <form action="/contact" method="post" class="contact-fig-form" novalidate>
+              <div class="contact-fig-row">
+                <div class="contact-fig-field">
+                  <label for="name">Name</label>
+                  <input id="name" type="text" name="name" required placeholder="Your Full name"
+                    value="<%= form && form.name ? form.name : '' %>" autocomplete="name">
                 </div>
-                <div class="form-group">
-                  <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
-                  <input id="email" type="email" name="email" required placeholder="you@yourdomain.com" value="<%= form && form.email ? form.email : '' %>" autocomplete="email" inputmode="email">
+                <div class="contact-fig-field">
+                  <label for="email">Email</label>
+                  <input id="email" type="email" name="email" required placeholder="you@yourdomain.com"
+                    value="<%= form && form.email ? form.email : '' %>" autocomplete="email" inputmode="email">
                 </div>
               </div>
 
-              <div class="grid two-col">
-                <div class="form-group">
+              <div class="contact-fig-row">
+                <div class="contact-fig-field">
                   <label for="phone">Phone</label>
-                  <input id="phone" type="tel" name="phone" placeholder="+91 98765 43210" value="<%= form && form.phone ? form.phone : '' %>" inputmode="tel" pattern="^[+0-9\s-]{8,}$">
+                  <input id="phone" type="tel" name="phone" placeholder="+19 0"
+                    value="<%= form && form.phone ? form.phone : '' %>" inputmode="tel">
                 </div>
-                <div class="form-group">
-                  <label for="restaurant">Restaurant name <span class="required" aria-hidden="true">*</span></label>
-                  <input id="restaurant" type="text" name="restaurant" required placeholder="Your restaurant name" value="<%= form && form.restaurant ? form.restaurant : '' %>" autocomplete="organization">
-                </div>
-              </div>
-
-              <div class="grid one-col">
-                <div class="form-group">
-                  <label for="plan">Interested Plan <span class="required" aria-hidden="true">*</span></label>
-                  <div class="select-wrap">
-                    <select id="plan" name="plan" required>
-                      <option value="">Select plan</option>
-                      <option value="250" <%= form && form.plan === '250' ? 'selected' : '' %>>Simple Billing — ₹250 / month</option>
-                      <option value="500" <%= form && form.plan === '500' ? 'selected' : '' %>>Analytics + QR — ₹500 / month</option>
-                      <option value="5000" <%= form && form.plan === '5000' ? 'selected' : '' %>>Voice-enabled Ordering — ₹5,000</option>
-                    </select>
-                    <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                  </div>
+                <div class="contact-fig-field">
+                  <label for="restaurant">Restaurant name</label>
+                  <input id="restaurant" type="text" name="restaurant" required placeholder="Your Restaurant name"
+                    value="<%= form && form.restaurant ? form.restaurant : '' %>" autocomplete="organization">
                 </div>
               </div>
 
-              <div class="grid one-col">
-                <div class="form-group">
-                  <label for="message">Message</label>
-                  <textarea id="message" name="message" rows="5" placeholder="Tell us about your setup (tables, KOT printers, current POS, languages, etc.)"><%= form && form.message ? form.message : '' %></textarea>
+              <div class="contact-fig-field contact-fig-field--full">
+                <div class="contact-fig-select-wrap">
+                  <select id="plan" name="plan" required>
+                    <option value="">Select Plan</option>
+                    <option value="250"  <%= form && form.plan === '250'  ? 'selected' : '' %>>Simple Billing — &#8377;250 / month</option>
+                    <option value="500"  <%= form && form.plan === '500'  ? 'selected' : '' %>>Analytics + QR — &#8377;500 / month</option>
+                    <option value="5000" <%= form && form.plan === '5000' ? 'selected' : '' %>>Voice Ordering — &#8377;5,000 / month</option>
+                  </select>
+                  <svg class="contact-fig-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
               </div>
 
-              <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Send Request</button>
-                <p class="form-note muted">By submitting, you agree to be contacted about your request.</p>
+              <div class="contact-fig-field contact-fig-field--full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Pleas Write your Restaurant Setup"><%= form && form.message ? form.message : '' %></textarea>
+              </div>
+
+              <div class="contact-fig-actions">
+                <button type="submit" class="btn-figma-primary">Send Request</button>
               </div>
             </form>
           </div>
 
-          <aside class="contact-info">
-            <div class="card info-box">
-              <h3>Why choose Bhojan Mitra?</h3>
-              <ul class="checklist">
-                <li>Shape multilingual voice ordering before public release</li>
-                <li>Request analytics and reporting tailored to your floor</li>
-                <li>Founding partner pricing with no hidden fees</li>
-              </ul>
-            </div>
-
-            <div class="card info-box">
-              <h3>Want a live walkthrough?</h3>
-              <p>We'll host a guided pilot walkthrough and show integration options with kitchen displays and printers. Prefer a phone call? Leave your number and we'll call.</p>
-              
-              <!-- WhatsApp Chat Button -->
-              <div class="contact-cta" style="margin-bottom: 1rem;">
-                <a 
-                  href="https://wa.me/919731615178?text=Hi%20Bhojan%20Mitra%20team!%20I'm%20interested%20in%20learning%20more%20about%20your%20POS%20system." 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="btn btn-primary"
-                  style="display: inline-flex; align-items: center; gap: 0.5rem; background-color: #25D366; border-color: #25D366; text-decoration: none;"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                  </svg>
-                  Chat on WhatsApp
-                </a>
-              </div>
-              
-              <div class="contact-cta">
-                <a class="link" href="mailto:kanhaiya@aarohitavigyan.com">kanhaiya@aarohitavigyan.com</a>
-              </div>
-              <div class="mini-kpis">
-                <div><span class="kpi">100+</span><span class="kpi-label">orders/hr device capacity</span></div>
-                <div><span class="kpi">6+</span><span class="kpi-label">languages supported</span></div>
-                <div><span class="kpi">₹0</span><span class="kpi-label">setup for SaaS plans</span></div>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
+
+    <!-- ===== GOT A QUESTION ===== -->
+    <section class="contact-support-section">
+      <div class="container">
+        <div class="contact-support-header">
+          <h2 class="contact-support-title fig-gradient-text">Got a question</h2>
+          <p class="contact-support-sub">Our happy Team is hear for you</p>
+        </div>
+        <div class="contact-support-grid">
+          <div class="contact-support-item">
+            <p class="contact-support-label">Find Answer</p>
+            <div class="contact-support-divider"></div>
+            <a href="/support" class="contact-support-link">FAQ</a>
+          </div>
+          <div class="contact-support-item">
+            <p class="contact-support-label">Chat with Us</p>
+            <div class="contact-support-divider"></div>
+            <a href="https://wa.me/919731615178?text=Hi%20Bhojan%20Mitra%20team!%20I%27m%20interested%20in%20learning%20more%20about%20your%20POS%20system."
+               target="_blank" rel="noopener" class="contact-support-icon" aria-label="Chat on WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="#25D366">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="contact-support-item">
+            <p class="contact-support-label">Email Us</p>
+            <div class="contact-support-divider"></div>
+            <a href="mailto:kanhaiya@aarohitavigyan.com" class="contact-support-icon" aria-label="Email Us">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f869c6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M2 7l10 7 10-7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="contactModal" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="contactModalTitle">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-content" role="document">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <h3 id="contactModalTitle">Thanks &mdash; request received</h3>
+        <p id="contactModalMessage">We received your request. Our team will contact you shortly.</p>
+        <div class="modal-actions">
+          <button class="btn btn-primary modal-ok">Close</button>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <%- include('partials/footer') %>
 
-  <!-- Tiny JS enhancements (can also live in /js/main.js) -->
   <script>
     (function(){
-      // Mobile nav
-      const toggle = document.querySelector('.nav-toggle');
-      const menu   = document.querySelector('.nav-menu');
-      if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-          const expanded = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!expanded));
-          menu.classList.toggle('open');
-          document.body.classList.toggle('no-scroll', !expanded);
-        });
-      }
-
-      // Modal
       const modal = document.getElementById('contactModal');
       const closeEls = modal ? modal.querySelectorAll('.modal-close,[data-close],.modal-ok') : [];
       closeEls.forEach(el => el.addEventListener('click', () => {
         modal.classList.add('hidden');
         modal.setAttribute('aria-hidden','true');
       }));
-      // Modal is opened explicitly by the AJAX flow or by server-side flag (see template)
     })();
   </script>
-
   <script src="/js/main.js" defer></script>
-    <% if (typeof showSuccess !== 'undefined' && showSuccess) { %>
-    <script>
-      // Server-side signalled successful submission: open modal on load.
-      window.addEventListener('load', function(){
-        if (typeof openModal === 'function') {
-          openModal('Thanks — we will contact you shortly');
-        } else {
-          var modal = document.getElementById('contactModal');
-          if (modal) { modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false'); }
-        }
-      });
-    </script>
-    <% } %>
+  <% if (typeof showSuccess !== 'undefined' && showSuccess) { %>
+  <script>
+    window.addEventListener('load', function(){
+      var modal = document.getElementById('contactModal');
+      if (modal) { modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false'); }
+    });
+  </script>
+  <% } %>
 </body>
 </html>

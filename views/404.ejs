@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { seo }) %>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+    <section class="notfound-section">
+      <div class="notfound-number" aria-hidden="true">
+        <span class="notfound-digit">4</span>
+        <span class="notfound-digit notfound-digit--o">0</span>
+        <span class="notfound-digit">4</span>
+      </div>
+      <p class="notfound-message">The page you were looking for doesn't seem to exist.</p>
+      <a href="/" class="notfound-btn">Go Back to Home</a>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

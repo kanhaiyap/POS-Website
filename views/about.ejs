@@ -7,92 +7,157 @@
   <%- include('partials/header') %>
 
   <main>
-    <section class="hero hero--subtle">
+
+    <!-- ===== HERO ===== -->
+    <section class="about-hero-section">
       <div class="container">
-        <div class="hero-content">
-          <nav aria-label="Breadcrumb" class="breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">About</li></ol></nav>
-          <span class="eyebrow">Our story</span>
-          <h1>Building Bhojan Mitra with restaurateurs from day zero</h1>
-          <p>Bhojan Mitra is developed by Aarohita Vigyan — a team obsessed with blending AI, IoT, and hospitality. We are working alongside founding partners to craft a voice-led POS platform that feels natural for Indian restaurants.</p>
-          <div class="hero-actions">
-            <a href="/contact" class="btn btn-primary btn-lg">Talk to the founders</a>
-            <a href="#team" class="btn btn-outline btn-lg">Meet the team</a>
+        <div class="about-hero-inner">
+          <h1 class="about-hero-title">About <span class="fig-gradient-text">Bhojan Mitra</span></h1>
+          <p class="about-hero-sub">We're building AI-powered restaurant technology that simplifies operations, reduces costs, and supports the real needs of Indian food businesses.</p>
+          <div class="about-hero-actions">
+            <a href="https://billing.aarohitavigyan.com/" target="_blank" rel="noopener" class="about-btn-outline">Join Now</a>
+            <a href="/bhojan-mitra" class="about-btn-outline">See How it works</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="mission" class="features">
+    <!-- ===== MISSION ===== -->
+    <section class="about-mission-section">
       <div class="container">
-        <span class="eyebrow">Mission</span>
-        <h2>Why we are building a voice-first POS</h2>
-        <div class="features-grid">
-          <div class="feature-card">
+        <div class="about-mission-eyebrow-wrap">
+          <span class="fig-badge">Mission</span>
+        </div>
+        <div class="about-mission-grid">
+          <div class="about-mission-card about-mission-card--top">
             <h3>Hospitality rooted</h3>
-            <p>We’ve spent years on the restaurant floor. Every workflow, report, and automation is co-designed with operators to reduce training and chaos.</p>
+            <p>We've spent years on the restaurant floor. Every workflow, report, and automation is co-designed with operators to reduce learning and chaos.</p>
           </div>
-          <div class="feature-card">
+          <div class="about-mission-card about-mission-card--mid">
             <h3>Voice + IoT future</h3>
-            <p>We believe ordering will be conversational and devices should follow along. Bhojan Mitra orchestrates printers, displays, and mobile surfaces automatically.</p>
+            <p>We believe ordering will be conversational and devices should follow along. Bhojan Mitra orchestrates voice, hardware, and mobile surfaces automatically.</p>
           </div>
-          <div class="feature-card">
+          <div class="about-mission-card about-mission-card--top">
             <h3>Radical transparency</h3>
-            <p>Founding partners see the roadmap, sprint plans, and pricing in the open. We grow only when restaurants get measurable value.</p>
+            <p>Founding partners see the roadmap, sprint plans, and pricing in the open. We grow only when restaurants get measurable returns.</p>
           </div>
+        </div>
+        <div class="about-founder-label-wrap">
+          <span class="fig-badge">Founder</span>
         </div>
       </div>
     </section>
 
-    <section id="team" class="ecosystem">
+    <!-- ===== BIO ===== -->
+    <section class="about-bio-section">
       <div class="container">
-        <span class="eyebrow">Team</span>
-        <h2>The founders behind Bhojan Mitra</h2>
-        <div class="founder-card">
-          <!-- Photo -->
-          <div class="founder-photo-col">
-            <div class="founder-photo-wrap">
-              <img src="/images/Screenshot 2026-04-13 164408.png" alt="Kunwar Kanhaiya Kamlakant Pandey" class="founder-photo">
+        <div class="about-bio-grid">
+
+          <!-- Photo col -->
+          <div class="about-bio-photo-col">
+            <div class="about-bio-photo-wrap">
+              <img src="/images/Screenshot 2026-04-13 164408.png" alt="Kunwar Kanhaiya Pandey" class="about-bio-photo">
             </div>
-            <p class="founder-role">CEO &amp; Founder</p>
-            <p class="founder-name">Kunwar Kanhaiya Kamlakant Pandey</p>
+            <p class="about-bio-role">CEO &amp; Founder</p>
+            <p class="about-bio-name">Kunwar Kanhaiya Pandey</p>
           </div>
 
-          <!-- Bio -->
-          <div class="founder-bio-col">
-            <h3 class="founder-bio-heading">Bio</h3>
-            <p>Kunwar Kanhaiya Pandey is a technology-driven founder specializing in AI, IoT, and intelligent automation systems. He has built and led multiple tech initiatives focused on solving operational inefficiencies through applied AI.</p>
-            <p>As the founder of Bhojan Mitra, Kunwar identified a critical gap in the restaurant industry—where manual workflows, language diversity, and staffing constraints limit scalability. His solution integrates voice recognition, automation, and real-time data to modernize restaurant operations without increasing complexity.</p>
+          <!-- Bio text col -->
+          <div class="about-bio-text-col">
+            <h2 class="about-bio-heading">Bio</h2>
+            <p>Kunwar Kanhaiya Pandey is a technology-driven founder specializing in AI, IoT, and intelligent automation systems. He has built and led engineering teams focused on solving operational inefficiencies through applied AI.</p>
+            <p>As the founder of Bhojan Mitra, Kunwar identified a critical gap in the restaurant industry: reliance on manual workflows, language diversity, and fragmented hardware. He started building voice recognition, automation, and real-time data to modernize restaurant operations without increasing complexity.</p>
 
-            <h3 class="founder-bio-heading">Let's Connect</h3>
+            <h3 class="about-connect-heading">Let's Connect</h3>
             <div class="founder-socials">
-              <a href="https://wa.me/91" class="founder-social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <a href="https://wa.me/919731615178" class="founder-social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <img src="/images/footer-whatsapp.svg" alt="WhatsApp" width="36" height="36">
               </a>
               <a href="https://x.com" class="founder-social-link" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="#000"/><path d="M20.18 16.77L27.1 9h-1.63l-5.99 6.77L14.5 9H9l7.27 10.25L9 27h1.63l6.36-7.19L22.5 27H28L20.18 16.77zm-2.25 2.54l-.74-1.03L11.2 10.2h2.52l4.73 6.58.74 1.03 6.14 8.54h-2.52l-5.08-7.04z" fill="#fff"/></svg>
               </a>
-              <a href="https://instagram.com" class="founder-social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <img src="/images/footer-instagram.svg" alt="Instagram" width="36" height="36">
-              </a>
               <a href="https://linkedin.com" class="founder-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="#0A66C2"/><path d="M13 14h-3v10h3V14zm-1.5-4.5A1.75 1.75 0 1110 11.25 1.75 1.75 0 0111.5 9.5zM26 18.5c0-2.5-1.3-4.5-3.7-4.5-1.1 0-2.1.6-2.6 1.5V14h-3v10h3v-5.2c0-1.3.7-2.3 1.9-2.3 1.1 0 1.9.8 1.9 2.3V24h3v-5.5z" fill="#fff"/></svg>
               </a>
+              <a href="https://instagram.com" class="founder-social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <img src="/images/footer-instagram.svg" alt="Instagram" width="36" height="36">
+              </a>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <section class="cta-section">
+    <!-- ===== INLINE CONTACT FORM ===== -->
+    <section class="about-form-section">
       <div class="container">
-        <h2>We’d love to collaborate with you</h2>
-        <p>Tell us about your operation and we’ll share how the pilot cohort works.</p>
-        <div class="hero-actions center">
-          <a href="https://billing.aarohitavigyan.com" class="btn btn-primary btn-lg">Apply for the pilot</a>
-          <a href="/business-plan" class="btn btn-secondary btn-lg">View investor brief</a>
+        <div class="about-form-grid">
+
+          <!-- Left heading -->
+          <div class="about-form-left">
+            <h2 class="about-form-title">Ready to scale your restaurant with AI-powered operations?</h2>
+          </div>
+
+          <!-- Right form -->
+          <div class="about-form-right">
+            <form action="/contact" method="post" class="contact-fig-form" novalidate>
+              <div class="contact-fig-row">
+                <div class="contact-fig-field">
+                  <label for="ab-name">Name</label>
+                  <input id="ab-name" type="text" name="name" required placeholder="Your Full name" autocomplete="name">
+                </div>
+                <div class="contact-fig-field">
+                  <label for="ab-email">Email</label>
+                  <input id="ab-email" type="email" name="email" required placeholder="you@yourdomain.com" autocomplete="email" inputmode="email">
+                </div>
+              </div>
+              <div class="contact-fig-row">
+                <div class="contact-fig-field">
+                  <label for="ab-phone">Phone</label>
+                  <input id="ab-phone" type="tel" name="phone" placeholder="+19 0" inputmode="tel">
+                </div>
+                <div class="contact-fig-field">
+                  <label for="ab-restaurant">Restaurant name</label>
+                  <input id="ab-restaurant" type="text" name="restaurant" required placeholder="Your Restaurant name" autocomplete="organization">
+                </div>
+              </div>
+              <div class="contact-fig-field contact-fig-field--full">
+                <div class="contact-fig-select-wrap">
+                  <select id="ab-plan" name="plan" required>
+                    <option value="">Select Plan</option>
+                    <option value="250">Simple Billing — &#8377;250 / month</option>
+                    <option value="500">Analytics + QR — &#8377;500 / month</option>
+                    <option value="5000">Voice Ordering — &#8377;5,000 / month</option>
+                  </select>
+                  <svg class="contact-fig-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+              <div class="contact-fig-field contact-fig-field--full">
+                <label for="ab-message">Message</label>
+                <textarea id="ab-message" name="message" rows="5" placeholder="Pleas Write your Restaurant Setup"></textarea>
+              </div>
+              <div class="contact-fig-actions">
+                <button type="submit" class="btn-figma-primary">Send Request</button>
+              </div>
+            </form>
+          </div>
+
         </div>
       </div>
     </section>
+
+    <!-- ===== JOIN THE PROGRAM CTA ===== -->
+    <section class="about-cta-section">
+      <div class="container">
+        <div class="about-cta-inner">
+          <p class="about-cta-text">Join the program</p>
+          <p class="about-cta-sub">Experience voice ordering, IoT routing, and analytics tailored to your restaurant before our public launch.</p>
+          <a href="/contact" class="about-btn-outline about-btn-outline--dark">Talk To our team</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <%- include('partials/footer') %>

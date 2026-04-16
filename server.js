@@ -460,6 +460,22 @@ app.get('/restaurant-pos', (req, res) => {
   res.render('restaurant-pos', { seo });
 });
 
+app.get('/why-us', (req, res) => {
+  const seo = enrichSeo({
+    title: 'Why Bhojan Mitra — AI + IoT POS Built for Indian Restaurants',
+    description: 'Discover why restaurants choose Bhojan Mitra over legacy POS systems. Voice ordering, IoT integration, multilingual support, and real-time analytics — all in one platform.',
+    keywords: 'why Bhojan Mitra, AI POS benefits, voice ordering POS, restaurant technology India',
+    canonicalUrl: `${SITE_URL}/why-us`,
+    structuredData: [
+      buildBreadcrumbs([
+        { name: 'Home', url: `${SITE_URL}/` },
+        { name: 'Why Us', url: `${SITE_URL}/why-us` }
+      ])
+    ]
+  });
+  res.render('why-us', { seo });
+});
+
 app.get('/pricing', (req, res) => {
   const seo = enrichSeo({
     title: 'Pricing - Bhojan Mitra AI POS Subscription & Device Options',
@@ -912,6 +928,16 @@ Allow: /
 
 User-agent: Slurp
 Allow: /`);
+});
+
+// 404 handler — must be last route
+app.use((req, res) => {
+  const seo = enrichSeo({
+    title: '404 — Page Not Found | Bhojan Mitra',
+    description: 'The page you were looking for doesn\'t exist.',
+    canonicalUrl: `${SITE_URL}/404`
+  });
+  res.status(404).render('404', { seo });
 });
 
 if (require.main === module) {
