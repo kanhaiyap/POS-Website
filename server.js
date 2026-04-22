@@ -5,7 +5,15 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const { execSync } = require('child_process');
 const app = express();
+
+// Asset version for cache-busting — uses git commit hash, falls back to timestamp
+const assetVersion = (() => {
+  try { return execSync('git rev-parse --short HEAD', { stdio: ['pipe','pipe','pipe'] }).toString().trim(); }
+  catch { return Date.now().toString(36); }
+})();
+app.locals.assetVersion = assetVersion;
 const PORT = process.env.PORT || 3000;
 const SITE_URL = 'https://aarohitavigyan.com';
 const DEFAULT_DESCRIPTION = 'Bhojan Mitra is a voice-led POS suite that blends AI ordering, multilingual support, analytics, and IoT routing for restaurants.';
