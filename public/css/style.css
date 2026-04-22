@@ -436,41 +436,61 @@ section {
     box-shadow: var(--shadow-sm);
 }
 
+@keyframes navSlideInMobile {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
 @media (max-width: 960px) {
-    .site-nav {
-        flex: 1;
-        justify-content: flex-end;
-        position: static; /* let nav-menu position from header-pill */
+    /* Full-width header on mobile — drop the floating pill */
+    .header {
+        width: 100%;
+        top: 0;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        animation: navSlideInMobile 0.4s ease-out forwards;
     }
 
     .header-pill {
         position: relative;
-        border-radius: 16px; /* rectangular on mobile instead of full pill */
+        border-radius: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .site-nav {
+        flex: 1;
+        justify-content: flex-end;
+        position: static;
     }
 
     .nav-toggle {
         display: inline-flex;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
+    /* Full-width dropdown attached flush to the header bottom */
     .nav-menu {
         position: absolute;
-        top: calc(100% + 8px);
+        top: 100%;
         left: 0;
         right: 0;
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
-        padding: 1.5rem;
-        background: var(--color-surface);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-md);
-        border: 1px solid rgba(15, 23, 42, 0.06);
-        transform: translateY(-12px);
+        gap: 0.5rem;
+        padding: 1.25rem 1.5rem 1.5rem;
+        background: #ffffff;
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        transform: translateY(-8px);
         opacity: 0;
         pointer-events: none;
         visibility: hidden;
-        transition: opacity var(--transition-base), transform var(--transition-base);
-        z-index: 100;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+        z-index: 1999;
     }
 
     .nav-menu.open {
@@ -482,14 +502,14 @@ section {
 
     .nav-menu a {
         font-size: 1rem;
-        padding: 0.5rem 0;
+        padding: 0.6rem 0;
     }
 
     .nav-menu .nav-cta {
         margin-top: 0.5rem;
     }
 
-    /* Sub-dropdowns expand inline on mobile instead of floating absolutely */
+    /* Sub-dropdowns expand inline on mobile */
     .nav-dropdown-menu {
         position: static;
         box-shadow: none;
@@ -527,7 +547,7 @@ section {
     .nav-dropdown-btn {
         width: 100%;
         justify-content: space-between;
-        padding: 0.5rem 0;
+        padding: 0.6rem 0;
         border-radius: 0;
     }
 }
