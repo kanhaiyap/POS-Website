@@ -248,25 +248,23 @@ section {
 }
 
 /* Header & Navigation */
-/* Base header — mobile-first: full-width bar */
 .header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 1.5rem);
+    max-width: 1200px;
     height: auto;
     z-index: 2000;
+    animation: navSlideIn 0.6s ease-out forwards;
 }
 
-/* Desktop: floating pill style */
+/* Desktop: more breathing room */
 @media (min-width: 961px) {
     .header {
         top: 1rem;
-        left: 50%;
         width: 90%;
-        max-width: 1200px;
-        transform: translateX(-50%);
-        animation: navSlideIn 0.6s ease-out forwards;
     }
 }
 
@@ -464,10 +462,10 @@ section {
         border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    /* Full-width dropdown attached flush to the header bottom */
+    /* Dropdown panel drops below the pill with a gap, fully rounded */
     .nav-menu {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 8px);
         left: 0;
         right: 0;
         flex-direction: column;
@@ -475,9 +473,9 @@ section {
         gap: 0.5rem;
         padding: 1.25rem 1.5rem 1.5rem;
         background: #ffffff;
-        border-radius: 0 0 16px 16px;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+        border: 1.5px solid #e0e0e0;
         transform: translateY(-8px);
         opacity: 0;
         pointer-events: none;
@@ -2936,18 +2934,15 @@ section h2 .gradient-text {
 /* ---- Header pill ---- */
 .header-pill {
     background: #ffffff;
-    border-radius: 0; /* mobile-first: no pill */
-    border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    border: 1.5px solid #e0e0e0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    padding: 0.6rem 1rem;
 }
 
-/* Desktop: restore pill shape */
+/* Desktop: slightly more padding */
 @media (min-width: 961px) {
     .header-pill {
-        border-radius: 999px;
-        border: 1.5px solid #e0e0e0;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
         padding: 0.75rem 2rem 0.75rem 1rem;
     }
 }
