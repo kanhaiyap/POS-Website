@@ -248,16 +248,26 @@ section {
 }
 
 /* Header & Navigation */
+/* Base header — mobile-first: full-width bar */
 .header {
     position: fixed;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1200px;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: auto;
     z-index: 2000;
-    animation: navSlideIn 0.6s ease-out forwards;
+}
+
+/* Desktop: floating pill style */
+@media (min-width: 961px) {
+    .header {
+        top: 1rem;
+        left: 50%;
+        width: 90%;
+        max-width: 1200px;
+        transform: translateX(-50%);
+        animation: navSlideIn 0.6s ease-out forwards;
+    }
 }
 
 @keyframes navSlideIn {
@@ -436,26 +446,9 @@ section {
     box-shadow: var(--shadow-sm);
 }
 
-@keyframes navSlideInMobile {
-    from { transform: translateY(-100%); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
-}
-
 @media (max-width: 960px) {
-    /* Full-width header on mobile — drop the floating pill */
-    .header {
-        width: 100%;
-        top: 0;
-        left: 0;
-        transform: none;
-        border-radius: 0;
-        animation: navSlideInMobile 0.4s ease-out forwards;
-    }
-
     .header-pill {
         position: relative;
-        border-radius: 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .site-nav {
@@ -2943,10 +2936,20 @@ section h2 .gradient-text {
 /* ---- Header pill ---- */
 .header-pill {
     background: #ffffff;
-    border-radius: 999px;
-    border: 1.5px solid #e0e0e0;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-    padding: 0.75rem 2rem 0.75rem 1rem;
+    border-radius: 0; /* mobile-first: no pill */
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0.6rem 1.25rem;
+}
+
+/* Desktop: restore pill shape */
+@media (min-width: 961px) {
+    .header-pill {
+        border-radius: 999px;
+        border: 1.5px solid #e0e0e0;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        padding: 0.75rem 2rem 0.75rem 1rem;
+    }
 }
 
 .nav-link-caret {
