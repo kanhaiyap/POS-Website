@@ -22,6 +22,9 @@ jobs:
         run: npm install
 
       - name: Build static site
+        env:
+          GA4_ID: ${{ vars.GA4_ID }}
+          CLARITY_ID: ${{ vars.CLARITY_ID }}
         run: |
           npm run build
           test -f dist/index.html || (echo "index.html not found in dist!" && exit 1)

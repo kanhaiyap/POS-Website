@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Contact form enhancement
-    const contactForms = document.querySelectorAll('.contact-form');
+    const contactForms = document.querySelectorAll('.contact-form, .contact-fig-form');
     contactForms.forEach(form => {
         const inputs = form.querySelectorAll('input, textarea');
         inputs.forEach(input => {
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 new FormData(form).forEach((v,k) => { data[k]=v; });
 
                 try {
-                    const resp = await fetch('/api/contact', {
+                    const resp = await fetch(form.getAttribute('action') || '/api/contact.php', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                         body: JSON.stringify(data)
@@ -220,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (resp.ok) {
                         const json = await resp.json();
                         openModal(json.message || 'Thanks — we will contact you shortly');
+                        if (window.bmTrack) window.bmTrack('generate_lead', { method: 'form', plan: data.plan || '' });
                         form.reset();
                     } else {
                         const err = await resp.json().catch(()=>({ errors: ['Submission failed'] }));

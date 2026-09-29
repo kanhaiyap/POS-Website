@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= page.lang || 'en' %>">
 <head>
   <%- include('partials/head', { seo }) %>
 </head>
@@ -12,15 +12,16 @@
     <section class="bm-hero">
       <div class="bm-hero-inner">
         <nav class="lp-breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a> <span aria-hidden="true">/</span>
-          <a href="/solutions">Solutions</a> <span aria-hidden="true">/</span>
+          <a href="/"><%= t.home %></a> <span aria-hidden="true">/</span>
+          <a href="/solutions"><%= t.solutions %></a> <span aria-hidden="true">/</span>
           <span><%= page.navLabel %></span>
+          <% if (langSwitch) { %> · <a href="<%= langSwitch.href %>" class="lp-lang-switch" hreflang="<%= page.lang === 'hi' ? 'en' : 'hi' %>"><%= langSwitch.label %></a><% } %>
         </nav>
         <h1 class="bm-hero-title"><%= page.h1 %></h1>
         <p class="bm-hero-subtitle"><%= page.intro %></p>
         <div class="lp-hero-actions">
-          <a href="/contact" class="bm-btn-primary">Book a Free Demo</a>
-          <a href="/pricing" class="lp-btn-ghost">See Pricing</a>
+          <a href="/contact" class="bm-btn-primary"><%= t.demo %></a>
+          <a href="/pricing" class="lp-btn-ghost"><%= t.pricing %></a>
         </div>
       </div>
     </section>
@@ -39,14 +40,14 @@
         </div>
 
         <% if (page.areas && page.areas.length) { %>
-        <h2 class="lp-subheading"><%= page.areasHeading || 'Areas we serve' %></h2>
+        <h2 class="lp-subheading"><%= page.areasHeading || t.areas %></h2>
         <ul class="lp-chips">
           <% page.areas.forEach(function(a) { %><li><%= a %></li><% }); %>
         </ul>
         <% } %>
 
         <% if (page.useCases && page.useCases.length) { %>
-        <h2 class="lp-subheading">Who uses it</h2>
+        <h2 class="lp-subheading"><%= t.whoUses %></h2>
         <ul class="lp-chips">
           <% page.useCases.forEach(function(u) { %><li><%= u %></li><% }); %>
         </ul>
@@ -57,14 +58,14 @@
     <!-- ===== PRICING STRIP ===== -->
     <section class="lp-pricing">
       <div class="lp-pricing-inner">
-        <h2 class="lp-subheading">Simple pricing, no hidden charges</h2>
+        <h2 class="lp-subheading"><%= t.pricingHeading %></h2>
         <div class="lp-price-row">
-          <div class="lp-price lp-price--free"><span class="lp-price-amt">₹0</span><span class="lp-price-name">QR Ordering — free forever</span></div>
-          <div class="lp-price"><span class="lp-price-amt">₹250</span><span class="lp-price-name">Simple Billing</span></div>
-          <div class="lp-price"><span class="lp-price-amt">₹500</span><span class="lp-price-name">Analytics + QR Ordering</span></div>
-          <div class="lp-price"><span class="lp-price-amt">₹5,000</span><span class="lp-price-name">Voice-enabled Ordering</span></div>
+          <div class="lp-price lp-price--free"><span class="lp-price-amt">₹0</span><span class="lp-price-name"><%= t.planFree %></span></div>
+          <div class="lp-price"><span class="lp-price-amt">₹250</span><span class="lp-price-name"><%= t.planBilling %></span></div>
+          <div class="lp-price"><span class="lp-price-amt">₹500</span><span class="lp-price-name"><%= t.planAnalytics %></span></div>
+          <div class="lp-price"><span class="lp-price-amt">₹5,000</span><span class="lp-price-name"><%= t.planVoice %></span></div>
         </div>
-        <a href="/pricing" class="lp-link">Compare plans →</a>
+        <a href="/pricing" class="lp-link"><%= t.compare %></a>
       </div>
     </section>
 
@@ -72,7 +73,7 @@
     <section class="bm-faq">
       <div class="bm-faq-inner">
         <p class="bm-faq-eyebrow">FAQ</p>
-        <h2 class="bm-faq-title">Questions about <span class="bm-faq-muted"><%= page.navLabel %></span></h2>
+        <h2 class="bm-faq-title"><%= t.faqPrefix %> <span class="bm-faq-muted"><%= page.navLabel %></span></h2>
         <div class="bm-faq-list">
           <% page.faqs.forEach(function(f) { %>
           <details class="bm-faq-item">
@@ -91,7 +92,7 @@
     <% if (related.length) { %>
     <section class="lp-related">
       <div class="lp-related-inner">
-        <h2 class="lp-subheading">Related solutions</h2>
+        <h2 class="lp-subheading"><%= t.related %></h2>
         <ul class="lp-related-grid">
           <% related.forEach(function(r) { %>
           <li><a href="/<%= r.slug %>" class="lp-related-card"><%= r.navLabel %> <span aria-hidden="true">→</span></a></li>
@@ -104,10 +105,10 @@
     <!-- ===== CTA ===== -->
     <section class="rpos-cta">
       <div class="rpos-cta-inner">
-        <h2 class="rpos-cta-title">Try Bhojan Mitra free</h2>
-        <p class="rpos-cta-sub">Book a demo and we'll set up your menu or item list, walk your team through billing, and show you the reports you'll use every day.</p>
-        <a href="/contact" class="bm-btn-primary">Book a Free Demo</a>
-        <p class="lp-local-note">Based in Dehradun — on-site setup across <a href="/billing-software-dehradun">Dehradun</a> and <a href="/pos-software-uttarakhand">Uttarakhand</a>.</p>
+        <h2 class="rpos-cta-title"><%= t.ctaTitle %></h2>
+        <p class="rpos-cta-sub"><%= t.ctaSub %></p>
+        <a href="/contact" class="bm-btn-primary"><%= t.demo %></a>
+        <p class="lp-local-note"><%- t.localNote %></p>
       </div>
     </section>
 

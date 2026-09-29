@@ -16,6 +16,8 @@ const assetVersion = (() => {
   catch { return Date.now().toString(36); }
 })();
 app.locals.assetVersion = assetVersion;
+// Analytics IDs (GitHub repo variables GA4_ID / CLARITY_ID in CI, or .env locally). Empty = tracking off.
+app.locals.analytics = { ga4Id: process.env.GA4_ID || '', clarityId: process.env.CLARITY_ID || '' };
 const PORT = process.env.PORT || 3000;
 const SITE_URL = 'https://aarohitavigyan.com';
 const DEFAULT_DESCRIPTION = 'Bhojan Mitra is a voice-led POS suite that blends AI ordering, multilingual support, analytics, and IoT routing for restaurants.';
@@ -182,7 +184,8 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "https:"],
-      scriptSrc: ["'self'"]
+      scriptSrc: ["'self'", "https://www.googletagmanager.com", "https://www.clarity.ms", "https://*.clarity.ms"],
+      connectSrc: ["'self'", "https://*.google-analytics.com", "https://*.analytics.google.com", "https://www.googletagmanager.com", "https://*.clarity.ms"]
     }
   }
 }));
@@ -691,6 +694,29 @@ app.get('/blog/:slug', (req, res) => {
 });
 
 // ---- Solutions hub + keyword landing pages ----
+const LANDING_UI = {
+  en: {
+    home: 'Home', solutions: 'Solutions', demo: 'Book a Free Demo', pricing: 'See Pricing',
+    areas: 'Areas we serve', whoUses: 'Who uses it', pricingHeading: 'Simple pricing, no hidden charges',
+    planFree: 'QR Ordering — free forever', planBilling: 'Simple Billing', planAnalytics: 'Analytics + QR Ordering',
+    planVoice: 'Voice-enabled Ordering', compare: 'Compare plans →', faqPrefix: 'Questions about',
+    related: 'Related solutions', ctaTitle: 'Try Bhojan Mitra free',
+    ctaSub: "Book a demo and we'll set up your menu or item list, walk your team through billing, and show you the reports you'll use every day.",
+    localNote: 'Based in Dehradun — on-site setup across <a href="/billing-software-dehradun">Dehradun</a> and <a href="/pos-software-uttarakhand">Uttarakhand</a>.'
+  },
+  hi: {
+    home: 'होम', solutions: 'सॉल्यूशंस', demo: 'फ्री डेमो बुक करें', pricing: 'कीमत देखें',
+    areas: 'हम कहाँ सेवा देते हैं', whoUses: 'कौन इस्तेमाल करता है', pricingHeading: 'आसान कीमत, कोई छिपा चार्ज नहीं',
+    planFree: 'QR ऑर्डरिंग — हमेशा फ्री', planBilling: 'सिंपल बिलिंग', planAnalytics: 'एनालिटिक्स + QR ऑर्डरिंग',
+    planVoice: 'वॉइस ऑर्डरिंग', compare: 'सभी प्लान देखें →', faqPrefix: 'सवाल-जवाब:',
+    related: 'संबंधित सॉल्यूशंस', ctaTitle: 'भोजन मित्र फ्री में आज़माएँ',
+    ctaSub: 'डेमो बुक करें — हम आपकी दुकान पर आकर आइटम लिस्ट सेट करेंगे, स्टाफ को बिलिंग सिखाएँगे और रोज़ काम आने वाली रिपोर्ट दिखाएँगे।',
+    localNote: 'देहरादून की टीम — <a href="/billing-software-dehradun">देहरादून</a> और <a href="/pos-software-uttarakhand">पूरे उत्तराखंड</a> में दुकान पर आकर सेटअप।'
+  }
+};
+// English page -> Hindi translation (reverse of each Hindi page's `alt`)
+const hindiFor = Object.fromEntries(landingPages.filter(p => p.lang === 'hi' && p.alt).map(p => [p.alt, p.slug]));
+
 // Service-area business: no street address, only the areas we cover.
 const localBusinessSchema = (page, url) => ({
   "@context": "https://schema.org",
@@ -720,6 +746,7 @@ const SOLUTION_GROUPS = [
   { key: 'business', label: 'Billing Software by Business Type' },
   { key: 'restaurant', label: 'Restaurant POS & Management', extra: [{ href: '/restaurant-pos', label: 'Restaurant POS System' }] },
   { key: 'local', label: 'Dehradun & Uttarakhand' },
+  { key: 'hindi', label: 'हिंदी में (Hindi)' },
   { key: 'compare', label: 'Compare' }
 ];
 
@@ -755,7 +782,18 @@ landingPages.forEach((page) => {
   app.get(`/${page.slug}`, (req, res) => {
     const url = `${SITE_URL}/${page.slug}`;
     const related = (page.related || []).map(s => landingBySlug[s]).filter(Boolean);
+    const lang = page.lang || 'en';
+    const enSlug = lang === 'hi' ? page.alt : page.slug;
+    const hiSlug = lang === 'hi' ? page.slug : hindiFor[page.slug];
+    const alternates = hiSlug ? [
+      { lang: 'en-in', href: `${SITE_URL}/${enSlug}` },
+      { lang: 'hi-in', href: `${SITE_URL}/${hiSlug}` },
+      { lang: 'x-default', href: `${SITE_URL}/${enSlug}` }
+    ] : undefined;
     const seo = enrichSeo({
+      alternates,
+      language: lang === 'hi' ? 'hi-IN' : 'en-IN',
+      ogLocale: lang === 'hi' ? 'hi_IN' : 'en_IN',
       title: page.title,
       description: page.description,
       keywords: page.keywords,
@@ -789,7 +827,10 @@ landingPages.forEach((page) => {
         ...(page.local ? [localBusinessSchema(page, url)] : [])
       ]
     });
-    res.render('landing', { seo, page, related });
+    const langSwitch = hiSlug
+      ? (lang === 'hi' ? { href: `/${enSlug}`, label: 'Read in English' } : { href: `/${hiSlug}`, label: 'हिंदी में पढ़ें' })
+      : null;
+    res.render('landing', { seo, page, related, t: LANDING_UI[lang], langSwitch });
   });
 });
 
@@ -910,7 +951,8 @@ app.post('/contact', (req, res) => {
 });
 
 // API endpoint for contact form (AJAX)
-app.post('/api/contact', (req, res) => {
+// '/api/contact.php' is the production endpoint (PHP on Hostinger); alias it for local dev.
+app.post(['/api/contact', '/api/contact.php'], (req, res) => {
   const { name, email, phone, restaurant, plan, message } = req.body || {};
   const errors = [];
 
