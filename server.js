@@ -5,9 +5,17 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const { execSync } = require('child_process');
 const landingPages = require('./content/landing-pages');
 const blogPosts = require('./content/blog-posts');
 const app = express();
+
+// Asset version for cache-busting — uses git commit hash, falls back to timestamp
+const assetVersion = (() => {
+  try { return execSync('git rev-parse --short HEAD', { stdio: ['pipe','pipe','pipe'] }).toString().trim(); }
+  catch { return Date.now().toString(36); }
+})();
+app.locals.assetVersion = assetVersion;
 const PORT = process.env.PORT || 3000;
 const SITE_URL = 'https://aarohitavigyan.com';
 const DEFAULT_DESCRIPTION = 'Bhojan Mitra is a voice-led POS suite that blends AI ordering, multilingual support, analytics, and IoT routing for restaurants.';
@@ -473,6 +481,22 @@ app.get('/restaurant-pos', (req, res) => {
   });
   
   res.render('restaurant-pos', { seo });
+});
+
+app.get('/why-us', (req, res) => {
+  const seo = enrichSeo({
+    title: 'Why Bhojan Mitra — AI + IoT POS Built for Indian Restaurants',
+    description: 'Discover why restaurants choose Bhojan Mitra over legacy POS systems. Voice ordering, IoT integration, multilingual support, and real-time analytics — all in one platform.',
+    keywords: 'why Bhojan Mitra, AI POS benefits, voice ordering POS, restaurant technology India',
+    canonicalUrl: `${SITE_URL}/why-us`,
+    structuredData: [
+      buildBreadcrumbs([
+        { name: 'Home', url: `${SITE_URL}/` },
+        { name: 'Why Us', url: `${SITE_URL}/why-us` }
+      ])
+    ]
+  });
+  res.render('why-us', { seo });
 });
 
 app.get('/pricing', (req, res) => {
@@ -969,6 +993,7 @@ app.get('/sitemap.xml', (req, res) => {
     { url: '/contact', changefreq: 'monthly', priority: 0.7 },
     { url: '/multilingual', changefreq: 'monthly', priority: 0.6 },
     { url: '/voice-ordering', changefreq: 'monthly', priority: 0.7 },
+    { url: '/why-us', changefreq: 'monthly', priority: 0.7 },
     { url: '/solutions', changefreq: 'weekly', priority: 0.9 },
     ...landingPages.map(p => ({ url: `/${p.slug}`, changefreq: 'weekly', priority: 0.9 })),
     { url: '/blog', changefreq: 'weekly', priority: 0.7 },
@@ -1012,6 +1037,16 @@ Allow: /
 
 User-agent: Slurp
 Allow: /`);
+});
+
+// 404 handler — must be last route
+app.use((req, res) => {
+  const seo = enrichSeo({
+    title: '404 — Page Not Found | Bhojan Mitra',
+    description: 'The page you were looking for doesn\'t exist.',
+    canonicalUrl: `${SITE_URL}/404`
+  });
+  res.status(404).render('404', { seo });
 });
 
 if (require.main === module) {

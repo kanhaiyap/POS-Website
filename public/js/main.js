@@ -48,16 +48,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     
     if (mobileMenuToggle && navMenu) {
+        let backdrop = null;
+
         const openMenu = () => {
             mobileMenuToggle.setAttribute('aria-expanded', 'true');
             navMenu.classList.add('open');
             document.body.classList.add('no-scroll');
+            if (!backdrop) {
+                const headerEl = document.querySelector('.header');
+                const headerH = headerEl ? headerEl.getBoundingClientRect().height : 64;
+                backdrop = document.createElement('div');
+                backdrop.className = 'nav-backdrop';
+                backdrop.style.cssText = 'position:fixed;inset:0;top:' + headerH + 'px;background:rgba(0,0,0,0.35);z-index:1998;';
+                backdrop.addEventListener('click', closeMenu);
+                document.body.appendChild(backdrop);
+            }
         };
 
         const closeMenu = () => {
             mobileMenuToggle.setAttribute('aria-expanded', 'false');
             navMenu.classList.remove('open');
             document.body.classList.remove('no-scroll');
+            if (backdrop) {
+                backdrop.remove();
+                backdrop = null;
+            }
         };
 
         mobileMenuToggle.addEventListener('click', function() {
