@@ -1079,8 +1079,9 @@ app.get('/review', (req, res) => {
   res.set('X-Robots-Tag', 'noindex');
   res.send(`<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=${target}">
-<title>Review Bhojan Mitra on Google</title></head>
-<body><p>Opening Google reviews… <a href="${target}">Tap here if nothing happens</a>.</p></body></html>`);
+<title>Review Bhojan Mitra on Google</title>
+<script src="/js/review-redirect.js" data-target="${target}"></script>
+</head><body><p>Opening Google reviews… <a href="${target}">Tap here if nothing happens</a>.</p></body></html>`);
 });
 
 // Robots.txt — explicitly welcome search and AI crawlers so we can be cited in AI answers
