@@ -71,6 +71,19 @@ This email was sent from the contact form at ${SITE_URL}/contact
 }
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/logo.png`;
 
+// Real plan range (Free QR ordering, ₹250, ₹500, ₹5,000). Google requires `offers`
+// on every Product; we have no reviews yet, so never add aggregateRating/review here.
+const PLAN_OFFERS = {
+  "@type": "AggregateOffer",
+  "priceCurrency": "INR",
+  "lowPrice": "0",
+  "highPrice": "5000",
+  "offerCount": 4,
+  "availability": "https://schema.org/InStock",
+  "url": `${SITE_URL}/pricing`
+};
+const BRAND = { "@type": "Brand", "name": "Bhojan Mitra" };
+
 // Global Organization Schema for all pages
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -120,7 +133,10 @@ const organizationSchema = {
     "@type": "Offer",
     "itemOffered": {
       "@type": "Product",
-      "name": "Bhojan Mitra POS Software"
+      "name": "Bhojan Mitra POS Software",
+      "brand": BRAND,
+      "image": DEFAULT_OG_IMAGE,
+      "offers": PLAN_OFFERS
     }
   }
 };
@@ -224,8 +240,9 @@ app.get('/', (req, res) => {
       "@type": "Brand",
       "name": "Aarohita Vigyan"
     },
+    "image": DEFAULT_OG_IMAGE,
     "offers": {
-      "@type": "AggregateOffer",
+      ...PLAN_OFFERS,
       "offers": [
         { "@type": "Offer", "name": "Free QR Ordering", "price": "0", "priceCurrency": "INR" },
         { "@type": "Offer", "name": "Simple Billing", "price": "250", "priceCurrency": "INR" },
@@ -328,7 +345,10 @@ app.get('/bhojan-mitra', (req, res) => {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "Bhojan Mitra",
-        "description": "AI + IoT voice-enabled POS for restaurants. Speak to order, supports multiple languages. Contact us for pricing and deployment options."
+        "description": "AI + IoT voice-enabled POS for restaurants. Speak to order, supports multiple languages. Contact us for pricing and deployment options.",
+        "brand": BRAND,
+        "image": DEFAULT_OG_IMAGE,
+        "offers": PLAN_OFFERS
       },
       buildBreadcrumbs([
         { name: 'Home', url: `${SITE_URL}/` },
@@ -352,10 +372,9 @@ app.get('/pos-machine', (req, res) => {
         "@type": "Product",
         "name": "Bhojan Mitra POS Machine",
         "description": "Voice-enabled POS hardware with AI-powered ordering and IoT routing for restaurants.",
-        "brand": {
-          "@type": "Brand",
-          "name": "Bhojan Mitra"
-        }
+        "brand": BRAND,
+        "image": DEFAULT_OG_IMAGE,
+        "offers": PLAN_OFFERS
       },
       buildBreadcrumbs([
         { name: 'Home', url: `${SITE_URL}/` },
@@ -370,17 +389,14 @@ app.get('/pos-machine', (req, res) => {
 app.get('/pos-software', (req, res) => {
   const softwareSchema = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "Product",
     "name": "Bhojan Mitra POS Software",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "AggregateOffer",
-      "lowPrice": "0",
-      "highPrice": "5000",
-      "priceCurrency": "INR",
-      "offerCount": 4
-    }
+    "description": "POS software for restaurants and retail: GST billing, KOT, inventory, analytics, free QR ordering and AI voice ordering.",
+    "category": "Business Software",
+    "brand": BRAND,
+    "image": DEFAULT_OG_IMAGE,
+    "url": `${SITE_URL}/pos-software`,
+    "offers": PLAN_OFFERS
   };
 
   const faqSchema = {
@@ -747,20 +763,14 @@ landingPages.forEach((page) => {
       structuredData: [
         {
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": "Product",
           "name": `Bhojan Mitra — ${page.navLabel}`,
           "description": page.description,
           "url": url,
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "Web, Windows, Android",
-          "offers": {
-            "@type": "AggregateOffer",
-            "priceCurrency": "INR",
-            "lowPrice": "0",
-            "highPrice": "5000",
-            "offerCount": 4
-          },
-          "publisher": { "@type": "Organization", "name": "Aarohita Vigyan", "url": SITE_URL }
+          "category": "Business Software",
+          "brand": BRAND,
+          "image": DEFAULT_OG_IMAGE,
+          "offers": PLAN_OFFERS
         },
         {
           "@context": "https://schema.org",
