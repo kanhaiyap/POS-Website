@@ -1,0 +1,18 @@
+<% const g = locals.google || {}; if (g.placeId && g.mapsKey) { %>
+<!-- Live Google reviews (Places API). Stays hidden until data loads and the profile has enough reviews. -->
+<div class="gr-sentinel" data-gr-sentinel aria-hidden="true"></div>
+<section class="gr-section" id="google-reviews" hidden
+  data-place-id="<%= g.placeId %>" data-key="<%= g.mapsKey %>" data-min-reviews="<%= g.minReviews %>">
+  <div class="gr-inner">
+    <div class="gr-summary">
+      <p class="gr-eyebrow">Google Reviews</p>
+      <h2 class="gr-title"><span class="gr-rating" data-gr="rating"></span> <span class="gr-stars" data-gr="stars" aria-hidden="true"></span></h2>
+      <p class="gr-count">Based on <a data-gr="count-link" target="_blank" rel="noopener"><span data-gr="count"></span> reviews on Google</a></p>
+      <a class="gr-write" href="https://search.google.com/local/writereview?placeid=<%= g.placeId %>" target="_blank" rel="noopener">Write a review</a>
+    </div>
+    <div class="gr-list" data-gr="list"></div>
+    <p class="gr-attribution">Reviews and ratings from <span class="gr-google">Google</span></p>
+  </div>
+</section>
+<script src="/js/google-reviews.js?v=<%= locals.assetVersion %>" defer></script>
+<% } %>

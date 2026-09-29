@@ -18,6 +18,12 @@ const assetVersion = (() => {
 app.locals.assetVersion = assetVersion;
 // Analytics IDs (GitHub repo variables GA4_ID / CLARITY_ID in CI, or .env locally). Empty = tracking off.
 app.locals.analytics = { ga4Id: process.env.GA4_ID || '', clarityId: process.env.CLARITY_ID || '' };
+// Live Google reviews widget + /review shortcut. Maps key must be HTTP-referrer restricted to our domain.
+app.locals.google = {
+  placeId: process.env.GOOGLE_PLACE_ID || '',
+  mapsKey: process.env.GOOGLE_MAPS_KEY || '',
+  minReviews: parseInt(process.env.GOOGLE_REVIEWS_MIN || '3', 10)
+};
 const PORT = process.env.PORT || 3000;
 const SITE_URL = 'https://aarohitavigyan.com';
 const DEFAULT_DESCRIPTION = 'Bhojan Mitra is a voice-led POS suite that blends AI ordering, multilingual support, analytics, and IoT routing for restaurants.';
@@ -184,8 +190,8 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "https:"],
-      scriptSrc: ["'self'", "https://www.googletagmanager.com", "https://www.clarity.ms", "https://*.clarity.ms"],
-      connectSrc: ["'self'", "https://*.google-analytics.com", "https://*.analytics.google.com", "https://www.googletagmanager.com", "https://*.clarity.ms"]
+      scriptSrc: ["'self'", "https://www.googletagmanager.com", "https://www.clarity.ms", "https://*.clarity.ms", "https://maps.googleapis.com", "https://maps.gstatic.com"],
+      connectSrc: ["'self'", "https://*.google-analytics.com", "https://*.analytics.google.com", "https://www.googletagmanager.com", "https://*.clarity.ms", "https://maps.googleapis.com", "https://places.googleapis.com"]
     }
   }
 }));
@@ -1062,6 +1068,19 @@ ${urls.map(item => `  <url>
     <priority>${item.priority}</priority>
   </url>`).join('\n')}
 </urlset>`);
+});
+
+// /review — short link for QR cards and WhatsApp: opens Google's "write a review" form
+app.get('/review', (req, res) => {
+  const { placeId } = app.locals.google;
+  const target = placeId
+    ? `https://search.google.com/local/writereview?placeid=${encodeURIComponent(placeId)}`
+    : `${SITE_URL}/contact`;
+  res.set('X-Robots-Tag', 'noindex');
+  res.send(`<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=${target}">
+<title>Review Bhojan Mitra on Google</title></head>
+<body><p>Opening Google reviews… <a href="${target}">Tap here if nothing happens</a>.</p></body></html>`);
 });
 
 // Robots.txt — explicitly welcome search and AI crawlers so we can be cited in AI answers

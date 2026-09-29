@@ -6485,3 +6485,102 @@ h1.blogpost-featured-text { margin: 0; }
     color: #4b33ff !important;
     font-weight: 600;
 }
+
+/* ===== Live Google reviews widget ===== */
+.gr-sentinel { height: 1px; }
+
+.gr-section {
+    background: #f6f8fb;
+    padding: 4rem 1.5rem;
+}
+
+.gr-section[hidden] { display: none; }
+
+.gr-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.gr-summary {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.gr-eyebrow {
+    display: inline-block;
+    border: 1.5px solid #ff80d8;
+    border-radius: 999px;
+    padding: 0.3rem 1rem;
+    font-size: 0.85rem;
+    color: #c060a0;
+    margin: 0 0 1rem;
+}
+
+section.gr-section h2.gr-title {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin: 0 0 0.4rem;
+    color: #1c1c1c;
+}
+
+.gr-stars { color: #fbbc04; letter-spacing: 2px; font-size: 0.8em; }
+
+.gr-count { margin: 0 0 1rem; color: #5f6c7b; }
+.gr-count a { color: #4b33ff; }
+
+.gr-write {
+    display: inline-block;
+    border: 1.5px solid #ff80d8;
+    border-radius: 999px;
+    padding: 0.55rem 1.4rem;
+    color: #1c1c1c;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.gr-write:hover { background: #fff0fa; }
+
+.gr-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.gr-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.gr-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.gr-card-head img { border-radius: 50%; }
+
+.gr-card-who { display: flex; flex-direction: column; }
+
+.gr-card-name { font-weight: 600; color: #1c1c1c; text-decoration: none; }
+a.gr-card-name:hover { text-decoration: underline; }
+
+.gr-card-meta { font-size: 0.8rem; color: #fbbc04; }
+
+.gr-card-text {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    color: #5f6c7b;
+}
+
+.gr-attribution {
+    margin: 1.5rem 0 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #9aa4b2;
+}
+
+.gr-google { font-weight: 700; color: #5f6c7b; }

@@ -19,6 +19,7 @@ const app = require('../server');
 const OUTPUT_DIR = path.join(__dirname, '..', 'dist');
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const EXTRA_FILES = ['/sitemap.xml', '/robots.txt', '/llms.txt'];
+const EXTRA_PAGES = ['/review']; // rendered as .html but kept out of the sitemap
 
 function get(port, urlPath) {
   return new Promise((resolve, reject) => {
@@ -57,6 +58,10 @@ async function build() {
     const pages = [...sitemap.matchAll(/<loc>https?:\/\/[^/]+(\/[^<]*)<\/loc>/g)].map((m) => m[1]);
 
     for (const urlPath of pages) {
+      await write(outputFileFor(urlPath), await get(port, urlPath));
+      console.log(`✓ ${urlPath}`);
+    }
+    for (const urlPath of EXTRA_PAGES) {
       await write(outputFileFor(urlPath), await get(port, urlPath));
       console.log(`✓ ${urlPath}`);
     }
