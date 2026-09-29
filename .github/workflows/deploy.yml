@@ -41,3 +41,14 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+
+      # Tell Bing/Yandex (IndexNow) about every page so new content is indexed fast.
+      # ChatGPT search and Copilot rely on Bing's index. Non-blocking: a failed ping never fails the deploy.
+      - name: Notify search engines (IndexNow)
+        continue-on-error: true
+        run: |
+          KEY=76d235aea196ef2053405e9053105c4d
+          URLS=$(grep -o '<loc>[^<]*</loc>' dist/sitemap.xml | sed 's/<[^>]*>//g' | jq -R . | jq -s -c .)
+          curl -sS -o /dev/null -w "IndexNow HTTP %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"aarohitavigyan.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://aarohitavigyan.com/$KEY.txt\",\"urlList\":$URLS}"

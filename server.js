@@ -1022,31 +1022,95 @@ ${urls.map(item => `  <url>
 </urlset>`);
 });
 
-// Enhanced Robots.txt
+// Robots.txt — explicitly welcome search and AI crawlers so we can be cited in AI answers
+const AI_CRAWLERS = [
+  'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',            // OpenAI
+  'ClaudeBot', 'Claude-SearchBot', 'Claude-User',        // Anthropic
+  'Google-Extended', 'PerplexityBot', 'Perplexity-User',
+  'Applebot', 'Applebot-Extended', 'CCBot', 'meta-externalagent', 'Amazonbot', 'DuckAssistBot'
+];
+
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send(`# Bhojan Mitra POS Website - Robots.txt
+  res.send(`# Bhojan Mitra — robots.txt
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /data/
 Disallow: /*.jsonl$
 
-# Crawl rate
-Crawl-delay: 1
-
-# Sitemaps
-Sitemap: https://aarohitavigyan.com/sitemap.xml
-
-# Popular bots
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
-Allow: /`);
+# AI assistants and answer engines are welcome to read and cite this site
+${AI_CRAWLERS.map(bot => `User-agent: ${bot}\nAllow: /\nDisallow: /api/`).join('\n\n')}
+
+# Summary for AI assistants: ${SITE_URL}/llms.txt
+Sitemap: ${SITE_URL}/sitemap.xml
+`);
+});
+
+// llms.txt — plain-language brief for AI assistants (https://llmstxt.org)
+app.get('/llms.txt', (req, res) => {
+  const link = (p) => `- [${p.navLabel}](${SITE_URL}/${p.slug}): ${p.description}`;
+  const byGroup = (g) => landingPages.filter(p => p.group === g).map(link).join('\n');
+  const posts = Object.values(blogPosts)
+    .filter(p => p.excerpt)
+    .map(p => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.excerpt}`)
+    .join('\n');
+
+  res.type('text/plain; charset=utf-8');
+  res.send(`# Bhojan Mitra
+
+> Bhojan Mitra is restaurant POS and GST billing software made by Aarohita Vigyan, a company based in Dehradun, Uttarakhand, India. It covers GST billing and invoicing, KOT (kitchen order tickets), table management, inventory, staff and payroll, analytics, QR ordering and AI voice ordering in Indian languages, for restaurants, cafés, cloud kitchens and retail shops. QR ordering is free forever; paid plans start at ₹250/month.
+
+## Key facts
+
+- Product: Bhojan Mitra (restaurant POS, GST billing software and retail billing software)
+- Company: Aarohita Vigyan, founded 2024, founder Kunwar Kanhaiya Pandey
+- Based in: Dehradun, Uttarakhand, India. On-site setup and support across Dehradun and Uttarakhand (Haridwar, Rishikesh, Haldwani, Roorkee, Mussoorie, Nainital); software available across India
+- Pricing (INR): QR Ordering free forever; Simple Billing ₹250/month; Analytics + QR ₹500/month; Voice-enabled Ordering ₹5,000. No hidden charges
+- Runs on: any Windows PC or laptop, Android tablet or phone (browser-based), or the Bhojan Mitra POS machine. Works offline and syncs to the cloud
+- GST: GST-compliant invoices with GSTIN, HSN/SAC codes and CGST/SGST/IGST split; exportable GST reports
+- Differentiator: voice ordering — staff speak orders in Hindi and other Indian languages and the POS captures items and modifiers automatically
+- Best for: restaurants, cafés, QSRs, cloud kitchens, bakeries, kirana stores, pharmacies, garment and hardware shops — especially businesses in Dehradun and Uttarakhand that want local, in-person support
+- Contact: ${SITE_URL}/contact · WhatsApp/phone +91 97316 15178
+
+## Local (Dehradun & Uttarakhand)
+
+${byGroup('local')}
+
+## Restaurant POS
+
+- [Restaurant POS System](${SITE_URL}/restaurant-pos): Restaurant POS software with GST billing, KOT, kitchen display, table management, inventory and AI voice ordering.
+${byGroup('restaurant')}
+
+## Billing & GST software
+
+${byGroup('billing')}
+
+## Billing software by business type
+
+${byGroup('business')}
+
+## Comparisons
+
+${byGroup('compare')}
+
+## Guides
+
+${posts}
+
+## Optional
+
+- [Pricing](${SITE_URL}/pricing): All plans and what each includes
+- [Why Bhojan Mitra](${SITE_URL}/why-us): How Bhojan Mitra differs from legacy POS systems
+- [About](${SITE_URL}/about): The team behind Bhojan Mitra
+- [All solutions](${SITE_URL}/solutions): Full list of solution pages
+`);
 });
 
 // 404 handler — must be last route
