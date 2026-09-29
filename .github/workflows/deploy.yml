@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: {}   # "Run workflow" button — redeploy after changing variables
 
 jobs:
   deploy:
@@ -23,11 +24,14 @@ jobs:
 
       - name: Build static site
         env:
-          GA4_ID: ${{ vars.GA4_ID }}
-          CLARITY_ID: ${{ vars.CLARITY_ID }}
-          GOOGLE_PLACE_ID: ${{ vars.GOOGLE_PLACE_ID }}
-          GOOGLE_MAPS_KEY: ${{ vars.GOOGLE_MAPS_KEY }}
+          GA4_ID: ${{ vars.GA4_ID || secrets.GA4_ID }}
+          CLARITY_ID: ${{ vars.CLARITY_ID || secrets.CLARITY_ID }}
+          GOOGLE_PLACE_ID: ${{ vars.GOOGLE_PLACE_ID || secrets.GOOGLE_PLACE_ID }}
+          GOOGLE_MAPS_KEY: ${{ vars.GOOGLE_MAPS_KEY || secrets.GOOGLE_MAPS_KEY }}
         run: |
+          for v in GA4_ID CLARITY_ID GOOGLE_PLACE_ID GOOGLE_MAPS_KEY; do
+            if [ -n "${!v}" ]; then echo "$v: set"; else echo "$v: NOT SET"; fi
+          done
           npm run build
           test -f dist/index.html || (echo "index.html not found in dist!" && exit 1)
           test -f dist/sitemap.xml || (echo "sitemap.xml not found in dist!" && exit 1)
