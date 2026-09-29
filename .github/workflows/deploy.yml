@@ -21,15 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start server and build static files
+      - name: Build static site
         run: |
-          node server.js &
-          sleep 8
-          curl -f http://localhost:3000 > /dev/null || (echo "Server failed to start" && exit 1)
-          mkdir -p dist
-          wget --mirror --convert-links --adjust-extension --no-host-directories --page-requisites -P dist http://localhost:3000
+          npm run build
           test -f dist/index.html || (echo "index.html not found in dist!" && exit 1)
-          kill %1
+          test -f dist/sitemap.xml || (echo "sitemap.xml not found in dist!" && exit 1)
+          test -f dist/.htaccess || (echo ".htaccess not found in dist!" && exit 1)
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

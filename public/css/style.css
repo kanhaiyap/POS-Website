@@ -5208,3 +5208,236 @@ html, body { overflow-x: hidden; max-width: 100%; }
         flex: none;
     }
 }
+
+/* =============================================
+   SEO LANDING PAGES (landing.ejs, solutions.ejs)
+   ============================================= */
+
+.lp-breadcrumb {
+    font-size: 0.85rem;
+    color: #9aa4b2;
+    margin-bottom: 1.25rem;
+}
+
+.lp-breadcrumb a {
+    color: #5f6c7b;
+    text-decoration: none;
+}
+
+.lp-breadcrumb a:hover {
+    color: #f869c6;
+}
+
+.lp-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.lp-btn-ghost {
+    display: inline-block;
+    border: 1.5px solid #ff80d8;
+    color: #1c1c1c;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.7rem 2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.lp-btn-ghost:hover {
+    background: #fff0fa;
+}
+
+.lp-subheading {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    color: #1c1c1c;
+    margin: 3rem 0 1.25rem;
+}
+
+.lp-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lp-chips li {
+    background: #f6f8fb;
+    color: #5f6c7b;
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    font-size: 0.9rem;
+}
+
+.lp-pricing {
+    background: #f6f8fb;
+    padding: 1rem 1.5rem 4rem;
+    text-align: center;
+}
+
+.lp-pricing-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.lp-price-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.lp-price {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.lp-price-amt {
+    font-family: 'Roboto Serif', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff8a00;
+}
+
+.lp-price-name {
+    font-size: 0.9rem;
+    color: #5f6c7b;
+}
+
+.lp-link {
+    color: #4b33ff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.lp-related {
+    background: #fff;
+    padding: 2rem 1.5rem 3rem;
+}
+
+.lp-related-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.lp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lp-related-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    color: #1c1c1c;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.lp-related-card:hover {
+    border-color: #ff80d8;
+    color: #e26767;
+}
+
+@media (max-width: 640px) {
+    .lp-price-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+h1.blogpost-featured-text { margin: 0; }
+
+.blogpost-inner p a, .blogpost-inner li a {
+    color: #4b33ff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Landing pages use h2 for feature titles; override the global `section h2` centering */
+.rpos-feature h2.rpos-feature-title,
+.bm-features .lp-subheading,
+.lp-related .lp-subheading {
+    text-align: left;
+    font-size: inherit;
+}
+
+.rpos-feature h2.rpos-feature-title { font-size: 1.1rem; }
+.bm-features .lp-subheading,
+.lp-related .lp-subheading { font-size: clamp(1.4rem, 2.5vw, 1.8rem); }
+
+.price-free-banner {
+    margin: 2rem auto 0;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+    padding: 1.1rem 1.5rem;
+    border: 1.5px dashed #ff80d8;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.price-free-banner p {
+    margin: 0;
+    color: #5f6c7b;
+}
+
+.price-free-banner strong {
+    color: #1c1c1c;
+}
+
+.lp-price--free {
+    border: 1.5px solid #ff80d8;
+}
+
+.lp-price--free .lp-price-amt {
+    color: #e26767;
+}
+
+@media (max-width: 900px) and (min-width: 641px) {
+    .lp-price-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.lp-local-note {
+    margin: 1.5rem 0 0;
+    font-size: 0.9rem;
+    color: #9aa4b2;
+}
+
+.lp-local-note a {
+    color: #5f6c7b;
+}
+
+/* Pricing page: 4 plans (incl. free QR ordering) fit on one row on desktop */
+#plans .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.25rem;
+}
+
+#plans .product-card .price {
+    font-size: clamp(1.4rem, 2vw, 1.75rem);
+    line-height: 1.3;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { seo }) %>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="bm-hero">
+      <div class="bm-hero-inner">
+        <nav class="lp-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true">/</span>
+          <a href="/solutions">Solutions</a> <span aria-hidden="true">/</span>
+          <span><%= page.navLabel %></span>
+        </nav>
+        <h1 class="bm-hero-title"><%= page.h1 %></h1>
+        <p class="bm-hero-subtitle"><%= page.intro %></p>
+        <div class="lp-hero-actions">
+          <a href="/contact" class="bm-btn-primary">Book a Free Demo</a>
+          <a href="/pricing" class="lp-btn-ghost">See Pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="bm-features">
+      <div class="bm-features-inner">
+        <div class="bm-badge"><%= page.badge %></div>
+        <div class="rpos-feature-list">
+          <% page.sections.forEach(function(s) { %>
+          <div class="rpos-feature">
+            <h2 class="rpos-feature-title"><%= s.h2 %></h2>
+            <p class="rpos-feature-desc"><%= s.p %></p>
+          </div>
+          <% }); %>
+        </div>
+
+        <% if (page.areas && page.areas.length) { %>
+        <h2 class="lp-subheading"><%= page.areasHeading || 'Areas we serve' %></h2>
+        <ul class="lp-chips">
+          <% page.areas.forEach(function(a) { %><li><%= a %></li><% }); %>
+        </ul>
+        <% } %>
+
+        <% if (page.useCases && page.useCases.length) { %>
+        <h2 class="lp-subheading">Who uses it</h2>
+        <ul class="lp-chips">
+          <% page.useCases.forEach(function(u) { %><li><%= u %></li><% }); %>
+        </ul>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- ===== PRICING STRIP ===== -->
+    <section class="lp-pricing">
+      <div class="lp-pricing-inner">
+        <h2 class="lp-subheading">Simple pricing, no hidden charges</h2>
+        <div class="lp-price-row">
+          <div class="lp-price lp-price--free"><span class="lp-price-amt">₹0</span><span class="lp-price-name">QR Ordering — free forever</span></div>
+          <div class="lp-price"><span class="lp-price-amt">₹250</span><span class="lp-price-name">Simple Billing</span></div>
+          <div class="lp-price"><span class="lp-price-amt">₹500</span><span class="lp-price-name">Analytics + QR Ordering</span></div>
+          <div class="lp-price"><span class="lp-price-amt">₹5,000</span><span class="lp-price-name">Voice-enabled Ordering</span></div>
+        </div>
+        <a href="/pricing" class="lp-link">Compare plans →</a>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="bm-faq">
+      <div class="bm-faq-inner">
+        <p class="bm-faq-eyebrow">FAQ</p>
+        <h2 class="bm-faq-title">Questions about <span class="bm-faq-muted"><%= page.navLabel %></span></h2>
+        <div class="bm-faq-list">
+          <% page.faqs.forEach(function(f) { %>
+          <details class="bm-faq-item">
+            <summary class="bm-faq-question">
+              <%= f.q %>
+              <span class="bm-faq-icon"></span>
+            </summary>
+            <p class="bm-faq-answer"><%= f.a %></p>
+          </details>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RELATED ===== -->
+    <% if (related.length) { %>
+    <section class="lp-related">
+      <div class="lp-related-inner">
+        <h2 class="lp-subheading">Related solutions</h2>
+        <ul class="lp-related-grid">
+          <% related.forEach(function(r) { %>
+          <li><a href="/<%= r.slug %>" class="lp-related-card"><%= r.navLabel %> <span aria-hidden="true">→</span></a></li>
+          <% }); %>
+        </ul>
+      </div>
+    </section>
+    <% } %>
+
+    <!-- ===== CTA ===== -->
+    <section class="rpos-cta">
+      <div class="rpos-cta-inner">
+        <h2 class="rpos-cta-title">Try Bhojan Mitra free</h2>
+        <p class="rpos-cta-sub">Book a demo and we'll set up your menu or item list, walk your team through billing, and show you the reports you'll use every day.</p>
+        <a href="/contact" class="bm-btn-primary">Book a Free Demo</a>
+        <p class="lp-local-note">Based in Dehradun — on-site setup across <a href="/billing-software-dehradun">Dehradun</a> and <a href="/pos-software-uttarakhand">Uttarakhand</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

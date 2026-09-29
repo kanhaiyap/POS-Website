@@ -98,6 +98,7 @@
                   <div class="select-wrap">
                     <select id="plan" name="plan" required>
                       <option value="">Select plan</option>
+                      <option value="free" <%= form && form.plan === 'free' ? 'selected' : '' %>>Free QR Ordering — ₹0 forever</option>
                       <option value="250" <%= form && form.plan === '250' ? 'selected' : '' %>>Simple Billing — ₹250 / month</option>
                       <option value="500" <%= form && form.plan === '500' ? 'selected' : '' %>>Analytics + QR — ₹500 / month</option>
                       <option value="5000" <%= form && form.plan === '5000' ? 'selected' : '' %>>Voice-enabled Ordering — ₹5,000</option>

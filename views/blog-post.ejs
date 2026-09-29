@@ -13,13 +13,13 @@
 
         <!-- Meta -->
         <div class="blogpost-meta">
-          <span class="blog-tag">Editorial</span>
+          <span class="blog-tag"><%= post.tag %></span>
           <span class="blogpost-date"><%= post.date %></span>
         </div>
 
         <!-- Featured card -->
         <div class="blogpost-featured-card blog-card-img--<%= post.color %>">
-          <div class="blogpost-featured-text"><%= post.title %></div>
+          <h1 class="blogpost-featured-text"><%= post.title %></h1>
         </div>
 
         <!-- Content -->
@@ -39,7 +39,7 @@
               <div class="blog-card-img-text"><%= r.title %></div>
             </div>
             <div class="blog-card-body">
-              <span class="blog-tag">Editorial</span>
+              <span class="blog-tag"><%= r.tag %></span>
               <h3 class="blog-card-title"><%= r.title %></h3>
               <span class="blog-card-date"><%= r.date %></span>
             </div>

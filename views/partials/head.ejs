@@ -46,8 +46,10 @@
 <meta name="twitter:site" content="@BhojanMitra">
 
 <!-- Additional SEO -->
-<meta name="geo.region" content="IN">
-<meta name="geo.placename" content="India">
+<meta name="geo.region" content="IN-UT">
+<meta name="geo.placename" content="Dehradun, Uttarakhand, India">
+<meta name="geo.position" content="30.3165;78.0322">
+<meta name="ICBM" content="30.3165, 78.0322">
 <meta name="language" content="en-IN">
 <meta name="rating" content="General">
 <meta name="distribution" content="global">
@@ -75,5 +77,5 @@
 <% }); %>
 
 <% structuredData.forEach((schema) => { %>
-  <script type="application/ld+json"><%= JSON.stringify(schema) %></script>
+  <script type="application/ld+json"><%- JSON.stringify(schema).replace(/</g, "\\u003c") %></script>
 <% }); %>

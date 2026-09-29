@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { seo }) %>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main>
+
+    <section class="bm-hero">
+      <div class="bm-hero-inner">
+        <h1 class="bm-hero-title">Billing &amp; POS Software for Every Business</h1>
+        <p class="bm-hero-subtitle">Bhojan Mitra is GST billing, inventory and restaurant POS software for Indian businesses — from kirana stores and pharmacies to cafés, QSRs and cloud kitchens.</p>
+        <a href="/contact" class="bm-btn-primary">Book a Free Demo</a>
+      </div>
+    </section>
+
+    <section class="lp-related">
+      <div class="lp-related-inner">
+        <% groups.forEach(function(g) { %>
+        <h2 class="lp-subheading"><%= g.label %></h2>
+        <ul class="lp-related-grid">
+          <% g.pages.forEach(function(p) { %>
+          <li><a href="/<%= p.slug %>" class="lp-related-card"><%= p.navLabel %> <span aria-hidden="true">→</span></a></li>
+          <% }); %>
+          <% (g.extra || []).forEach(function(p) { %>
+          <li><a href="<%= p.href %>" class="lp-related-card"><%= p.label %> <span aria-hidden="true">→</span></a></li>
+          <% }); %>
+        </ul>
+        <% }); %>
+      </div>
+    </section>
+
+    <section class="rpos-cta">
+      <div class="rpos-cta-inner">
+        <h2 class="rpos-cta-title">Not sure which fits?</h2>
+        <p class="rpos-cta-sub">Tell us about your business and we'll recommend the right setup and plan.</p>
+        <a href="/contact" class="bm-btn-primary">Talk to us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

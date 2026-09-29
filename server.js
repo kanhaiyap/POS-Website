@@ -5,11 +5,13 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const landingPages = require('./content/landing-pages');
+const blogPosts = require('./content/blog-posts');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SITE_URL = 'https://aarohitavigyan.com';
 const DEFAULT_DESCRIPTION = 'Bhojan Mitra is a voice-led POS suite that blends AI ordering, multilingual support, analytics, and IoT routing for restaurants.';
-const DEFAULT_KEYWORDS = 'restaurant POS, POS system, voice POS, AI POS, Bhojan Mitra, POS machine India';
+const DEFAULT_KEYWORDS = 'GST billing software, restaurant POS software, billing software for small business, inventory management software, restaurant billing software, Bhojan Mitra';
 
 // Email configuration
 const transporter = nodemailer.createTransport({
@@ -76,11 +78,21 @@ const organizationSchema = {
   }],
   "address": {
     "@type": "PostalAddress",
+    "addressLocality": "Dehradun",
+    "addressRegion": "Uttarakhand",
     "addressCountry": "IN"
   },
+  "areaServed": [
+    { "@type": "City", "name": "Dehradun" },
+    { "@type": "State", "name": "Uttarakhand" },
+    { "@type": "Country", "name": "India" }
+  ],
   "contactPoint": [{
     "@type": "ContactPoint",
     "contactType": "Sales",
+    "telephone": "+91-9731615178",
+    "areaServed": "IN",
+    "availableLanguage": ["en", "hi"],
     "url": `${SITE_URL}/contact`
   }, {
     "@type": "ContactPoint",
@@ -207,6 +219,7 @@ app.get('/', (req, res) => {
     "offers": {
       "@type": "AggregateOffer",
       "offers": [
+        { "@type": "Offer", "name": "Free QR Ordering", "price": "0", "priceCurrency": "INR" },
         { "@type": "Offer", "name": "Simple Billing", "price": "250", "priceCurrency": "INR" },
         { "@type": "Offer", "name": "Analytics + QR Ordering", "price": "500", "priceCurrency": "INR" },
         { "@type": "Offer", "name": "Voice-enabled Ordering", "price": "5000", "priceCurrency": "INR" }
@@ -286,9 +299,9 @@ app.get('/', (req, res) => {
   };
 
   const seo = enrichSeo({
-    title: 'Bhojan Mitra — AI + IoT Voice-enabled POS for Restaurants',
-    description: 'Bhojan Mitra is an AI + IoT voice-enabled POS system built for restaurants. Multilingual voice ordering, AI recommendations, analytics and simple pricing with no hidden charges. Plans: ₹250 (simple billing), ₹500 (analytics + QR ordering), ₹5,000 (voice-enabled ordering).',
-    keywords: 'Bhojan Mitra, AI POS, voice ordering, multilingual POS, restaurant POS, AI POS software, IoT POS',
+    title: 'Restaurant POS & GST Billing Software | Bhojan Mitra',
+    description: 'GST billing software and restaurant POS from Dehradun, Uttarakhand. KOT, inventory, analytics and AI voice ordering, plus QR ordering free forever. Billing from ₹250/month.',
+    keywords: 'restaurant POS software, GST billing software, billing software for small business, restaurant billing software, inventory management software, POS software, Bhojan Mitra',
     canonicalUrl: `${SITE_URL}/`,
     structuredData: [productStructuredData, faqStructuredData]
   });
@@ -354,9 +367,11 @@ app.get('/pos-software', (req, res) => {
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
     "offers": {
-      "@type": "Offer",
-      "price": "250",
-      "priceCurrency": "INR"
+      "@type": "AggregateOffer",
+      "lowPrice": "0",
+      "highPrice": "5000",
+      "priceCurrency": "INR",
+      "offerCount": 4
     }
   };
 
@@ -392,9 +407,9 @@ app.get('/pos-software', (req, res) => {
   };
 
   const seo = enrichSeo({
-    title: 'Bhojan Mitra — AI POS Software for Restaurants',
-    description: 'Bhojan Mitra software provides voice-first ordering, AI recommendations, and IoT routing for restaurants. Designed to reduce order times and increase revenue.',
-    keywords: 'Bhojan Mitra, AI POS software, voice ordering POS, restaurant POS software',
+    title: 'POS Software for Restaurants & Retail | Bhojan Mitra',
+    description: 'Bhojan Mitra POS software unifies GST billing, kitchen workflows, inventory tracking and analytics, with voice-first ordering and offline mode. From ₹250/month.',
+    keywords: 'POS software, billing software, restaurant POS software, retail POS software, AI POS software, voice ordering POS',
     canonicalUrl: `${SITE_URL}/pos-software`,
     structuredData: [softwareSchema, faqSchema, buildBreadcrumbs([
       { name: 'Home', url: `${SITE_URL}/` },
@@ -439,9 +454,9 @@ app.get('/voice-ordering', (req, res) => {
 
 app.get('/restaurant-pos', (req, res) => {
   const seo = enrichSeo({
-    title: 'Restaurant POS System - Food Service Point of Sale',
-    description: 'Specialized restaurant POS systems with kitchen display, order management, and table service features. Perfect for cafes, restaurants, and food trucks.',
-    keywords: 'restaurant POS, food service POS, kitchen display system, restaurant point of sale',
+    title: 'Restaurant POS Software & System in India | Bhojan Mitra',
+    description: 'Restaurant POS software with GST billing, KOT, kitchen display, table management, inventory and AI voice ordering. For restaurants, cafés, QSRs and cloud kitchens.',
+    keywords: 'restaurant POS software, restaurant POS system, restaurant point of sale, kitchen display system, restaurant POS India',
     canonicalUrl: `${SITE_URL}/restaurant-pos`,
     structuredData: [
       {
@@ -462,8 +477,8 @@ app.get('/restaurant-pos', (req, res) => {
 
 app.get('/pricing', (req, res) => {
   const seo = enrichSeo({
-    title: 'Pricing - Bhojan Mitra AI POS Subscription & Device Options',
-    description: 'Pricing for Bhojan Mitra: ₹250/month subscription (no hidden charges). Analytics ₹500 per restaurant. One-time device or enterprise subscription options at ₹5,000.',
+    title: 'Billing & POS Software Pricing – Free Plan Available | Bhojan Mitra',
+    description: 'Bhojan Mitra pricing: QR ordering free forever, Simple Billing ₹250/month, Analytics + QR ₹500/month and Voice-enabled Ordering ₹5,000. No hidden charges.',
     keywords: 'Bhojan Mitra pricing, AI POS pricing, voice POS cost, Bhojan Mitra subscription',
     canonicalUrl: `${SITE_URL}/pricing`,
     structuredData: [
@@ -472,6 +487,7 @@ app.get('/pricing', (req, res) => {
         "@type": "OfferCatalog",
         "name": "Bhojan Mitra Pricing",
         "itemListElement": [
+          { "@type": "Offer", "name": "Free QR Ordering", "price": "0", "priceCurrency": "INR" },
           { "@type": "Offer", "name": "Simple Billing Plan", "price": "250", "priceCurrency": "INR" },
           { "@type": "Offer", "name": "Analytics + QR Ordering", "price": "500", "priceCurrency": "INR" },
           { "@type": "Offer", "name": "Voice-enabled Ordering", "price": "5000", "priceCurrency": "INR" }
@@ -565,105 +581,182 @@ app.get('/training', (req, res) => {
 });
 
 // ---- Blog ----
-const blogPosts = {
-  'market-is-changing': {
-    slug: 'market-is-changing', color: 'pink', date: 'Oct 16, 2025',
-    title: 'The Market Is Changing – Why Indian Restaurants Must Go Digital Now',
-    content: `
-      <h2>Leveraging Social Media for Marketing</h2>
-      <p>Harnessing the power of platforms like Instagram and Facebook allows restaurants to engage with customers visually and meaningfully. By sharing mouth-watering images of dishes and behind-the-scenes content, restaurants can build a loyal following, increase brand awareness, and attract new patrons. Regular posts and interactions keep customers engaged, creating a community around the restaurant and fostering relationships with dining enthusiasts.</p>
-      <h2>Creating Unique Themed Events</h2>
-      <p>Hosting events that celebrate different cultures and cuisines offers customers memorable experiences. Restaurants such as "Curry Festival" offer cultural nights featuring live traditional music, traditional dance, and complementary tasting menus. These events not only attract new customers but also boost foot traffic on typically quiet nights.</p>
-      <h2>Enhancing Customer Service Training</h2>
-      <p>Investing in comprehensive service training isn't just operationally optional for dining experiences. Restaurants like "Table &amp; Chair" use AI to handle customer concerns, ensuring that every interaction is personalized and attentive. This approach has not only improved customer satisfaction but also set a new standard in the hospitality industry.</p>
-      <h2>Adopting Sustainability Practices</h2>
-      <p>Integrating sustainable practices into restaurant operations has resonated with environmentally-conscious consumers. Restaurants focus on eco-friendly packaging, locally sourced ingredients, and plant-based options. Reducing food waste has also played a key role in enhancing sustainability.</p>
-      <h2>Utilizing Loyalty Programs</h2>
-      <p>Developing a comprehensive rewards system accurately optional for dining experiences. Restaurants use the "Table &amp; Chair" rewards tools to identify customer preferences, monitoring dining data, suggesting menu adjustments, and providing valuable insights. This continuous feedback loop supports exceptional dining and improvement model.</p>
-    `
-  },
-  'pos-system-india': {
-    slug: 'pos-system-india', color: 'blue', date: 'Oct 16, 2025',
-    title: 'POS System for Restaurants in India – Go Paperless, Go Smart',
-    content: `
-      <h2>Utilizing AI-Driven Predictive Analytics</h2>
-      <p>Integrating advanced data analysis and traffic analysis enables restaurants to predict customer preferences and optimize operations. These analytics help restaurants maximize seating capacity while ensuring personalized service. By predicting peak hours and customer preferences, restaurants can efficiently allocate resources and improve overall customer experience.</p>
-      <h2>Streamlining Operations with Automation</h2>
-      <p>Implementing cutting-edge technology into restaurant operations can significantly improve quality and efficiency. These systems minimize human error and ensure quality-consistent service, freeing up staff to focus on high-value interactions with customers.</p>
-      <h2>Incorporating Feedback Loops for Continuous Improvement</h2>
-      <p>Regularly surveys customer reviews to systematically addressed and service inefficiencies. This creates a continuous feedback loop by regularly communicating changes and improvements made based on customer feedback.</p>
-      <h2>Creating Engaging Loyalty Programs</h2>
-      <p>Consistent understanding is about loyalty programs like "Bhojan Club" or "Berry Club" to offer incredible customer experiences. These programs encourage repeat visits by rewarding loyal customers with exciting discounts and other perks, increasing customer retention and lifetime value for the restaurants.</p>
-      <h2>Enhancing Atmosphere with Innovative Design</h2>
-      <p>Strategic interior updates can dramatically influence diner mood and satisfaction. Thoughtful design choices including lighting, creating a multi-sensory atmosphere for customers. The concept "Desert Space" serves as a prime example of how a complete redesign resulted in a significant positive impact on customer feedback and retention rate.</p>
-      <h2>Leveraging Social Media for Community Engagement</h2>
-      <p>An active engagement on social media platforms allows businesses to connect with their audience, promoting events and specials while building a loyal online community that drives foot traffic.</p>
-    `
-  },
-  'ai-web-app': {
-    slug: 'ai-web-app', color: 'purple', date: 'Oct 16, 2025',
-    title: 'AI Web App Development in India – Build Smarter Digital Solutions',
-    content: `
-      <h2>Why Invest in a Custom POS System?</h2>
-      <p>In Bhilai's competitive culinary scene, a robust online presence and efficient operations are essential. Whether you're managing a cosy café or a bustling restaurant, leveraging the latest technology can set you apart. At Bhojan Mitra, we specialize in creating bespoke POS solutions using cutting-edge technologies like React, Django, and Tailwind CSS, ensuring a seamless and professional experience.</p>
-      <h2>Key Benefits of a Custom POS System</h2>
-      <ul>
-        <li>Custom systems ensure faster loading times, boosting your search engine visibility.</li>
-        <li>Full Mobile Optimization</li>
-        <li>AI-Ready Features</li>
-        <li>Comprehensive Support</li>
-      </ul>
-      <h2>Advanced Web App Development with AI</h2>
-      <p>These advanced solutions help you:
-        <br>• Manage Leads Effectively
-        <br>• Automate Routine Tasks
-        <br>• Make Data-Driven Decisions
-      </p>
-      <h2>Why Bhilai Businesses Choose Bhojan Mitra</h2>
-      <p>Expert Developers: Our team comprises experienced React and Django developers. Affordable Solutions: We offer competitive pricing tailored for startups and SMEs. Complimentary SEO Audit: Receive a free SEO audit with every project. Ongoing Support: Enjoy lifetime support and seamless cloud deployment.</p>
-    `
-  },
-  'website-development-bhilai': {
-    slug: 'website-development-bhilai', color: 'green', date: 'Oct 01, 2025',
-    title: 'Website Development in Bhilai – Build Your Own Website Today',
-    content: `
-      <h2>Revolutionizing Restaurant Management in Bhilai with AI-Powered POS Systems</h2>
-      <p>In Bhilai's competitive culinary scene, a robust online presence and efficient operations are essential. Whether you're managing a cosy café or a bustling restaurant, leveraging the latest technology can set you apart. At Bhojan Mitra, we specialize in creating bespoke POS solutions using cutting-edge technologies like React, Django, and Tailwind CSS, ensuring a seamless and professional experience.</p>
-      <h2>Why Invest in a Custom POS System?</h2>
-      <p>A custom Point of Sale (POS) system offers unparalleled speed, security, and SEO benefits. At Bhojan Mitra, we specialize in creating bespoke POS solutions using cutting-edge technologies like React, Django, and Tailwind CSS, ensuring a seamless and professional experience.</p>
-      <h2>Key Benefits of a Custom POS System</h2>
-      <ul>
-        <li>Custom systems ensure faster loading times, boosting your search engine visibility.</li>
-        <li>Full Mobile Optimization</li>
-        <li>AI-Ready Features: predictive analytics, and more to enhance customer engagement and streamline operations.</li>
-        <li>Comprehensive Support: Reliable hosting and end-to-end maintenance.</li>
-      </ul>
-      <h2>Why Bhilai Businesses Choose Bhojan Mitra</h2>
-      <p>Expert Developers: Our team comprises experienced React and Django developers. Affordable Solutions: We offer competitive pricing tailored for startups and SMEs. Complimentary SEO Audit: Receive a free SEO audit with every project. Ongoing Support: Enjoy lifetime support and seamless cloud deployment.</p>
-    `
-  }
-};
+const blogIsoDate = (post) => post.isoDate || new Date(post.date).toISOString().slice(0, 10);
 
 app.get('/blog', (req, res) => {
+  const posts = Object.values(blogPosts);
   const seo = enrichSeo({
-    title: 'Blog – Insights & Tips from Bhojan Mitra',
-    description: 'Insights, tips, and updates from the Bhojan Mitra team on restaurant tech, AI POS, and digital transformation.',
-    keywords: 'restaurant blog, POS tips, AI restaurant, Bhojan Mitra blog',
-    canonicalUrl: `${SITE_URL}/blog`
+    title: 'Blog – Billing, GST & Restaurant POS Guides | Bhojan Mitra',
+    description: 'Guides on GST billing software, restaurant POS, KOT, inventory and running a smarter shop or restaurant in India, from the Bhojan Mitra team.',
+    keywords: 'GST billing guide, restaurant POS blog, KOT meaning, billing software tips, Bhojan Mitra blog',
+    canonicalUrl: `${SITE_URL}/blog`,
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Bhojan Mitra Blog",
+        "url": `${SITE_URL}/blog`,
+        "blogPost": posts.map(p => ({
+          "@type": "BlogPosting",
+          "headline": p.title,
+          "url": `${SITE_URL}/blog/${p.slug}`,
+          "datePublished": blogIsoDate(p)
+        }))
+      },
+      buildBreadcrumbs([
+        { name: 'Home', url: `${SITE_URL}/` },
+        { name: 'Blog', url: `${SITE_URL}/blog` }
+      ])
+    ]
   });
-  res.render('blog', { seo });
+  res.render('blog', { seo, posts });
 });
 
 app.get('/blog/:slug', (req, res) => {
   const post = blogPosts[req.params.slug];
   if (!post) return res.status(404).send('Post not found');
   const related = Object.values(blogPosts).filter(p => p.slug !== post.slug).slice(0, 3);
+  const url = `${SITE_URL}/blog/${post.slug}`;
   const seo = enrichSeo({
-    title: post.title + ' | Bhojan Mitra Blog',
-    description: post.title,
-    canonicalUrl: `${SITE_URL}/blog/${post.slug}`
+    title: post.title.length > 55 ? post.title : `${post.title} | Bhojan Mitra`,
+    description: post.description,
+    keywords: post.keywords,
+    canonicalUrl: url,
+    ogType: 'article',
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.description,
+        "datePublished": blogIsoDate(post),
+        "dateModified": blogIsoDate(post),
+        "mainEntityOfPage": url,
+        "image": DEFAULT_OG_IMAGE,
+        "author": { "@type": "Organization", "name": "Aarohita Vigyan", "url": SITE_URL },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Aarohita Vigyan",
+          "logo": { "@type": "ImageObject", "url": DEFAULT_OG_IMAGE }
+        }
+      },
+      buildBreadcrumbs([
+        { name: 'Home', url: `${SITE_URL}/` },
+        { name: 'Blog', url: `${SITE_URL}/blog` },
+        { name: post.title, url }
+      ])
+    ]
   });
   res.render('blog-post', { seo, post, related });
+});
+
+// ---- Solutions hub + keyword landing pages ----
+// Service-area business: no street address, only the areas we cover.
+const localBusinessSchema = (page, url) => ({
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${url}#business`,
+  "name": "Bhojan Mitra by Aarohita Vigyan",
+  "description": page.description,
+  "url": url,
+  "image": DEFAULT_OG_IMAGE,
+  "logo": DEFAULT_OG_IMAGE,
+  "telephone": "+91-9731615178",
+  "priceRange": "₹0 – ₹5,000",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Dehradun",
+    "addressRegion": "Uttarakhand",
+    "addressCountry": "IN"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 30.3165, "longitude": 78.0322 },
+  "areaServed": page.local.areaServed.map(name => ({ "@type": name === 'Uttarakhand' ? "State" : "City", "name": name })),
+  "parentOrganization": { "@type": "Organization", "name": "Aarohita Vigyan", "url": SITE_URL }
+});
+
+const landingBySlug = Object.fromEntries(landingPages.map(p => [p.slug, p]));
+const SOLUTION_GROUPS = [
+  { key: 'billing', label: 'Billing & GST Software' },
+  { key: 'business', label: 'Billing Software by Business Type' },
+  { key: 'restaurant', label: 'Restaurant POS & Management', extra: [{ href: '/restaurant-pos', label: 'Restaurant POS System' }] },
+  { key: 'local', label: 'Dehradun & Uttarakhand' },
+  { key: 'compare', label: 'Compare' }
+];
+
+app.get('/solutions', (req, res) => {
+  const groups = SOLUTION_GROUPS.map(g => ({ ...g, pages: landingPages.filter(p => p.group === g.key) }));
+  const seo = enrichSeo({
+    title: 'Billing, GST & Restaurant POS Software Solutions | Bhojan Mitra',
+    description: 'Explore Bhojan Mitra solutions: GST billing software, inventory management, retail billing for kirana, pharmacy and garment shops, and restaurant POS with KOT.',
+    keywords: 'billing software, POS software, GST billing software, retail billing software, restaurant POS software, inventory management software',
+    canonicalUrl: `${SITE_URL}/solutions`,
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Bhojan Mitra Solutions",
+        "itemListElement": landingPages.map((p, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": p.navLabel,
+          "url": `${SITE_URL}/${p.slug}`
+        }))
+      },
+      buildBreadcrumbs([
+        { name: 'Home', url: `${SITE_URL}/` },
+        { name: 'Solutions', url: `${SITE_URL}/solutions` }
+      ])
+    ]
+  });
+  res.render('solutions', { seo, groups });
+});
+
+landingPages.forEach((page) => {
+  app.get(`/${page.slug}`, (req, res) => {
+    const url = `${SITE_URL}/${page.slug}`;
+    const related = (page.related || []).map(s => landingBySlug[s]).filter(Boolean);
+    const seo = enrichSeo({
+      title: page.title,
+      description: page.description,
+      keywords: page.keywords,
+      canonicalUrl: url,
+      structuredData: [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": `Bhojan Mitra — ${page.navLabel}`,
+          "description": page.description,
+          "url": url,
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web, Windows, Android",
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "INR",
+            "lowPrice": "0",
+            "highPrice": "5000",
+            "offerCount": 4
+          },
+          "publisher": { "@type": "Organization", "name": "Aarohita Vigyan", "url": SITE_URL }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": page.faqs.map(f => ({
+            "@type": "Question",
+            "name": f.q,
+            "acceptedAnswer": { "@type": "Answer", "text": f.a }
+          }))
+        },
+        buildBreadcrumbs([
+          { name: 'Home', url: `${SITE_URL}/` },
+          { name: 'Solutions', url: `${SITE_URL}/solutions` },
+          { name: page.navLabel, url }
+        ]),
+        ...(page.local ? [localBusinessSchema(page, url)] : [])
+      ]
+    });
+    res.render('landing', { seo, page, related });
+  });
 });
 
 app.get('/support', (req, res) => {
@@ -723,7 +816,8 @@ app.get('/contact', (req, res) => {
   });
 
   const showSuccess = req.query && req.query.sent === '1';
-  res.render('contact', { seo, errors: null, form: {}, showSuccess });
+  const presetPlan = ['free', '250', '500', '5000'].includes(req.query.plan) ? req.query.plan : undefined;
+  res.render('contact', { seo, errors: null, form: { plan: presetPlan }, showSuccess });
 });
 
 // Contact form (POST) - simple validation and store
@@ -734,7 +828,7 @@ app.post('/contact', (req, res) => {
   if (!name || name.trim().length < 2) errors.push('Name is required');
   if (!email || !/^\S+@\S+\.\S+$/.test(email)) errors.push('Valid email is required');
   if (!restaurant || restaurant.trim().length < 2) errors.push('Restaurant name is required');
-  const allowedPlans = ['250', '500', '5000'];
+  const allowedPlans = ['free', '250', '500', '5000'];
   if (!plan || !allowedPlans.includes(plan)) errors.push('Please select a valid plan');
 
   if (errors.length) {
@@ -789,7 +883,7 @@ app.post('/api/contact', (req, res) => {
   if (!name || name.trim().length < 2) errors.push('Name is required');
   if (!email || !/^\S+@\S+\.\S+$/.test(email)) errors.push('Valid email is required');
   if (!restaurant || restaurant.trim().length < 2) errors.push('Restaurant name is required');
-  const allowedPlans = ['250', '500', '5000'];
+  const allowedPlans = ['free', '250', '500', '5000'];
   if (!plan || !allowedPlans.includes(plan)) errors.push('Please select a valid plan');
 
   if (errors.length) {
@@ -872,7 +966,13 @@ app.get('/sitemap.xml', (req, res) => {
     { url: '/about', changefreq: 'monthly', priority: 0.6 },
     { url: '/training', changefreq: 'monthly', priority: 0.6 },
     { url: '/support', changefreq: 'monthly', priority: 0.6 },
-    { url: '/contact', changefreq: 'monthly', priority: 0.7 }
+    { url: '/contact', changefreq: 'monthly', priority: 0.7 },
+    { url: '/multilingual', changefreq: 'monthly', priority: 0.6 },
+    { url: '/voice-ordering', changefreq: 'monthly', priority: 0.7 },
+    { url: '/solutions', changefreq: 'weekly', priority: 0.9 },
+    ...landingPages.map(p => ({ url: `/${p.slug}`, changefreq: 'weekly', priority: 0.9 })),
+    { url: '/blog', changefreq: 'weekly', priority: 0.7 },
+    ...Object.values(blogPosts).map(p => ({ url: `/blog/${p.slug}`, changefreq: 'monthly', priority: 0.6 }))
   ];
 
   res.type('application/xml');
