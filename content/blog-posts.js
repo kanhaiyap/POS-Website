@@ -34,48 +34,6 @@ const LEGACY_POSTS = {
       <h2>Leveraging Social Media for Community Engagement</h2>
       <p>An active engagement on social media platforms allows businesses to connect with their audience, promoting events and specials while building a loyal online community that drives foot traffic.</p>
     `
-  },
-  'ai-web-app': {
-    slug: 'ai-web-app', color: 'purple', date: 'Oct 16, 2025',
-    title: 'AI Web App Development in India – Build Smarter Digital Solutions',
-    content: `
-      <h2>Why Invest in a Custom POS System?</h2>
-      <p>In Bhilai's competitive culinary scene, a robust online presence and efficient operations are essential. Whether you're managing a cosy café or a bustling restaurant, leveraging the latest technology can set you apart. At Bhojan Mitra, we specialize in creating bespoke POS solutions using cutting-edge technologies like React, Django, and Tailwind CSS, ensuring a seamless and professional experience.</p>
-      <h2>Key Benefits of a Custom POS System</h2>
-      <ul>
-        <li>Custom systems ensure faster loading times, boosting your search engine visibility.</li>
-        <li>Full Mobile Optimization</li>
-        <li>AI-Ready Features</li>
-        <li>Comprehensive Support</li>
-      </ul>
-      <h2>Advanced Web App Development with AI</h2>
-      <p>These advanced solutions help you:
-        <br>• Manage Leads Effectively
-        <br>• Automate Routine Tasks
-        <br>• Make Data-Driven Decisions
-      </p>
-      <h2>Why Bhilai Businesses Choose Bhojan Mitra</h2>
-      <p>Expert Developers: Our team comprises experienced React and Django developers. Affordable Solutions: We offer competitive pricing tailored for startups and SMEs. Complimentary SEO Audit: Receive a free SEO audit with every project. Ongoing Support: Enjoy lifetime support and seamless cloud deployment.</p>
-    `
-  },
-  'website-development-bhilai': {
-    slug: 'website-development-bhilai', color: 'green', date: 'Oct 01, 2025',
-    title: 'Website Development in Bhilai – Build Your Own Website Today',
-    content: `
-      <h2>Revolutionizing Restaurant Management in Bhilai with AI-Powered POS Systems</h2>
-      <p>In Bhilai's competitive culinary scene, a robust online presence and efficient operations are essential. Whether you're managing a cosy café or a bustling restaurant, leveraging the latest technology can set you apart. At Bhojan Mitra, we specialize in creating bespoke POS solutions using cutting-edge technologies like React, Django, and Tailwind CSS, ensuring a seamless and professional experience.</p>
-      <h2>Why Invest in a Custom POS System?</h2>
-      <p>A custom Point of Sale (POS) system offers unparalleled speed, security, and SEO benefits. At Bhojan Mitra, we specialize in creating bespoke POS solutions using cutting-edge technologies like React, Django, and Tailwind CSS, ensuring a seamless and professional experience.</p>
-      <h2>Key Benefits of a Custom POS System</h2>
-      <ul>
-        <li>Custom systems ensure faster loading times, boosting your search engine visibility.</li>
-        <li>Full Mobile Optimization</li>
-        <li>AI-Ready Features: predictive analytics, and more to enhance customer engagement and streamline operations.</li>
-        <li>Comprehensive Support: Reliable hosting and end-to-end maintenance.</li>
-      </ul>
-      <h2>Why Bhilai Businesses Choose Bhojan Mitra</h2>
-      <p>Expert Developers: Our team comprises experienced React and Django developers. Affordable Solutions: We offer competitive pricing tailored for startups and SMEs. Complimentary SEO Audit: Receive a free SEO audit with every project. Ongoing Support: Enjoy lifetime support and seamless cloud deployment.</p>
-    `
   }
 };
 

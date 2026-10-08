@@ -13,6 +13,10 @@ RedirectMatch 301 ^/(team|kunwar-kanhaiya-pandey)/?$ /about
 RedirectMatch 410 ^/(app-development|web-development|iot-development|ai-ml-projects|pillars)(/.*)?$
 RedirectMatch 410 ^/(website-development|pillar-admin)/?$
 
+# Removed off-topic (web development) blog posts. RewriteRule, not RedirectMatch, so it wins
+# even if the old blog/*.html files are still on the server.
+RewriteRule ^blog/(ai-web-app|website-development-bhilai)(\.html)?/?$ https://aarohitavigyan.com/blog [R=301,L]
+
 # Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
