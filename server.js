@@ -128,8 +128,13 @@ const organizationSchema = {
     "contactType": "Customer Support",
     "url": `${SITE_URL}/support`
   }],
+  // Official profiles — search and AI engines use these to tie mentions elsewhere back to us
   "sameAs": [
-    `${SITE_URL}`
+    "https://www.linkedin.com/company/aarohitavigyan/",
+    "https://www.instagram.com/aarohitavigyan/",
+    ...(app.locals.google.placeId
+      ? [`https://www.google.com/maps/place/?q=place_id:${app.locals.google.placeId}`]
+      : [])
   ],
   "brand": {
     "@type": "Brand",

@@ -6,6 +6,13 @@ RewriteEngine On
 # Redirect old ecommerce/integration URLs to restaurant-pos
 RedirectMatch 301 ^/pos-ecommerce-integration/?$ /restaurant-pos
 
+# Legacy URLs from the old React site (Aarohita Vigyan agency) — still in Google's index
+RedirectMatch 301 ^/restaurant-pos/.+$ /restaurant-pos
+RedirectMatch 301 ^/ai-ml-projects/voice-interfaces/?$ /voice-ordering
+RedirectMatch 301 ^/(team|kunwar-kanhaiya-pandey)/?$ /about
+RedirectMatch 410 ^/(app-development|web-development|iot-development|ai-ml-projects|pillars)(/.*)?$
+RedirectMatch 410 ^/(website-development|pillar-admin)/?$
+
 # Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
