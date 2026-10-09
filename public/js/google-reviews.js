@@ -36,6 +36,8 @@
         if (place.googleMapsURI) el('count-link').href = place.googleMapsURI;
 
         var list = el('list');
+        var track = text('div', 'gr-track');
+        list.appendChild(track);
         (place.reviews || []).filter(function (r) { return r.text; }).slice(0, 5).forEach(function (r) {
             var card = text('article', 'gr-card');
             var head = text('div', 'gr-card-head');
@@ -56,10 +58,34 @@
             head.appendChild(who);
             card.appendChild(head);
             card.appendChild(text('p', 'gr-card-text', String(r.text).slice(0, 400)));
-            list.appendChild(card);
+            track.appendChild(card);
         });
 
         section.hidden = false;
+        startMarquee(list, track);
+    }
+
+    // Right-to-left marquee: repeat the cards until one set is wider than the viewport,
+    // then append a hidden copy of that set so translateX(-50%) loops seamlessly.
+    function startMarquee(list, track) {
+        var originals = Array.prototype.slice.call(track.children);
+        if (!originals.length) return;
+        var set = originals.slice();
+        while (track.scrollWidth < list.clientWidth && set.length < 40) {
+            originals.forEach(function (c) { var copy = cloneHidden(c); track.appendChild(copy); set.push(copy); });
+        }
+        set.forEach(function (c) { track.appendChild(cloneHidden(c)); });
+        // ~40px per second regardless of how many cards there are
+        track.style.setProperty('--gr-duration', Math.max(20, Math.round(track.scrollWidth / 2 / 40)) + 's');
+        list.classList.add('is-marquee');
+    }
+
+    function cloneHidden(card) {
+        var copy = card.cloneNode(true);
+        copy.setAttribute('aria-hidden', 'true');
+        copy.classList.add('gr-card--clone');
+        copy.querySelectorAll('a').forEach(function (a) { a.tabIndex = -1; });
+        return copy;
     }
 
     window.bmGoogleReviewsInit = function () {

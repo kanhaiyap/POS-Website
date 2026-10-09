@@ -6541,12 +6541,42 @@ section.gr-section h2.gr-title {
 .gr-write:hover { background: #fff0fa; }
 
 .gr-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
+    overflow: hidden;
+    padding: 0.5rem 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.gr-track {
+    display: flex;
+    align-items: stretch;
+    width: max-content;
+}
+
+.gr-list.is-marquee .gr-track {
+    animation: gr-marquee var(--gr-duration, 40s) linear infinite;
+}
+
+.gr-list.is-marquee:hover .gr-track,
+.gr-list.is-marquee:focus-within .gr-track {
+    animation-play-state: paused;
+}
+
+@keyframes gr-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gr-list { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    .gr-list.is-marquee .gr-track { animation: none; }
+    .gr-card--clone { display: none; }
 }
 
 .gr-card {
+    /* margin instead of track gap so the -50% loop point lines up exactly */
+    flex: 0 0 min(320px, 80vw);
+    margin-right: 1rem;
     background: #fff;
     border-radius: 16px;
     padding: 1.25rem;
